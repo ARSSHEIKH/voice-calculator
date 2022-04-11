@@ -2,10 +2,11 @@ import React, { useRef, useState } from "react";
 import { Button, DrawerLayoutAndroid, Text, StyleSheet, View } from "react-native";
 import Header from "./index"
 import TabScreen from "../../screen";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 
 const Drawer2 = () => {
+    const dispatch = useDispatch();
     const drawer = useRef(null);
     const [drawerPosition, setDrawerPosition] = useState("left");
     const toggle = useSelector(state=>state.drawerToggle_state);
@@ -15,15 +16,19 @@ const Drawer2 = () => {
             <Text style={styles.paragraph}>I'm in the Drawer!</Text>
             <Button
                 title="Close drawer"
-                onPress={() => drawer.current.closeDrawer()}
+                onPress={() => {
+                    drawer.current.closeDrawer()
+                    drawerOpen()
+                }}
             />
         </View>
     );
 
+    const drawerOpen = () => dispatch({type: "open_drawerToggle_state", payload: !toggle})
+    
     return (
         <DrawerLayoutAndroid
             ref={drawer}
-
             drawerWidth={300}
             drawerPosition={drawerPosition}
             renderNavigationView={navigationView}
