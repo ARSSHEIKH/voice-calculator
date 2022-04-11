@@ -1,120 +1,155 @@
-import React from "react";
-import { StyleSheet, Text, View, StatusBar, SafeAreaView } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, Text, View, SafeAreaView, Dimensions } from "react-native";
 
 import Row from "../components/Row";
 import Button from "../components/Button";
-import calculator, { initialState } from "../util/calculator";
-import Logic from "../util/logic";
 
-export default class SimpleCalculator extends React.Component {
-    state = initialState;
-    handleTap = (type, value) => {
-        this.setState(state => calculator(type, value, state));
+export default function SimpleCalculator() {
+
+    const [calc, setCalc] = useState('')
+    const [res, setRes] = useState('')
+    const operators = ["+", "-", "*", "/", "."];
+
+    const handleTap = (type, value) => {
+        console.log("value", value === 0 && calc === "");
+        if (value === 0 && calc === "" || operators.includes(value) && calc === "" || operators.includes(value) && operators.includes(calc.slice(-1)))
+            return;
+
+        if (value !== "=")
+            setCalc(calc + value)
+
+        try {
+            if (!operators.includes(value)) {
+                setRes(eval(calc + value).toString());
+            }
+        }
+        catch {
+            if (value === "=") {
+                setCalc(res);
+                setRes("")
+            }
+        }
     };
-    render() {
-        return (
-            <SafeAreaView>
+    const clearAll = () => {
+        setCalc("");
+        setRes("")
+    }
+    const deleteLast = () => {
+        if (calc == "")
+            return;
+        const value = calc.slice(0, -1)
+        setCalc(value)
+        try {
+            setRes(eval(value).toString())
+        } catch {
+            setRes(eval(value + 0).toString())
+        }
+    };
+
+    return (
+        <SafeAreaView style={styles.container}>
+            <View style={styles.inputContainer}>
                 <Text style={styles.inputValue}>
-                    {this.state.previousValue === null ? "" : parseFloat(this.state.previousValue).toLocaleString()}
-                    {this.state.operator}
-                    {parseFloat(this.state.currentValue).toLocaleString()}
+                    {calc || 0}
                 </Text>
                 <Text style={styles.value}>
-                    {parseFloat(this.state.result).toLocaleString()}
+                    {res !== 0 ? res : ""}
                 </Text>
-                {/* <Logic type={this.state} /> */}
-                <Row>
-                    <Button
-                        text="AC"
-                        theme="secondary"
-                        onPress={() => this.handleTap("clear")}
-                    />
-                    <Button
-                        text="backspace"
-                        theme="secondary"
-                        onPress={() => this.handleTap("delete")}
-                    />
-                    <Button
-                        text="%"
-                        theme="secondary"
-                        onPress={() => this.handleTap("percentage")}
-                    />
-                    <Button
-                        text="/"
-                        theme="accent"
-                        onPress={() => this.handleTap("operator", "/")}
-                    />
-                </Row>
+            </View>
+            <Row>
+                <Button
+                    text="AC"
+                    theme="secondary"
+                    onPress={clearAll}
+                />
+                <Button
+                    text="backspace"
+                    theme="secondary"
+                    onPress={deleteLast}
+                />
+                <Button
+                    text="%"
+                    theme="secondary"
+                    onPress={() => handleTap("percentage")}
+                />
+                <Button
+                    text="/"
+                    theme="accent"
+                    onPress={() => handleTap("operator", "/")}
+                />
+            </Row>
 
-                <Row>
-                    <Button text="7" onPress={() => this.handleTap("number", 7)} />
-                    <Button text="8" onPress={() => this.handleTap("number", 8)} />
-                    <Button text="9" onPress={() => this.handleTap("number", 9)} />
-                    <Button
-                        text="x"
-                        theme="accent"
-                        onPress={() => this.handleTap("operator", "*")}
-                    />
-                </Row>
+            <Row>
+                <Button text="7" onPress={() => handleTap("number", 7)} />
+                <Button text="8" onPress={() => handleTap("number", 8)} />
+                <Button text="9" onPress={() => handleTap("number", 9)} />
+                <Button
+                    text="x"
+                    theme="accent"
+                    onPress={() => handleTap("operator", "*")}
+                />
+            </Row>
 
-                <Row>
-                    <Button text="4" onPress={() => this.handleTap("number", 4)} />
-                    <Button text="5" onPress={() => this.handleTap("number", 5)} />
-                    <Button text="6" onPress={() => this.handleTap("number", 6)} />
-                    <Button
-                        text="-"
-                        theme="accent"
-                        onPress={() => this.handleTap("operator", "-")}
-                    />
-                </Row>
+            <Row>
+                <Button text="4" onPress={() => handleTap("number", 4)} />
+                <Button text="5" onPress={() => handleTap("number", 5)} />
+                <Button text="6" onPress={() => handleTap("number", 6)} />
+                <Button
+                    text="-"
+                    theme="accent"
+                    onPress={() => handleTap("operator", "-")}
+                />
+            </Row>
 
-                <Row>
-                    <Button text="1" onPress={() => this.handleTap("number", 1)} />
-                    <Button text="2" onPress={() => this.handleTap("number", 2)} />
-                    <Button text="3" onPress={() => this.handleTap("number", 3)} />
-                    <Button
-                        text="+"
-                        theme="accent"
-                        onPress={() => this.handleTap("operator", "+")}
-                    />
-                </Row>
+            <Row>
+                <Button text="1" onPress={() => handleTap("number", 1)} />
+                <Button text="2" onPress={() => handleTap("number", 2)} />
+                <Button text="3" onPress={() => handleTap("number", 3)} />
+                <Button
+                    text="+"
+                    theme="accent"
+                    onPress={() => handleTap("operator", "+")}
+                />
+            </Row>
 
-                <Row>
-                    <Button
-                        text="+/-"
-                        onPress={() => this.handleTap("posneg")}
-                    />
-                    <Button
-                        text="0"
-                        onPress={() => this.handleTap("number", 0)}
-                    />
-                    <Button text="." onPress={() => this.handleTap("number", ".")} />
-                    <Button
-                        text="="
-                        theme="accent"
-                        onPress={() => this.handleTap("equal")}
-                    />
-                </Row>
-            </SafeAreaView>
-
-        )
-
-    }
+            <Row>
+                <Button
+                    text="+/-"
+                    onPress={() => handleTap("posneg")}
+                />
+                <Button
+                    text="0"
+                    onPress={() => handleTap("number", 0)}
+                />
+                <Button text="." onPress={() => handleTap("number", ".")} />
+                <Button
+                    text="="
+                    theme="accent"
+                    onPress={() => handleTap("operator", "=")}
+                />
+            </Row>
+        </SafeAreaView>
+    );
 }
 
 const styles = StyleSheet.create({
-    inputValue:{
+    container: {
+        backgroundColor: "#fff",
+    },
+    inputValue: {
         textAlign: "right",
         fontSize: 20,
         marginRight: 20,
-        marginBottom: 10
-
+        marginBottom: 10,
+        backgroundColor: "#fff",
+        color: "#3b3b3b"
     },
     value: {
         color: "#000",
         fontSize: 40,
         textAlign: "right",
         marginRight: 20,
-        marginBottom: 10
+        marginBottom: 10,
+        backgroundColor: "#fff",
     }
 });

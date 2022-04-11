@@ -174,8 +174,10 @@ android {
         //     // see https://reactnative.dev/docs/signed-apk-android.
         //     signingConfig signingConfigs.release
         //     // signingConfig signingConfigs.debug
-        //     minifyEnabled enableProguardInReleaseBuilds
-        //     proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        //     // minifyEnabled true
+        //     //  minifyEnabled enableProguardInReleaseBuilds
+        //     //  shrinkResources true
+        //     // proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         // }
     }
 

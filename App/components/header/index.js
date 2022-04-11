@@ -1,17 +1,16 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import {
     StyleSheet,
     View,
     Text,
     Linking,
-    StyleProp,
-    TextStyle,
-    ViewStyle,
     TouchableOpacity,
+    Button,
     SafeAreaView
 } from 'react-native';
 import { Header as HeaderRNE, HeaderProps, Icon } from 'react-native-elements';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import DrawerLeft from "./drawer"
 import Tabs from './tabs';
 
 type HeaderComponentProps = {
@@ -26,7 +25,8 @@ type ParamList = {
 };
 
 const Header: React.FunctionComponent<HeaderComponentProps> = (props) => {
-
+const dispatch = useDispatch();
+const state = useSelector(state=>state)
     const docsNavigate = () => {
         // Linking.openURL(`https://reactnativeelements.com/docs/${props.view}`);
     };
@@ -34,33 +34,46 @@ const Header: React.FunctionComponent<HeaderComponentProps> = (props) => {
     const playgroundNavigate = () => {
         Linking.openURL(`https://react-native-elements.js.org/#/${props.view}`);
     };
+    const drawerOpen = () => dispatch({type: "open_drawerToggle_state", payload: true})
+    
+    
 
     return (
-        // <SafeAreaProvider>
-            <HeaderRNE
-                leftComponent={{
-                    icon: 'menu',
-                    color: '#8c8c8c',
-                    style: {
-                        marginTop: 7
-                    }                   
-                }}
-                containerStyle={styles.header}
-                rightComponent={
-                    <View style={styles.headerRight}>
-                        <TouchableOpacity onPress={docsNavigate}>
-                            <Icon type="entypo" name="light-up" color="#8c8c8c" containerStyle={styles.icon} />
-                        </TouchableOpacity>
-                    </View>
-                }
-                centerComponent={<Tabs/>}
-            />
-        // </SafeAreaProvider>
+        <HeaderRNE
+            leftComponent={
+                <TouchableOpacity onPress={drawerOpen}>
+                    <Icon name="menu" color="#8c8c8c" containerStyle={styles.icon} />
+                </TouchableOpacity>
+            }
+            containerStyle={styles.header}
+            rightComponent={
+                <View style={styles.headerRight}>
+                    <TouchableOpacity onPress={docsNavigate}>
+                        <Icon type="entypo" name="light-up" color="#8c8c8c" containerStyle={styles.icon} />
+                    </TouchableOpacity>
+                </View>
+            }
+            centerComponent={<Tabs />}
+        />
     );
 };
 
 const styles = StyleSheet.create({
-    header:{
+    container: {
+      flex: 1,
+      alignItems: "center",
+      justifyContent: "center",
+      padding: 16
+    },
+    navigationContainer: {
+      backgroundColor: "#ecf0f1"
+    },
+    paragraph: {
+      padding: 16,
+      fontSize: 15,
+      textAlign: "center"
+    },  
+    header: {
         backgroundColor: '#fff',
     },
     headerContainer: {
@@ -86,7 +99,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
     },
-    icon:{
+    icon: {
         fontWeight: "900",
         fontSize: 24
     }

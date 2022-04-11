@@ -21,7 +21,10 @@ target 'voicecalculator' do
 
   pod 'react-native-voice', :path => '../node_modules/@react-native-community/voice'
 
-  pod 'react-native-google-cloud-speech-to-text', :path => '../node_modules/react-native-google-cloud-speech-to-text'
+
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
+  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
 
   target 'voicecalculatorTests' do
     inherit! :complete

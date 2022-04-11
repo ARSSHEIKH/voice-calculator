@@ -3,15 +3,14 @@ import { View, Text, StyleSheet, SafeAreaView, Dimensions, PermissionsAndroid } 
 import Voice from '@react-native-community/voice';
 import { Button, Icon } from 'react-native-elements';
 
-const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+const windowWidth = Dimensions.get('window').width;
 
 const App = () => {
 
-    const [result, setResult] = useState('')
-    const [solution, setSolution] = useState('')
-    const [isLoading, setLoading] = useState(false)
-    const [textSolutionError, setTextSolutionError] = useState(false);
+    const [result, setResult] = useState('');
+    const [solution, setSolution] = useState('');
+    const [isLoading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState(false);
 
     useEffect(() => {
@@ -26,34 +25,12 @@ const App = () => {
         }
     }, [])
 
-    const addPermissions = async () => {
-        const granted = await PermissionsAndroid.request(
-            PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
-            {
-                title: "Voice Calculator Audio Permission",
-                message:
-                    "Cool Photo App needs access to your camera " +
-                    "so you can take awesome pictures.",
-                buttonNeutral: "Ask Me Later",
-                buttonNegative: "Cancel",
-                buttonPositive: "OK"
-            }
-        );
-        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-            console.log("You can use the voice");
-            return true;
-        } else {
-            console.log("Camera permission denied");
-            return false
-        }
-    }
-
     const onSpeechError = (e) => {
         console.log("onSpeechError", e.error.message);
         if (e.error.message === "7/No match")
-            setErrorMessage(e.error.message.slice(2) + ", Try Again !")
+            setErrorMessage(e.error.message.slice(2) + ", Try Again !");
         else
-        setErrorMessage(e.error.message.slice(2))
+        setErrorMessage(e.error.message.slice(2));
 
     }
 
@@ -64,7 +41,7 @@ const App = () => {
         setLoading(false)
         console.log("stop handler", e)
     }
-
+// 11 - Clash Squad Ranked | id: maiNhiBatunga | #freefire #ClashSquad
     const caseForOneOperator = (leftNumber, operator, rightOperator) => {
         let result = 0
         console.log("operator", operator)
@@ -222,11 +199,11 @@ const App = () => {
         text = text.replace(/x/g, "*");
 
         try {
-            setTextSolutionError(false)
+            setErrorMessage("")
             setSolution(eval(text))
         }
         catch {
-            setTextSolutionError(true)
+            setErrorMessage("INVALID EXPRESSION")
         }
 
         // for (let index = 0; index < text.length; index++) {
@@ -294,12 +271,10 @@ const App = () => {
         setErrorMessage("")
         setLoading(true)
         try {
-            const checkPermission = addPermissions();
-            if (checkPermission) {
                 await Voice.isAvailable();
                 await Voice.start('en-Us');
                 setResult("");
-            }
+            
 
         } catch (error) {
             console.log("error raised", error)
@@ -315,19 +290,16 @@ const App = () => {
         }
     }
 
-
     return (
         <View style={styles.container}>
             <SafeAreaView>
                 <View style={styles.wholeContainer}>
                     <View style={styles.textContainer}>
-                        <Text style={styles.heading}>Result:</Text>
                         <Text style={styles.text1}>{result}</Text>
                     </View>
                     <View style={styles.textContainer}>
-                        <Text style={styles.heading}>Solution:</Text>
-                        <Text style={styles.text2}>{textSolutionError ? "" : solution}</Text>
-                        <Text style={styles.textSolutionError}>{textSolutionError ? "INVALID EXPRESSION" : ""}</Text>
+                        <Text style={styles.heading}>Result:</Text>
+                        <Text style={styles.text2} allowFontScaling={true}>{solution}</Text>
                     </View>
 
 
@@ -376,7 +348,6 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        // marginTop: windowWidth/3,
         marginBottom: 0,
         maxWidth: 550,
         height: windowHeight / 1.7,
@@ -399,7 +370,8 @@ const styles = StyleSheet.create({
         textTransform: "uppercase",
         letterSpacing: 2,
         color: "green",
-        marginLeft: 10
+        marginLeft: 10,
+        width: windowWidth/1.8
     },
     text2: {
         fontSize: 18,
@@ -407,7 +379,8 @@ const styles = StyleSheet.create({
         textTransform: "uppercase",
         letterSpacing: 2,
         color: "blue",
-        marginLeft: 10
+        marginLeft: 10,
+        width: windowWidth/1.8
     },
     textSolutionError: {
         fontSize: 18,
@@ -423,11 +396,10 @@ const styles = StyleSheet.create({
         letterSpacing: 1,
         color: "red",
         marginTop: 20,
-        marginLeft: 10
+        marginLeft: 10,
+        width: windowWidth/1.5
     },
     button: {
-        // margin: 10,
-        // marginHorizontal: 80,
         paddingVertical: 40,
         paddingHorizontal: 50,
         borderRadius: 100,
@@ -436,11 +408,8 @@ const styles = StyleSheet.create({
         marginRight: "auto",
         textAlign: "center",
         backgroundColor: "#1972e8",
-
     },
     stopButton: {
-        // margin: 10,
-        // marginHorizontal: 80,
         paddingVertical: 40,
         paddingHorizontal: 46,
         borderRadius: 100,
@@ -449,7 +418,6 @@ const styles = StyleSheet.create({
         marginRight: "auto",
         textAlign: "center",
         backgroundColor: "#1972e8",
-
     },
 });
 

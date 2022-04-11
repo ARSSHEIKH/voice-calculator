@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, StatusBar, SafeAreaView } from "react-native";
 
 import Header from "./components/header"
+import Drawer from "./components/header/drawer2"
 import TabScreen from "./screen/";
 
 import { Provider } from 'react-redux';
@@ -17,8 +18,8 @@ export default class App extends React.Component {
           animated={true}
           hidden={true}
         />
-        <Header />
-          <TabScreen />
+        <Drawer />
+        {/* <TabScreen /> */}
       </Provider>
     );
   }
