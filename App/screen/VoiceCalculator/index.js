@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, Dimensions, PermissionsAndroid } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, Dimensions, ActivityIndicator, TouchableWithoutFeedback } from 'react-native';
 import Voice from '@react-native-community/voice';
 import { Button, Icon } from 'react-native-elements';
+import * as Animatable from 'react-native-animatable';
 
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
@@ -11,7 +12,9 @@ const App = () => {
     const [result, setResult] = useState('');
     const [solution, setSolution] = useState('');
     const [isLoading, setLoading] = useState(false);
+    const [indicator, setindicator] = useState(false);
     const [errorMessage, setErrorMessage] = useState(false);
+
 
     useEffect(() => {
         Voice.onSpeechStart = onSpeechStartHandler;
@@ -19,7 +22,6 @@ const App = () => {
         Voice.onSpeechResults = onSpeechResultsHandler;
         Voice.onSpeechPartialResults = onSpeechPartialResults
         Voice.onSpeechError = onSpeechError;
-
         return () => {
             Voice.destroy().then(Voice.removeAllListeners);
         }
@@ -27,172 +29,29 @@ const App = () => {
 
     const onSpeechError = (e) => {
         console.log("onSpeechError", e.error.message);
+        setindicator(false)
         if (e.error.message === "7/No match")
             setErrorMessage(e.error.message.slice(2) + ", Try Again !");
         else
-        setErrorMessage(e.error.message.slice(2));
+            setErrorMessage(e.error.message.slice(2));
 
     }
 
     const onSpeechStartHandler = (e) => {
+        setindicator(true)
         console.log("start handler==>>>", e)
     }
     const onSpeechEndHandler = (e) => {
         setLoading(false)
+        setindicator(false)
+
         console.log("stop handler", e)
     }
-// 11 - Clash Squad Ranked | id: maiNhiBatunga | #freefire #ClashSquad
-    const caseForOneOperator = (leftNumber, operator, rightOperator) => {
-        let result = 0
-        console.log("operator", operator)
-        switch (operator) {
-            case "+":
-                result = parseFloat(leftNumber) + parseFloat(rightOperator);
-                break;
-            case "-":
-                result = parseFloat(leftNumber) - parseFloat(rightOperator);
-                break;
-            case "x":
-                result = parseFloat(leftNumber) * parseFloat(rightOperator);
-                break;
-            case "/":
-                result = parseFloat(leftNumber) / parseFloat(rightOperator);
-                break;
-            case "divide":
-                result = parseFloat(leftNumber) / parseFloat(rightOperator);
-                break;
-            default:
-                break;
-        }
-        return result
-    }
-    const solvingMethod = (solveArray, left, mid, right) => {
-
-        if (solveArray.length === 1) {
-            setSolution(solveArray[0]);
-        }
-
-        else if (solveArray.length > 2) {
-            for (let index = 2; index < solveArray.length; index += 2) {
-                mid = solveArray[index - 1];
-                right = solveArray[index];
-                if (index === 2) {
-                    left = caseForOneOperator(solveArray[index - 2], mid, right);
-                    setSolution(left);
-                }
-                else {
-                    left = caseForOneOperator(left, mid, right);
-                    setSolution(left);
-                }
-            }
-        }
-
-        else {
-            left = caseForOneOperator(solveArray[0], solveArray[1], right)
-            setSolution(left);
-
-        }
-        return left
-    }
-    const findingArray = (newArray, left, mid, right) => {
-
-        let solveArray = [];
-        let startBracket_index = newArray.indexOf("(");
-        let endBracket_index = newArray.indexOf(")");
-        if (startBracket_index === -1 && endBracket_index === -1) {
-            simpleData(newArray, left, mid, right)
-            // left = solvingMethod(newArray, left, mid, right);
-            // newArray = newArray.slice(newArray.length, newArray.length);
-            // newArray.unshift(left);
-            return
-        }
-        else if (endBracket_index === -1) {
-            console.log("else if")
-            solveArray = newArray.slice(startBracket_index + 1, newArray.length);
-            newArray = newArray.slice(newArray.length, newArray.length);
-            left = solvingMethod(solveArray, left, mid, right);
-            newArray.unshift(left);
-        }
-        else {
-            console.log("else")
-            solveArray = newArray.slice(startBracket_index + 1, endBracket_index);
-            // newArray = newArray.slice(endBracket_index + 1, newArray.length);
-
-            left = solvingMethod(solveArray, left, mid, right);
-            newArray.splice(startBracket_index, solveArray.length + 2, left);
-            console.log("newArraynewArray", newArray)
-
-        }
-        // (2+3)+(1+3                                                                    )
-        return { solveArray, newArray };
-    }
-
-    let recursiveIndex = 0;
-
-    const recursiveFunction = (text, newArray, left, mid, right, solveArray) => {
-
-        const finded = findingArray(newArray, left, mid, right)
-        try {
-            solveArray = finded.solveArray;
-            newArray = finded.newArray;
-        } catch {
-            return
-        }
-
-
-        recursiveIndex++;
-        if (recursiveIndex === 2)
-            return newArray
-        else
-            recursiveFunction(text, newArray, left, mid, right)
-    }
-
-    const simpleData = (text, left, mid, right) => {
-        console.log("140", mid)
-        if (text.length === 1) {
-            console.log("142", mid)
-            setSolution(text[0]);
-        }
-
-        else if (text.length > 2) {
-            for (let index = 2; index < text.length; index += 2) {
-                mid = text[index - 1];
-                right = text[index];
-                console.log("149", mid)
-                if (index === 2) {
-                    left = caseForOneOperator(text[index - 2], mid, right);
-                    setSolution(left);
-                }
-                else {
-                    left = caseForOneOperator(left, mid, right);
-                    setSolution(left);
-                }
-            }
-        }
-
-        else {
-            console.log("text[0], text[1]", text)
-            left = caseForOneOperator(text[0], text[1], right)
-            setSolution(left);
-
-        }
-    }
-
     const onSpeechResultsHandler = (e) => {
         console.log('onSpeechResultsHandler: ', e);
 
         let text = e.value[0];
         setResult(text);
-
-
-        // text = text.split(" ");
-        // //#region new changes
-
-        let mid = "+"
-        let left = 0
-        let right = 0
-        let newArray = []
-        let solveArray = []
 
         text = text.replace(/into/g, "*");
         text = text.replace(/multiply/g, "*");
@@ -206,75 +65,21 @@ const App = () => {
             setErrorMessage("INVALID EXPRESSION")
         }
 
-        // for (let index = 0; index < text.length; index++) {
-        //     for (let ascci_index = 40; ascci_index < 58; ascci_index++) {
-        //         if (text.charCodeAt(index) === ascci_index) {
-        //             newArray.push(text[index])
-        //             break
-        //         }
-        //         else if (text.charCodeAt(index) === 120) {
-        //             newArray.push(text[index])
-        //             break
-        //         }
-        //     }
-        // }
-        // newArray = recursiveFunction(text, newArray, left, mid, right, solveArray);
-        // console.log("newArray", newArray)
-        // for (let index = 0; index < newArray.length; index++) {
-        //     if(newArray[index] === "("){
-        //         solveArray
-        //     }
-
-        // }
-
-
-
-        // //#endregion
-
-        //#region previous code
-
-        // if (text.length === 1) {
-        //     setSolution(text[0]);
-        // }
-
-        // else if (text.length > 2) {
-        //     for (let index = 2; index < text.length; index += 2) {
-        //         mid = text[index - 1];
-        //         right = text[index];
-        //         if (index === 2) {
-        //             left = caseForOneOperator(text[index - 2], mid, right);
-        //             setSolution(left);
-        //         }
-        //         else {
-        //             left = caseForOneOperator(left, mid, right);
-        //             setSolution(left);
-        //         }
-        //     }
-        // }
-
-        // else {
-        //     left = caseForOneOperator(text[0], text[1], right)
-        //     setSolution(left);
-
-        // }
-
-
-        //#endregion
-
     }
     const onSpeechPartialResults = (e) => {
         setResult(e.value[0])
         console.log('onSpeechPartialResults: ', e);
     };
 
+
     const startRecording = async () => {
         setErrorMessage("")
         setLoading(true)
         try {
-                await Voice.isAvailable();
-                await Voice.start('en-Us');
-                setResult("");
-            
+            await Voice.isAvailable();
+            await Voice.start('en-Us');
+            setResult("");
+
 
         } catch (error) {
             console.log("error raised", error)
@@ -284,6 +89,7 @@ const App = () => {
     const stopRecording = async () => {
         try {
             await Voice.stop()
+
             setLoading(false)
         } catch (error) {
             console.log("error raised", error)
@@ -302,37 +108,53 @@ const App = () => {
                         <Text style={styles.text2} allowFontScaling={true}>{solution}</Text>
                     </View>
 
-
                     {isLoading ?
-                        // <ActivityIndicator size="large" color="red" />
-                        <Button
-                            onPress={stopRecording}
-                            buttonStyle={styles.stopButton}
-                            icon={
-                                <Icon
-                                    name="microphone-slash"
-                                    type="font-awesome"
-                                    size={50}
-                                    color="#fff"
-                                // iconStyle={{ marginRight: 10 }}
-                                />
-                            }
-                        />
+
+                        <Animatable.View style={styles.outerCircle} animation="pulse" easing="ease-in-out-back" iterationCount="infinite" >
+                            {/* <ActivityIndicator size={180} animating={indicator} color="#bfd4f0" style={{
+                                position: 'absolute',
+                                left: 0,
+                                right: 0,
+                                top: 0,
+                                bottom: 0,
+                                alignItems: 'center',
+                                justifyContent: 'center'
+                            }} /> */}
+
+                            <Button
+                                onPress={stopRecording}
+                                buttonStyle={styles.stopButton}
+                                icon={
+
+                                    <Icon
+                                        name="microphone-slash"
+                                        type="font-awesome"
+                                        size={50}
+                                        color="#fff"
+                                    // iconStyle={{ marginRight: 10 }}
+                                    />
+                                }
+                            />
+                        </Animatable.View>
                         :
-                        <Button
-                            buttonStyle={styles.button}
-                            onPress={startRecording}
-                            icon={
-                                <Icon
-                                    name="microphone"
-                                    type="font-awesome"
-                                    size={50}
-                                    color="#fff"
-                                // iconStyle={{ marginRight: 10}}
-                                />
-                            }
-                        />
+
+                        <View>
+                            <Button
+                                buttonStyle={styles.button}
+                                onPress={startRecording}
+                                icon={
+                                    <Icon
+                                        name="microphone"
+                                        type="font-awesome"
+                                        size={50}
+                                        color="#fff"
+                                    />
+                                }
+                            />
+                        </View>
                     }
+
+
                     <Text style={styles.errorMessage}>{errorMessage}</Text>
                 </View>
             </SafeAreaView>
@@ -349,7 +171,7 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         justifyContent: "center",
         marginBottom: 0,
-        maxWidth: 550,
+        maxWidth: 650,
         height: windowHeight / 1.7,
     },
     textContainer: {
@@ -371,7 +193,7 @@ const styles = StyleSheet.create({
         letterSpacing: 2,
         color: "green",
         marginLeft: 10,
-        width: windowWidth/1.8
+        width: windowWidth / 1.8
     },
     text2: {
         fontSize: 18,
@@ -380,7 +202,7 @@ const styles = StyleSheet.create({
         letterSpacing: 2,
         color: "blue",
         marginLeft: 10,
-        width: windowWidth/1.8
+        width: windowWidth / 1.8
     },
     textSolutionError: {
         fontSize: 18,
@@ -390,6 +212,38 @@ const styles = StyleSheet.create({
         color: "red",
         marginLeft: 10
     },
+    outerCircle: {
+
+        width: 150,
+        height: 150,
+        borderRadius: 100,
+        position: "relative",
+        backgroundColor: "#bfd4f0",
+        margin: 10,
+        cursor: "pointer",
+        alignSelf: "center"
+
+    },
+    button: {
+        paddingVertical: 40,
+        paddingHorizontal: 50,
+        borderRadius: 100,
+        marginLeft: "auto",
+        marginRight: "auto",
+        textAlign: "center",
+        backgroundColor: "#1972e8",
+        top: 8,
+    },
+    stopButton: {
+        paddingVertical: 40,
+        paddingHorizontal: 46,
+        borderRadius: 100,
+        marginLeft: "auto",
+        marginRight: "auto",
+        textAlign: "center",
+        backgroundColor: "#1972e8",
+        top: 8,
+    },
     errorMessage: {
         fontSize: 16,
         fontWeight: "500",
@@ -397,27 +251,7 @@ const styles = StyleSheet.create({
         color: "red",
         marginTop: 20,
         marginLeft: 10,
-        width: windowWidth/1.5
-    },
-    button: {
-        paddingVertical: 40,
-        paddingHorizontal: 50,
-        borderRadius: 100,
-        marginTop: 20,
-        marginLeft: "auto",
-        marginRight: "auto",
-        textAlign: "center",
-        backgroundColor: "#1972e8",
-    },
-    stopButton: {
-        paddingVertical: 40,
-        paddingHorizontal: 46,
-        borderRadius: 100,
-        marginTop: 20,
-        marginLeft: "auto",
-        marginRight: "auto",
-        textAlign: "center",
-        backgroundColor: "#1972e8",
+        width: windowWidth / 1.5
     },
 });
 
