@@ -2,11 +2,13 @@ import React, { useRef, useState } from "react";
 import { Button, DrawerLayoutAndroid, Text, StyleSheet, View } from "react-native";
 import Header from "./index"
 import TabScreen from "../../screen";
+import { useSelector } from "react-redux";
 
 
 const Drawer2 = () => {
     const drawer = useRef(null);
     const [drawerPosition, setDrawerPosition] = useState("left");
+    const toggle = useSelector(state=>state.drawerToggle_state);
 
     const navigationView = () => (
         <View style={[styles.container, styles.navigationContainer]}>
@@ -27,10 +29,8 @@ const Drawer2 = () => {
             renderNavigationView={navigationView}
         >
             <Header/>
-            <Button
-                title="Open drawer"
-                onPress={() => drawer.current.openDrawer()}
-            />
+            {toggle ? drawer.current.openDrawer() : null}
+
             <TabScreen />
         </DrawerLayoutAndroid>
     );

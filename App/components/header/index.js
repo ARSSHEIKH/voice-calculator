@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { Header as HeaderRNE, HeaderProps, Icon } from 'react-native-elements';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { useDispatch, useSelector } from 'react-redux';
 import DrawerLeft from "./drawer"
 import Tabs from './tabs';
 
@@ -26,7 +27,8 @@ type ParamList = {
 
 const Header: React.FunctionComponent<HeaderComponentProps> = (props) => {
 const dispatch = useDispatch();
-const state = useSelector(state=>state)
+const toggle = useSelector(state=>state.drawerToggle_state);
+
     const docsNavigate = () => {
         // Linking.openURL(`https://reactnativeelements.com/docs/${props.view}`);
     };
@@ -34,10 +36,8 @@ const state = useSelector(state=>state)
     const playgroundNavigate = () => {
         Linking.openURL(`https://react-native-elements.js.org/#/${props.view}`);
     };
-    const drawerOpen = () => dispatch({type: "open_drawerToggle_state", payload: true})
+    const drawerOpen = () => dispatch({type: "open_drawerToggle_state", payload: !toggle})
     
-    
-
     return (
         <HeaderRNE
             leftComponent={
