@@ -1,0 +1,55 @@
+{
+    "header": {
+        "bg_color": "#283637",
+        "tabs": {
+            "bg_color": "#fff",
+            "color": "#fff",
+            "defaultColor": "#008c85"
+        }
+    },
+    "screens": {
+        "tabScreen": {
+            "bg_color": "#283637"
+        },
+        "simpleCalculator": {
+            "backgroundColor": "#283637",
+            "inputValue": {
+                "color": "#aaa5a5"
+            },
+            "value":  {
+                "color": "#fff"
+            },
+            "buttons": {
+                "secondary":{
+                    "color":"#87b5ab",
+                    "backgroundColor": "#6c807e"
+                },
+                "accent": {
+                    "color": "#87b5ab",
+                    "backgroundColor": "#fffeff"
+                }
+            }
+        },
+        "voicecalculator": {
+            "heading": {
+                "color": "silver"
+            },
+            "text1": {
+                "color": "#42d248"
+            },
+            "text2": {
+                "color": "#709ded"
+            },
+            "textError": {
+                "color": "red"
+            },
+            "buttons": {
+                "backgroundColor": "#1972e8",
+                "outerCircle": {
+                    "backgroundColor": "#bfd4f0"
+                },
+                "iconsColor": "#fff"
+            }
+        }
+    }
+}

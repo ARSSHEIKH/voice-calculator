@@ -3,18 +3,22 @@ import { View, Text, StyleSheet, SafeAreaView, Dimensions, ActivityIndicator, To
 import Voice from '@react-native-community/voice';
 import { Button, Icon } from 'react-native-elements';
 import * as Animatable from 'react-native-animatable';
+import { useSelector } from 'react-redux';
+// import { useNavigation } from '@react-navigation/native';
 
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 
-const App = () => {
-
+const VoiceCalculator = () => {
+    // const navigation = useNavigation()
     const [result, setResult] = useState('');
     const [solution, setSolution] = useState('');
     const [isLoading, setLoading] = useState(false);
     const [indicator, setindicator] = useState(false);
     const [errorMessage, setErrorMessage] = useState(false);
+    const theme_mode = useSelector(state => state.theme_state.screens.voicecalculator);
 
+    const screenState = useSelector(state => state.tabs_state);
 
     useEffect(() => {
         Voice.onSpeechStart = onSpeechStartHandler;
@@ -25,7 +29,12 @@ const App = () => {
         return () => {
             Voice.destroy().then(Voice.removeAllListeners);
         }
-    }, [])
+
+    }, []);
+
+    // useEffect(() => {
+    //     screenState === 0 ? navigation.navigate("SimpleCalculator") : navigation.navigate("VoiceCalculator")
+    // }, [screenState])
 
     const onSpeechError = (e) => {
         console.log("onSpeechError", e.error.message);
@@ -38,7 +47,6 @@ const App = () => {
     }
 
     const onSpeechStartHandler = (e) => {
-        setindicator(true)
         console.log("start handler==>>>", e)
     }
     const onSpeechEndHandler = (e) => {
@@ -48,6 +56,7 @@ const App = () => {
         console.log("stop handler", e)
     }
     const onSpeechResultsHandler = (e) => {
+        setindicator(true)
         console.log('onSpeechResultsHandler: ', e);
 
         let text = e.value[0];
@@ -60,20 +69,21 @@ const App = () => {
         try {
             setErrorMessage("")
             setSolution(eval(text))
+            setindicator(false)
         }
         catch {
             setErrorMessage("INVALID EXPRESSION")
         }
 
-    }
+    };
     const onSpeechPartialResults = (e) => {
+        setindicator(true)
         setResult(e.value[0])
         console.log('onSpeechPartialResults: ', e);
     };
-
-
     const startRecording = async () => {
         setErrorMessage("")
+        setSolution("")
         setLoading(true)
         try {
             await Voice.isAvailable();
@@ -84,8 +94,7 @@ const App = () => {
         } catch (error) {
             console.log("error raised", error)
         }
-    }
-
+    };
     const stopRecording = async () => {
         try {
             await Voice.stop()
@@ -94,68 +103,75 @@ const App = () => {
         } catch (error) {
             console.log("error raised", error)
         }
-    }
+    };
 
     return (
         <View style={styles.container}>
             <SafeAreaView>
                 <View style={styles.wholeContainer}>
                     <View style={styles.textContainer}>
-                        <Text style={styles.text1}>{result}</Text>
+                        <Text style={{ ...styles.text1, color: theme_mode.text1.color }}>{result}</Text>
                     </View>
                     <View style={styles.textContainer}>
-                        <Text style={styles.heading}>Result:</Text>
-                        <Text style={styles.text2} allowFontScaling={true}>{solution}</Text>
+                        <Text style={{ ...styles.heading, color: theme_mode.heading.color }}>Result:</Text>
+                        <Text style={{ ...styles.text2, color: theme_mode.text2.color }} allowFontScaling={true}>{solution}</Text>
                     </View>
 
-                    {isLoading ?
+                    <View style={styles.micContainer}>
+                        {isLoading ?
 
-                        <Animatable.View style={styles.outerCircle} animation="pulse" easing="ease-in-out-back" iterationCount="infinite" >
-                            {/* <ActivityIndicator size={180} animating={indicator} color="#bfd4f0" style={{
-                                position: 'absolute',
-                                left: 0,
-                                right: 0,
-                                top: 0,
-                                bottom: 0,
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                            }} /> */}
+                            indicator ?
+                                <View>
+                                    <ActivityIndicator size={165} animating={indicator} color="#bfd4f0" style={styles.indicator} />
+                                    <Button
+                                        onPress={stopRecording}
+                                        buttonStyle={styles.button}
+                                        icon={
 
-                            <Button
-                                onPress={stopRecording}
-                                buttonStyle={styles.stopButton}
-                                icon={
-
-                                    <Icon
-                                        name="microphone-slash"
-                                        type="font-awesome"
-                                        size={50}
-                                        color="#fff"
-                                    // iconStyle={{ marginRight: 10 }}
+                                            <Icon
+                                                name="microphone-slash"
+                                                type="font-awesome"
+                                                size={40}
+                                                color={theme_mode.buttons.iconsColor}
+                                            />
+                                        }
                                     />
-                                }
-                            />
-                        </Animatable.View>
-                        :
+                                </View>
 
-                        <View>
+                                :
+
+                                <Animatable.View style={{ ...styles.outerCircle, backgroundColor: theme_mode.buttons.outerCircle.backgroundColor }} animation="pulse" easing="ease-in-out-back" iterationCount="infinite" >
+                                    <Button
+                                        onPress={stopRecording}
+                                        buttonStyle={{ ...styles.button, backgroundColor: theme_mode.buttons.backgroundColor }}
+                                        icon={
+                                            <Icon
+                                                name="microphone-slash"
+                                                type="font-awesome"
+                                                size={40}
+                                                color={theme_mode.buttons.iconsColor}
+                                            />
+                                        }
+                                    />
+                                </Animatable.View>
+                            :
+
                             <Button
-                                buttonStyle={styles.button}
+                                buttonStyle={{ ...styles.button, backgroundColor: theme_mode.buttons.backgroundColor }}
                                 onPress={startRecording}
                                 icon={
                                     <Icon
                                         name="microphone"
                                         type="font-awesome"
                                         size={50}
-                                        color="#fff"
+                                        color={theme_mode.buttons.iconsColor}
                                     />
                                 }
                             />
-                        </View>
-                    }
+                        }
 
-
-                    <Text style={styles.errorMessage}>{errorMessage}</Text>
+                    </View>
+                    <Text style={{ ...styles.errorMessage, color: theme_mode.textError.color }}>{errorMessage}</Text>
                 </View>
             </SafeAreaView>
         </View>
@@ -172,87 +188,73 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         marginBottom: 0,
         maxWidth: 650,
-        height: windowHeight / 1.7,
+        height: windowHeight / 1.8,
     },
     textContainer: {
         display: "flex",
         flexDirection: "row",
+        marginTop: 10,
     },
     heading: {
         fontSize: 18,
         fontWeight: "700",
         textTransform: "uppercase",
         letterSpacing: 2,
-        color: "#3b3b3b"
-
     },
     text1: {
         fontSize: 18,
         fontWeight: "700",
         textTransform: "uppercase",
         letterSpacing: 2,
-        color: "green",
         marginLeft: 10,
-        width: windowWidth / 1.8
     },
     text2: {
         fontSize: 18,
         fontWeight: "700",
         textTransform: "uppercase",
         letterSpacing: 2,
-        color: "blue",
         marginLeft: 10,
         width: windowWidth / 1.8
     },
-    textSolutionError: {
-        fontSize: 18,
-        fontWeight: "700",
-        textTransform: "uppercase",
-        letterSpacing: 2,
-        color: "red",
-        marginLeft: 10
+    micContainer: {
+        marginTop: 20
     },
     outerCircle: {
 
-        width: 150,
-        height: 150,
+        width: 143,
+        height: 143,
         borderRadius: 100,
-        position: "relative",
-        backgroundColor: "#bfd4f0",
-        margin: 10,
+        // position: "relative",
         cursor: "pointer",
         alignSelf: "center"
 
     },
-    button: {
-        paddingVertical: 40,
-        paddingHorizontal: 50,
-        borderRadius: 100,
-        marginLeft: "auto",
-        marginRight: "auto",
-        textAlign: "center",
-        backgroundColor: "#1972e8",
-        top: 8,
+    indicator: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 6,
+        bottom: 0,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
-    stopButton: {
-        paddingVertical: 40,
-        paddingHorizontal: 46,
+    button: {
+        width: 130,
+        height: 130,
         borderRadius: 100,
         marginLeft: "auto",
         marginRight: "auto",
         textAlign: "center",
-        backgroundColor: "#1972e8",
-        top: 8,
+        marginTop: 6
     },
     errorMessage: {
         fontSize: 16,
         fontWeight: "500",
         letterSpacing: 1,
-        color: "red",
         marginTop: 20,
         marginLeft: 10,
         width: windowWidth / 1.5
     },
 });
 
-export default App;
+export default VoiceCalculator;

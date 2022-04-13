@@ -1,26 +1,20 @@
 import React from "react";
-import { StyleSheet, Text, View, StatusBar, SafeAreaView } from "react-native";
+import { StatusBar } from "react-native";
 
-import Header from "./components/header"
-import Drawer from "./components/header/drawer2"
-import TabScreen from "./screen/";
+import Drawer from "./components/header/drawer"
 
 import { Provider } from 'react-redux';
 import store from "./store"
 
-export default class App extends React.Component {
-  render() {
-    return (
-
-      <Provider store={store}>
-        <StatusBar
-          backgroundColor="#008c85"
-          animated={true}
-          hidden={true}
-        />
-        <Drawer />
-        {/* <TabScreen /> */}
-      </Provider>
-    );
-  }
+export default function App() {
+  return (
+    <Provider store={store}>
+      <StatusBar
+        backgroundColor="#008c85"
+        animated={true}
+        hidden={true}
+      />
+          <Drawer />
+    </Provider>
+  );
 }

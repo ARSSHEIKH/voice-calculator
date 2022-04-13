@@ -5,13 +5,9 @@ import {
     Text,
     Linking,
     TouchableOpacity,
-    Button,
-    SafeAreaView
 } from 'react-native';
-import { Header as HeaderRNE, HeaderProps, Icon } from 'react-native-elements';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Header as HeaderRNE, Icon } from 'react-native-elements';
 import { useDispatch, useSelector } from 'react-redux';
-import DrawerLeft from "./drawer"
 import Tabs from './tabs';
 
 type HeaderComponentProps = {
@@ -25,79 +21,46 @@ type ParamList = {
     };
 };
 
-const Header: React.FunctionComponent<HeaderComponentProps> = (props) => {
-const dispatch = useDispatch();
-const toggle = useSelector(state=>state.drawerToggle_state);
+const Header: React.FunctionComponent<HeaderComponentProps> = ({theme_mode}) => {
+    const dispatch = useDispatch();
+    const toggle = useSelector(state => state.drawerToggle_state);
+    const [themeChange, setthemeChange] = useState(true)
 
-    const docsNavigate = () => {
-        // Linking.openURL(`https://reactnativeelements.com/docs/${props.view}`);
+    const themeChanger = () => {
+        setthemeChange(!themeChange)
+        dispatch({ type: themeChange ? "dark_mode" : "light_mode" })
     };
 
-    const playgroundNavigate = () => {
-        Linking.openURL(`https://react-native-elements.js.org/#/${props.view}`);
-    };
-    const drawerOpen = () => dispatch({type: "open_drawerToggle_state", payload: !toggle})
-    
+    const drawerOpen = () => dispatch({ type: "open_drawerToggle_state", payload: !toggle })
+
     return (
         <HeaderRNE
             leftComponent={
-                <TouchableOpacity onPress={drawerOpen}>
-                    <Icon name="menu" color="#8c8c8c" containerStyle={styles.icon} />
+                <TouchableOpacity onPress={drawerOpen}  style={styles.headerLeft}>
+                    <Icon name="menu" color="#8c8c8c" containerStyle={styles.icon} size={32}/>
                 </TouchableOpacity>
             }
-            containerStyle={styles.header}
+            containerStyle={{ backgroundColor: theme_mode.bg_color }}
             rightComponent={
                 <View style={styles.headerRight}>
-                    <TouchableOpacity onPress={docsNavigate}>
-                        <Icon type="entypo" name="light-up" color="#8c8c8c" containerStyle={styles.icon} />
+                    <TouchableOpacity onPress={themeChanger}>
+                        <Icon type="entypo" name="light-up" color="#8c8c8c" size={28} containerStyle={styles.icon} />
                     </TouchableOpacity>
                 </View>
             }
-            centerComponent={<Tabs />}
+            centerComponent={<Tabs theme_mode={theme_mode.tabs} />}
         />
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: "center",
-      justifyContent: "center",
-      padding: 16
-    },
-    navigationContainer: {
-      backgroundColor: "#ecf0f1"
-    },
-    paragraph: {
-      padding: 16,
-      fontSize: 15,
-      textAlign: "center"
-    },  
-    header: {
-        backgroundColor: '#fff',
-    },
-    headerContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#000',
-        marginBottom: 20,
-        width: '100%',
-        paddingVertical: 15,
-    },
-    heading: {
-        color: 'white',
-        fontSize: 22,
-        fontWeight: 'bold',
+    headerLeft: {
+        marginTop: 5,
     },
     headerRight: {
         display: 'flex',
         flexDirection: 'row',
-        marginTop: 5,
-    },
-    subheaderText: {
-        color: 'white',
-        fontSize: 16,
-        fontWeight: 'bold',
+        marginTop: 7,
     },
     icon: {
         fontWeight: "900",

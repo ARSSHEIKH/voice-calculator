@@ -5,48 +5,43 @@ import { Icon } from "react-native-elements";
 const screen = Dimensions.get("window");
 const buttonWidth = screen.width / 4;
 
-const styles = StyleSheet.create({
-  text: {
-    color: "#aaa5a5",
-    fontSize: 28, 
-    fontFamily: "notoserif"
-  },
-  textSecondary: {
-    color: "#8c8c8c"
-  },
-  button: {
-    flex: 1,
-    height: Math.floor(buttonWidth - 30),
-    alignItems: "center",
-    justifyContent: "center",
-    margin: 5
-  },
-  buttonDouble: {
-    width: screen.width / 2 - 10,
-    flex: 0,
-    alignItems: "flex-start",
-    paddingLeft: 40
-  },
-  buttonSecondary: {
-    // backgroundColor: "#a6a6a6"
-  },
-  buttonAccent: {
-    color: "#87b5ab"
-  },
-  textAccent: {
-    color: "#87b5ab",
-    fontWeight: "700",
-    fontSize: 36
-  }
-});
+export default ({ onPress, text, size, theme, theme_mode }) => {
+  const styles = StyleSheet.create({
+    text: {
+      color: "#aaa5a5",
+      fontSize: 28,
+      fontFamily: "notoserif"
+    },
+    textSecondary: {
+      color: theme_mode.secondary.color
+    },
+    button: {
+      // flex: 1,
+      height: Math.floor(buttonWidth - 30),
+      width: Math.floor(buttonWidth - 30),
+      alignItems: "center",
+      justifyContent: "center",
+      margin: 5,
+      marginHorizontal: (buttonWidth/10)+6
+    },
+    buttonSecondary: {
+      backgroundColor: theme_mode.secondary.backgroundColor,
+      borderRadius: 100
+    },
+    buttonAccent: {
+      backgroundColor: theme_mode.accent.backgroundColor,
+      borderRadius: 100
+    },
+    textAccent: {
+      color: theme_mode.accent.color,
+      fontWeight: "700",
+      fontSize: 36,
+      marginBottom:5
+    }
+  });
 
-export default ({ onPress, text, size, theme }) => {
   const buttonStyles = [styles.button];
   const textStyles = [styles.text];
-
-  if (size === "double") {
-    buttonStyles.push(styles.buttonDouble);
-  }
 
   if (theme === "secondary") {
     buttonStyles.push(styles.buttonSecondary);
@@ -59,7 +54,7 @@ export default ({ onPress, text, size, theme }) => {
   return (
     <TouchableOpacity onPress={onPress} style={buttonStyles}>
       {text === "backspace" ?
-        <Icon name="backspace" color="#8c8c8c" />
+        <Icon name="backspace" color={theme_mode.secondary.color} />
         :
         <Text style={textStyles}>{text}</Text>
       }
