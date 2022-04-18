@@ -5,7 +5,7 @@ import { Icon } from "react-native-elements";
 const screen = Dimensions.get("window");
 const buttonWidth = screen.width / 4;
 
-export default ({ onPress, text, size, theme, theme_mode }) => {
+export default ({ onPress, text, theme, theme_mode }) => {
   const styles = StyleSheet.create({
     text: {
       color: "#aaa5a5",
@@ -22,7 +22,7 @@ export default ({ onPress, text, size, theme, theme_mode }) => {
       alignItems: "center",
       justifyContent: "center",
       margin: 5,
-      marginHorizontal: (buttonWidth/10)+6
+      marginHorizontal: (buttonWidth / 10) + 6
     },
     buttonSecondary: {
       backgroundColor: theme_mode.secondary.backgroundColor,
@@ -36,7 +36,10 @@ export default ({ onPress, text, size, theme, theme_mode }) => {
       color: theme_mode.accent.color,
       fontWeight: "700",
       fontSize: 36,
-      marginBottom:5
+      marginBottom: 5
+    },
+    buttonDouble: {
+      width: Math.floor(buttonWidth + 70),
     }
   });
 
@@ -49,6 +52,11 @@ export default ({ onPress, text, size, theme, theme_mode }) => {
   } else if (theme === "accent") {
     buttonStyles.push(styles.buttonAccent);
     textStyles.push(styles.textAccent)
+  }
+  else if (theme === "double") {
+    buttonStyles.push(styles.buttonDouble);
+    textStyles.push(styles.textAccent)
+
   }
 
   return (

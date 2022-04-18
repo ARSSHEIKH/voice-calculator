@@ -5,6 +5,17 @@
             "bg_color": "#fff",
             "color": "#fff",
             "defaultColor": "#008c85"
+        },
+        "drawer": {
+            "backgroundColor": "#283637",
+            "drawerHeader": {
+                "backgroundColor": "#ecf0f1",
+                "closeButton": "#87b5ab"
+            },
+            "card": {
+                "backgroundColor": "#ecf0f1",
+                "heading": "#87b5ab"
+            }
         }
     },
     "screens": {
@@ -16,12 +27,12 @@
             "inputValue": {
                 "color": "#aaa5a5"
             },
-            "value":  {
+            "value": {
                 "color": "#fff"
             },
             "buttons": {
-                "secondary":{
-                    "color":"#87b5ab",
+                "secondary": {
+                    "color": "#87b5ab",
                     "backgroundColor": "#6c807e"
                 },
                 "accent": {

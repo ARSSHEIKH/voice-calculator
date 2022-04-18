@@ -146,39 +146,39 @@ android {
         }
     }
     signingConfigs {
-        // debug {
-        //     storeFile file('debug.keystore')
-        //     storePassword 'android'
-        //     keyAlias 'androiddebugkey'
-        //     keyPassword 'android'
-        // }
-        // cd android && gradlew assembleRelease
-        release {
-            storeFile file(MYAPP_RELEASE_STORE_FILE)
-            storePassword MYAPP_RELEASE_STORE_PASSWORD
-            keyAlias MYAPP_RELEASE_KEY_ALIAS
-            keyPassword MYAPP_RELEASE_KEY_PASSWORD
+        debug {
+            storeFile file('debug.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
         }
+        // cd android && gradlew assembleRelease
+        // release {
+        //     storeFile file(MYAPP_RELEASE_STORE_FILE)
+        //     storePassword MYAPP_RELEASE_STORE_PASSWORD
+        //     keyAlias MYAPP_RELEASE_KEY_ALIAS
+        //     keyPassword MYAPP_RELEASE_KEY_PASSWORD
+        // }
     }
     buildTypes {
-        // debug {
-        //     signingConfig signingConfigs.debug
-        //     if (nativeArchitectures) {
-        //         ndk {
-        //             abiFilters nativeArchitectures.split(',')
-        //         }
-        //     }
-        // }
-        release {
-            // Caution! In production, you need to generate your own keystore file.
-            // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.release
-            // signingConfig signingConfigs.debug
-            // minifyEnabled true
-            //  minifyEnabled enableProguardInReleaseBuilds
-            //  shrinkResources true
-            // proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        debug {
+            signingConfig signingConfigs.debug
+            if (nativeArchitectures) {
+                ndk {
+                    abiFilters nativeArchitectures.split(',')
+                }
+            }
         }
+        // release {
+        //     // Caution! In production, you need to generate your own keystore file.
+        //     // see https://reactnative.dev/docs/signed-apk-android.
+        //     signingConfig signingConfigs.release
+        //     // signingConfig signingConfigs.debug
+        //     // minifyEnabled true
+        //     //  minifyEnabled enableProguardInReleaseBuilds
+        //     //  shrinkResources true
+        //     // proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        // }
     }
 
     // applicationVariants are e.g. debug, release

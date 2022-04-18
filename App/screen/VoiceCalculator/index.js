@@ -1,24 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, Dimensions, ActivityIndicator, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, Dimensions, ActivityIndicator } from 'react-native';
 import Voice from '@react-native-community/voice';
 import { Button, Icon } from 'react-native-elements';
 import * as Animatable from 'react-native-animatable';
 import { useSelector } from 'react-redux';
-// import { useNavigation } from '@react-navigation/native';
+import Header from '../../components/header';
 
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 
 const VoiceCalculator = () => {
-    // const navigation = useNavigation()
     const [result, setResult] = useState('');
     const [solution, setSolution] = useState('');
     const [isLoading, setLoading] = useState(false);
     const [indicator, setindicator] = useState(false);
     const [errorMessage, setErrorMessage] = useState(false);
     const theme_mode = useSelector(state => state.theme_state.screens.voicecalculator);
-
-    const screenState = useSelector(state => state.tabs_state);
+    const theme_back = useSelector(state => state.theme_state.header);
 
     useEffect(() => {
         Voice.onSpeechStart = onSpeechStartHandler;
@@ -29,12 +27,7 @@ const VoiceCalculator = () => {
         return () => {
             Voice.destroy().then(Voice.removeAllListeners);
         }
-
     }, []);
-
-    // useEffect(() => {
-    //     screenState === 0 ? navigation.navigate("SimpleCalculator") : navigation.navigate("VoiceCalculator")
-    // }, [screenState])
 
     const onSpeechError = (e) => {
         console.log("onSpeechError", e.error.message);
@@ -106,81 +99,86 @@ const VoiceCalculator = () => {
     };
 
     return (
-        <View style={styles.container}>
-            <SafeAreaView>
-                <View style={styles.wholeContainer}>
-                    <View style={styles.textContainer}>
-                        <Text style={{ ...styles.text1, color: theme_mode.text1.color }}>{result}</Text>
-                    </View>
-                    <View style={styles.textContainer}>
-                        <Text style={{ ...styles.heading, color: theme_mode.heading.color }}>Result:</Text>
-                        <Text style={{ ...styles.text2, color: theme_mode.text2.color }} allowFontScaling={true}>{solution}</Text>
-                    </View>
+        <>
+        <Header theme_mode={theme_back} />
+            <View style={{...styles.container, backgroundColor: theme_back.bg_color,}}>
+                <SafeAreaView>
+                    <View style={styles.wholeContainer}>
+                        <View style={styles.textContainer}>
+                            <Text style={{ ...styles.text1, color: theme_mode.text1.color }}>{result}</Text>
+                        </View>
+                        <View style={styles.textContainer}>
+                            <Text style={{ ...styles.heading, color: theme_mode.heading.color }}>Result:</Text>
+                            <Text style={{ ...styles.text2, color: theme_mode.text2.color }} allowFontScaling={true}>{solution}</Text>
+                        </View>
 
-                    <View style={styles.micContainer}>
-                        {isLoading ?
+                        <View style={styles.micContainer}>
+                            {isLoading ?
 
-                            indicator ?
-                                <View>
-                                    <ActivityIndicator size={165} animating={indicator} color="#bfd4f0" style={styles.indicator} />
-                                    <Button
-                                        onPress={stopRecording}
-                                        buttonStyle={styles.button}
-                                        icon={
+                                indicator ?
+                                    <View>
+                                        <ActivityIndicator size={165} animating={indicator} color="#bfd4f0" style={styles.indicator} />
+                                        <Button
+                                            onPress={stopRecording}
+                                            buttonStyle={styles.button}
+                                            icon={
 
-                                            <Icon
-                                                name="microphone-slash"
-                                                type="font-awesome"
-                                                size={40}
-                                                color={theme_mode.buttons.iconsColor}
-                                            />
-                                        }
-                                    />
-                                </View>
+                                                <Icon
+                                                    name="microphone-slash"
+                                                    type="font-awesome"
+                                                    size={40}
+                                                    color={theme_mode.buttons.iconsColor}
+                                                />
+                                            }
+                                        />
+                                    </View>
 
+                                    :
+
+                                    <Animatable.View style={{ ...styles.outerCircle, backgroundColor: theme_mode.buttons.outerCircle.backgroundColor }} animation="pulse" easing="ease-in-out-back" iterationCount="infinite" >
+                                        <Button
+                                            onPress={stopRecording}
+                                            buttonStyle={{ ...styles.button, backgroundColor: theme_mode.buttons.backgroundColor }}
+                                            icon={
+                                                <Icon
+                                                    name="microphone-slash"
+                                                    type="font-awesome"
+                                                    size={40}
+                                                    color={theme_mode.buttons.iconsColor}
+                                                />
+                                            }
+                                        />
+                                    </Animatable.View>
                                 :
 
-                                <Animatable.View style={{ ...styles.outerCircle, backgroundColor: theme_mode.buttons.outerCircle.backgroundColor }} animation="pulse" easing="ease-in-out-back" iterationCount="infinite" >
-                                    <Button
-                                        onPress={stopRecording}
-                                        buttonStyle={{ ...styles.button, backgroundColor: theme_mode.buttons.backgroundColor }}
-                                        icon={
-                                            <Icon
-                                                name="microphone-slash"
-                                                type="font-awesome"
-                                                size={40}
-                                                color={theme_mode.buttons.iconsColor}
-                                            />
-                                        }
-                                    />
-                                </Animatable.View>
-                            :
+                                <Button
+                                    buttonStyle={{ ...styles.button, backgroundColor: theme_mode.buttons.backgroundColor }}
+                                    onPress={startRecording}
+                                    icon={
+                                        <Icon
+                                            name="microphone"
+                                            type="font-awesome"
+                                            size={50}
+                                            color={theme_mode.buttons.iconsColor}
+                                        />
+                                    }
+                                />
+                            }
 
-                            <Button
-                                buttonStyle={{ ...styles.button, backgroundColor: theme_mode.buttons.backgroundColor }}
-                                onPress={startRecording}
-                                icon={
-                                    <Icon
-                                        name="microphone"
-                                        type="font-awesome"
-                                        size={50}
-                                        color={theme_mode.buttons.iconsColor}
-                                    />
-                                }
-                            />
-                        }
-
+                        </View>
+                        <Text style={{ ...styles.errorMessage, color: theme_mode.textError.color }}>{errorMessage}</Text>
                     </View>
-                    <Text style={{ ...styles.errorMessage, color: theme_mode.textError.color }}>{errorMessage}</Text>
-                </View>
-            </SafeAreaView>
-        </View>
+                </SafeAreaView>
+            </View>
+        </>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        padding: 24
+        padding: 24,
+        flex: 10,
+        justifyContent: "flex-start",
     },
     wholeContainer: {
         display: "flex",
