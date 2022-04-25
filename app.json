@@ -1,4 +1,8 @@
 {
   "name": "voicecalculator",
-  "displayName": "voicecalculator"
+  "displayName": "voicecalculator",
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-2545776387814292~4462866291",
+    "ios_app_id": "ca-app-pub-2545776387814292~4462866291"
+  }
 }

@@ -3,13 +3,16 @@ import { View, Text, StyleSheet, SafeAreaView, Dimensions, ActivityIndicator } f
 import Voice from '@react-native-community/voice';
 import { Button, Icon } from 'react-native-elements';
 import * as Animatable from 'react-native-animatable';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../components/header';
+import InterstitialAdsShow from '../../components/admob/interstitialAds/adShow';
+import { useFocusEffect } from '@react-navigation/native';
 
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 
-const VoiceCalculator = () => {
+const VoiceCalculator = ({navigation}) => {
+    const dispatch = useDispatch()
     const [result, setResult] = useState('');
     const [solution, setSolution] = useState('');
     const [isLoading, setLoading] = useState(false);
@@ -17,6 +20,7 @@ const VoiceCalculator = () => {
     const [errorMessage, setErrorMessage] = useState(false);
     const theme_mode = useSelector(state => state.theme_state.screens.voicecalculator);
     const theme_back = useSelector(state => state.theme_state.header);
+    const adClosed = useSelector(state => state.adClosed)
 
     useEffect(() => {
         Voice.onSpeechStart = onSpeechStartHandler;
@@ -28,6 +32,20 @@ const VoiceCalculator = () => {
             Voice.destroy().then(Voice.removeAllListeners);
         }
     }, []);
+
+    useFocusEffect(
+        React.useCallback(() => {
+            // Do something when the screen is focused
+                dispatch({ type: "set_tabs_state", payload: 1 })
+                dispatch({ type: "reset_adClosed" })
+            return () => {
+                dispatch({ type: "reset_adClosed" })
+                dispatch({ type: "set_tabs_state", payload: 0 });
+                // Do something when the screen is unfocused
+                // Useful for cleanup functions
+            };
+        }, [])
+    );
 
     const onSpeechError = (e) => {
         console.log("onSpeechError", e.error.message);
@@ -48,6 +66,7 @@ const VoiceCalculator = () => {
 
         console.log("stop handler", e)
     }
+
     const onSpeechResultsHandler = (e) => {
         setindicator(true)
         console.log('onSpeechResultsHandler: ', e);
@@ -56,8 +75,11 @@ const VoiceCalculator = () => {
         setResult(text);
 
         text = text.replace(/into/g, "*");
+        text = text.replace(/INTO/g, "*");
         text = text.replace(/multiply/g, "*");
+        text = text.replace(/MULTIPLY/g, "*");
         text = text.replace(/x/g, "*");
+        text = text.replace(/X/g, "*");
 
         try {
             setErrorMessage("")
@@ -99,6 +121,8 @@ const VoiceCalculator = () => {
     };
 
     return (
+        
+        adClosed ?
         <>
         <Header theme_mode={theme_back} />
             <View style={{...styles.container, backgroundColor: theme_back.bg_color,}}>
@@ -171,6 +195,8 @@ const VoiceCalculator = () => {
                 </SafeAreaView>
             </View>
         </>
+        :
+        <View><InterstitialAdsShow /></View>
     );
 };
 

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "476254349889",
+    "project_id": "voicecalculator-85918",
+    "storage_bucket": "voicecalculator-85918.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:476254349889:android:4f353507528435d2c9b4c0",
+        "android_client_info": {
+          "package_name": "com.voicecalculator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "476254349889-8v9aig47tuql7tds834b64e63ngf0cbn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUpfsjWkyvuYoxwMsKB3lYEDbhig7rmd4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "476254349889-8v9aig47tuql7tds834b64e63ngf0cbn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

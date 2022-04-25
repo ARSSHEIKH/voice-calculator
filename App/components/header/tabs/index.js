@@ -1,19 +1,20 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Tab } from 'react-native-elements';
 import { useDispatch, useSelector } from 'react-redux';
 
-export default function Tabs({theme_mode}) {
+export default function Tabs({ theme_mode }) {
     const navigation = useNavigation()
     const dispatch = useDispatch()
     const index = useSelector(state => state.tabs_state);
 
-    useEffect(()=>{
-        index === 0 ? navigation.navigate("Simple Calculator") : navigation.navigate("Voice Calculator")
-    },[index])
-    
     return (
-        <Tab value={index} onChange={(e) => dispatch({ type: "set_tabs_state", payload: e })} indicatorStyle={{ height: 0 }}>
+        <Tab value={index} indicatorStyle={{ height: 0 }}
+            onChange={(e) => {
+                dispatch({ type: "set_tabs_state", payload: e });
+                e === 0 ? navigation.navigate("Simple Calculator") : navigation.navigate("Voice Calculator")
+            }}
+        >
             <Tab.Item
                 // title="Sim"
                 titleStyle={{ fontSize: 12 }}
