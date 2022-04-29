@@ -61,6 +61,16 @@
                 },
                 "iconsColor": "#fff"
             }
+        },        
+        "scientificCalculator": {
+            "backgroundColor": "#21252d",
+            "expressionTextColor": "#fff",
+            "previewTextColor": "#fff",
+            "numberBg": "#393e4a",
+            "numberButtonTextColor": "#ffffff",
+            "buttonBg": "#292d36",
+            "buttonTextColor": "#ffffff",
+            "buttonBorderColor": "#21252d"
         }
     }
 }

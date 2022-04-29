@@ -124,7 +124,7 @@ const VoiceCalculator = ({navigation}) => {
         
         adClosed ?
         <>
-        <Header theme_mode={theme_back} />
+        <Header theme_mode={theme_back} tabsShow={true} />
             <View style={{...styles.container, backgroundColor: theme_back.bg_color,}}>
                 <SafeAreaView>
                     <View style={styles.wholeContainer}>

@@ -28,6 +28,11 @@ function CustomDrawerContent(props) {
                     onPress={(e) => { props.navigation.navigate("Voice Calculator"); dispatch({ type: "set_tabs_state", payload: 1 }); }}>
                         <Text style={{ ...styles.cardHeading, color: theme_state.header.drawer.card.heading }}>Voice Calculator</Text>
                     </TouchableOpacity>
+
+                    <TouchableOpacity style={{ ...styles.card, backgroundColor: theme_state.header.drawer.card.backgroundColor }} 
+                    onPress={(e) => { props.navigation.navigate("Scientific Calculator"); }}>
+                        <Text style={{ ...styles.cardHeading, color: theme_state.header.drawer.card.heading }}>Scientific Calculator</Text>
+                    </TouchableOpacity>
                 </View>
         </DrawerContentScrollView>
     );
@@ -47,11 +52,12 @@ const styles = StyleSheet.create({
     cardContainer: {
         display: "flex",
         flexDirection: "row",
-        justifyContent: "center",
-        margin: 10
+        justifyContent: "flex-start",
+        flexWrap: "wrap",
+        margin: 5
     },
     card: {
-        width: (windowWidth / 2) - 20,
+        width: (windowWidth / 2) - 30,
         height: 150,
         margin: 10
     },

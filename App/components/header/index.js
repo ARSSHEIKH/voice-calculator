@@ -16,13 +16,12 @@ type ParamList = {
     };
 };
 
-const Header: React.FunctionComponent<HeaderComponentProps> = ({ theme_mode }) => {
+const Header: React.FunctionComponent<HeaderComponentProps> = ({ theme_mode, tabsShow }) => {
     const dispatch = useDispatch();
     const navigation = useNavigation();
     const toggle = useSelector(state => state.drawerToggle_state);
     const [themeChange, setthemeChange] = useState(true)
 
-    console.log("themeChange",themeChange)
     const themeChanger = () => {
         setthemeChange(!themeChange)
         dispatch({ type: themeChange ? "dark_mode" : "light_mode" })
@@ -48,7 +47,7 @@ const Header: React.FunctionComponent<HeaderComponentProps> = ({ theme_mode }) =
                     </TouchableOpacity>
                 </View>
             }
-            centerComponent={<Tabs theme_mode={theme_mode.tabs} />}
+            centerComponent={tabsShow ? <Tabs theme_mode={theme_mode.tabs} /> : null}
         />
     );
 };

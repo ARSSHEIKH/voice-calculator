@@ -17,9 +17,9 @@ const Home = () => {
                     <Icon name="microphone" type="font-awesome" size={50} color={"#fff"} />
                     <Text style={styles.heading}>Voice Calculator</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.buttons, styles.button2]} onPress={() => { navigation.navigate("Simple Calculator"); }}>
+                <TouchableOpacity style={[styles.buttons, styles.button2]} onPress={() => { navigation.navigate("Other Calculator"); }}>
                     <Icon name="calculator" type="ionicon" size={50} color={"#fff"} />
-                    <Text style={styles.heading}>Simple Calculator</Text>
+                    <Text style={styles.heading}>Other Calculators</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.buttons, styles.button3]}>
                     <Icon name="history" type="font-awesome" size={50} color={"#fff"} />
