@@ -71,6 +71,11 @@
             "buttonBg": "#292d36",
             "buttonTextColor": "#ffffff",
             "buttonBorderColor": "#21252d"
+        },
+        "gstCalculator":{
+            "backgroundColor": "#283637",
+            "headingColor": "#fff"
+
         }
     }
 }

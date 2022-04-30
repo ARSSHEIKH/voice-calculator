@@ -33,6 +33,11 @@ function CustomDrawerContent(props) {
                     onPress={(e) => { props.navigation.navigate("Scientific Calculator"); }}>
                         <Text style={{ ...styles.cardHeading, color: theme_state.header.drawer.card.heading }}>Scientific Calculator</Text>
                     </TouchableOpacity>
+
+                    <TouchableOpacity style={{ ...styles.card, backgroundColor: theme_state.header.drawer.card.backgroundColor }} 
+                    onPress={(e) => { props.navigation.navigate("GST Calculator"); }}>
+                        <Text style={{ ...styles.cardHeading, color: theme_state.header.drawer.card.heading }}>GST Calculator</Text>
+                    </TouchableOpacity>
                 </View>
         </DrawerContentScrollView>
     );

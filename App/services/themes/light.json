@@ -71,6 +71,11 @@
             "numberButtonTextColor": "#000000",
             "buttonTextColor": "#000000",
             "buttonBorderColor": "#f9f9f9"
+        },
+        "gstCalculator":{
+            "backgroundColor": "#fff",
+            "headingColor": null
+
         }
     }
 }

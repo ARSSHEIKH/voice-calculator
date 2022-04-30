@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Header from "../../../components/header";
 import { Tooltip } from 'react-native-elements';
+import { useFocusEffect } from "@react-navigation/native";
 
 const exprFontSize = 30
 const previewBg = 'transparent';
@@ -30,6 +31,7 @@ const btn = {
 }
 
 export default function ScientificCalculator() {
+    const dispatch = useDispatch()
     const theme_back = useSelector(state => state.theme_state.header);
     const screenTheme = useSelector(state => state.theme_state.screens.scientificCalculator);
 
@@ -38,6 +40,20 @@ export default function ScientificCalculator() {
     const [solution, setSolution] = useState("0");
     const [equalled, setEqualled] = useState(false);
     const [inverted, setInverted] = useState(false);
+
+    useFocusEffect(
+        React.useCallback(() => {
+            // Do something when the screen is focused
+                dispatch({ type: "set_tabs_state", payload: 1 })
+                dispatch({ type: "reset_adClosed" })
+            return () => {
+                dispatch({ type: "reset_adClosed" })
+                dispatch({ type: "set_tabs_state", payload: 0 });
+                // Do something when the screen is unfocused
+                // Useful for cleanup functions
+            };
+        }, [])
+    );
 
     //#region handles
 
