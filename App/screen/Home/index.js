@@ -35,6 +35,7 @@ const Home = () => {
 }
 const styles = StyleSheet.create({
     container: {
+        backgroundColor :"#fff",
         height: windowHeight
     },
     viewAds: {
@@ -74,9 +75,10 @@ const styles = StyleSheet.create({
         backgroundColor: "#ff8533",
     },
     heading: {
-        fontSize: windowWidth / 23,
+        fontSize: windowWidth / 24,
         textTransform: "uppercase",
-        color: "#fff"
+        color: "#fff",
+        fontWeight: "700"
     }
 })
 export default Home

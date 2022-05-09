@@ -11,7 +11,6 @@ function Banner() {
   const [error, setError] = React.useState("")
   const [adNotLoaded, setadNotLoaded] = React.useState(false)
 
-  console.log("line 15", adNotLoaded);
   React.useEffect(() => {
     admob()
       .setRequestConfiguration({
@@ -48,9 +47,7 @@ function Banner() {
           }
         }}
       />
-      
-        <Text style={{ textAlign: "center", textTransform: "uppercase", fontSize: 36, marginBottom: windowHeight/3, display:!adNotLoaded ? "flex" : "none", }}>Voice Calculator</Text>
-      
+      <Text style={{ textAlign: "center", paddingHorizontal: 12, textTransform: "uppercase", fontSize: 30, marginBottom: windowHeight / 3, display: !adNotLoaded ? "flex" : "none", color: "#0c0c0c"}}>Voice Calculator</Text>
       {/* <Text>{error}</Text> */}
     </View>
   );

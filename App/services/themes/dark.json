@@ -74,7 +74,8 @@
         },
         "gstCalculator":{
             "backgroundColor": "#283637",
-            "headingColor": "#fff"
+            "headingColor": "#fff",
+            "inputColor": "#fff"
 
         }
     }

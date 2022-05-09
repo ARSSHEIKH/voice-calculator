@@ -17,12 +17,12 @@ export default ({ onPress, text, theme, theme_mode }) => {
     },
     button: {
       // flex: 1,
-      height: Math.floor(buttonWidth - 30),
-      width: Math.floor(buttonWidth - 30),
+      height: Math.floor(buttonWidth - 25),
+      width: Math.floor(buttonWidth - 25),
       alignItems: "center",
       justifyContent: "center",
-      margin: 5,
-      marginHorizontal: (buttonWidth / 10) + 6
+      margin: 4,
+      marginHorizontal: (buttonWidth / 10) + 4
     },
     buttonSecondary: {
       backgroundColor: theme_mode.secondary.backgroundColor,

@@ -38,6 +38,10 @@ function CustomDrawerContent(props) {
                     onPress={(e) => { props.navigation.navigate("GST Calculator"); }}>
                         <Text style={{ ...styles.cardHeading, color: theme_state.header.drawer.card.heading }}>GST Calculator</Text>
                     </TouchableOpacity>
+                    <TouchableOpacity style={{ ...styles.card, backgroundColor: theme_state.header.drawer.card.backgroundColor }} 
+                    onPress={(e) => { props.navigation.navigate("EMI Calculator"); }}>
+                        <Text style={{ ...styles.cardHeading, color: theme_state.header.drawer.card.heading }}>EMI Calculator</Text>
+                    </TouchableOpacity>
                 </View>
         </DrawerContentScrollView>
     );
@@ -59,20 +63,22 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "flex-start",
         flexWrap: "wrap",
-        margin: 5
+        // margin: 10,
+        // margin: 5
     },
     card: {
-        width: (windowWidth / 2) - 30,
+        width: (windowWidth / 2) - 15,
         height: 150,
-        margin: 10
+        margin: 6
     },
     cardHeading: {
-        fontSize: windowWidth / 18,
+        fontSize: windowWidth / 20,
         fontWeight: "700",
         textTransform: "uppercase",
         textAlign: "center",
         textAlignVertical: "center",
         display: "flex",
+        paddingHorizontal: 7,
         height: 150
     }
 });

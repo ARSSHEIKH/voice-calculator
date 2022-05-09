@@ -15,6 +15,7 @@ import OtherCalculator from '../../screen/otherCalculators';
 import ScientificCalculator from '../../screen/otherCalculators/scientificCalculator';
 import VoiceCalculator from '../../screen/VoiceCalculator';
 import GstCalculator from '../../screen/otherCalculators/gstCalculator';
+import EmiCalculator from '../../screen/otherCalculators/emiCalculator';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -31,7 +32,8 @@ const Routes = () => {
         <Drawer.Screen name="Voice Calculator" component={VoiceCalculator} options={{ headerShown: false }} />
         <Drawer.Screen name="Scientific Calculator" component={ScientificCalculator} options={{ headerShown: false }} />
         <Drawer.Screen name="GST Calculator" component={GstCalculator} options={{ headerShown: false }} />
-   
+        <Drawer.Screen name="EMI Calculator" component={EmiCalculator} options={{ headerShown: false }} />
+
       </Drawer.Navigator>
     </NavigationContainer>
   )
