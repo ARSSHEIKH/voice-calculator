@@ -1,8 +1,7 @@
 const initialstate = {
     show: false,
-    dataToShow: {
-        
-    }
+    from: "",
+    dataToShow: {}
 };
 
 function modal_state(state = initialstate, action) {

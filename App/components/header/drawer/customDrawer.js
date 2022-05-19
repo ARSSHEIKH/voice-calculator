@@ -13,36 +13,57 @@ function CustomDrawerContent(props) {
     const theme_state = useSelector(state => state.theme_state);
     return (
         <DrawerContentScrollView style={{ ...styles.container, backgroundColor: theme_state.header.drawer.backgroundColor }}>
-                <View style={{ ...styles.navigationContainer, backgroundColor: theme_state.header.drawer.drawerHeader.backgroundColor }}>
-                    <TouchableOpacity style={styles.drawerCloseButton} onPress={() => { props.navigation.closeDrawer(); }}>
-                        <Icon name="close" color={theme_state.header.drawer.drawerHeader.closeButton} containerStyle={styles.icon} size={32} />
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.cardContainer}>
-                    <TouchableOpacity style={{ ...styles.card, backgroundColor: theme_state.header.drawer.card.backgroundColor }}
-                    onPress={(e) => { props.navigation.navigate("Simple Calculator"); dispatch({ type: "set_tabs_state", payload: 0 }); }}>
-                        <Text style={{ ...styles.cardHeading, color: theme_state.header.drawer.card.heading }}>Simple Calculator</Text>
-                    </TouchableOpacity>
+            <View style={{ ...styles.navigationContainer, backgroundColor: theme_state.header.drawer.drawerHeader.backgroundColor }}>
+                <TouchableOpacity style={styles.drawerCloseButton} onPress={() => { props.navigation.closeDrawer(); }}>
+                    <Icon name="close" color={theme_state.header.drawer.drawerHeader.closeButton} containerStyle={styles.icon} size={32} />
+                </TouchableOpacity>
+            </View>
+            <View style={styles.cardContainer}>
+                <TouchableOpacity style={{ ...styles.card, backgroundColor: theme_state.header.drawer.card.backgroundColor }}
+                    onPress={(e) => { props.navigation.navigate("Home"); dispatch({ type: "set_tabs_state", payload: 0 }); }}>
+                    <Text style={{ ...styles.cardHeading, color: theme_state.header.drawer.card.heading }}>Home</Text>
+                </TouchableOpacity>
 
-                    <TouchableOpacity style={{ ...styles.card, backgroundColor: theme_state.header.drawer.card.backgroundColor }} 
+                <TouchableOpacity style={{ ...styles.card, backgroundColor: theme_state.header.drawer.card.backgroundColor }}
                     onPress={(e) => { props.navigation.navigate("Voice Calculator"); dispatch({ type: "set_tabs_state", payload: 1 }); }}>
-                        <Text style={{ ...styles.cardHeading, color: theme_state.header.drawer.card.heading }}>Voice Calculator</Text>
-                    </TouchableOpacity>
+                    <Text style={{ ...styles.cardHeading, color: theme_state.header.drawer.card.heading }}>Voice Calculator</Text>
+                </TouchableOpacity>
 
-                    <TouchableOpacity style={{ ...styles.card, backgroundColor: theme_state.header.drawer.card.backgroundColor }} 
+                <TouchableOpacity style={{ ...styles.card, backgroundColor: theme_state.header.drawer.card.backgroundColor }}
+                    onPress={(e) => { props.navigation.navigate("Simple Calculator"); dispatch({ type: "set_tabs_state", payload: 0 }); }}>
+                    <Text style={{ ...styles.cardHeading, color: theme_state.header.drawer.card.heading }}>Simple Calculator</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={{ ...styles.card, backgroundColor: theme_state.header.drawer.card.backgroundColor }}
                     onPress={(e) => { props.navigation.navigate("Scientific Calculator"); }}>
-                        <Text style={{ ...styles.cardHeading, color: theme_state.header.drawer.card.heading }}>Scientific Calculator</Text>
-                    </TouchableOpacity>
+                    <Text style={{ ...styles.cardHeading, color: theme_state.header.drawer.card.heading }}>Scientific Calculator</Text>
+                </TouchableOpacity>
 
-                    <TouchableOpacity style={{ ...styles.card, backgroundColor: theme_state.header.drawer.card.backgroundColor }} 
+                <TouchableOpacity style={{ ...styles.card, backgroundColor: theme_state.header.drawer.card.backgroundColor }}
                     onPress={(e) => { props.navigation.navigate("GST Calculator"); }}>
-                        <Text style={{ ...styles.cardHeading, color: theme_state.header.drawer.card.heading }}>GST Calculator</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ ...styles.card, backgroundColor: theme_state.header.drawer.card.backgroundColor }} 
+                    <Text style={{ ...styles.cardHeading, color: theme_state.header.drawer.card.heading }}>GST Calculator</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={{ ...styles.card, backgroundColor: theme_state.header.drawer.card.backgroundColor }}
                     onPress={(e) => { props.navigation.navigate("EMI Calculator"); }}>
-                        <Text style={{ ...styles.cardHeading, color: theme_state.header.drawer.card.heading }}>EMI Calculator</Text>
-                    </TouchableOpacity>
-                </View>
+                    <Text style={{ ...styles.cardHeading, color: theme_state.header.drawer.card.heading }}>EMI Calculator</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={{ ...styles.card, backgroundColor: theme_state.header.drawer.card.backgroundColor }}
+                    onPress={(e) => { props.navigation.navigate("Simple Interest Calculator"); }}>
+                    <Text style={{ ...styles.cardHeading, color: theme_state.header.drawer.card.heading }}>Simple Interest Calculator</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={{ ...styles.card, backgroundColor: theme_state.header.drawer.card.backgroundColor }}
+                    onPress={(e) => { props.navigation.navigate("VAT Calculator"); }}>
+                    <Text style={{ ...styles.cardHeading, color: theme_state.header.drawer.card.heading }}>VAT Calculator</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={{ ...styles.card, backgroundColor: theme_state.header.drawer.card.backgroundColor }}
+                    onPress={(e) => { props.navigation.navigate("SIP Calculator"); }}>
+                    <Text style={{ ...styles.cardHeading, color: theme_state.header.drawer.card.heading }}>SIP Calculator</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={{ ...styles.card, backgroundColor: theme_state.header.drawer.card.backgroundColor }}
+                    onPress={(e) => { props.navigation.navigate("Unit Calculator"); }}>
+                    <Text style={{ ...styles.cardHeading, color: theme_state.header.drawer.card.heading }}>Unit Calculator</Text>
+                </TouchableOpacity>
+            </View>
         </DrawerContentScrollView>
     );
 }

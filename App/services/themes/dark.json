@@ -1,6 +1,7 @@
 {
     "header": {
         "bg_color": "#283637",
+        "headingColor": "#fff",
         "tabs": {
             "bg_color": "#fff",
             "color": "#fff",

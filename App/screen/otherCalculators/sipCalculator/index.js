@@ -4,10 +4,10 @@ import { Button, Icon, Input } from "react-native-elements";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../../../components/header";
 import { useFocusEffect } from "@react-navigation/native";
-import Modal from "./modal"
+import Modal from "../emiCalculator/modal"
 import { Dropdown } from "react-native-element-dropdown";
-import InterstitialAdsShow from "../../../components/admob/interstitialAds/adShow";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import InterstitialAdsShow from "../../../components/admob/interstitialAds/adShow";
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -17,23 +17,23 @@ const data = [
     { label: 'Yearly', value: 'years' },
 ];
 
-const EmiCalculator = () => {
+const SipCalculator = () => {
     const dispatch = useDispatch()
+    const adClosed = useSelector(state => state.adClosed);
     const theme_back = useSelector(state => state.theme_state.header);
     const screenTheme = useSelector(state => state.theme_state.screens.gstCalculator);
-    const [selectedTenture, setSelectedTenture] = useState("months");
-    const adClosed = useSelector(state => state.adClosed);
+    const [selectedTimePeriod, setSelectedTimePeriod] = useState("months");
 
-    const [rateOfInterest, setRateOfInterest] = React.useState(null);
-    const [totalEMI, setTotalEMI] = React.useState(null)
-    const [loanAmount, setLoanAmount] = React.useState(null)
-    const [tenure, setTenure] = React.useState(null)
-    const [totalInterestPayable, setTotalInterestPayable] = React.useState(null)
-    const [totalPayable, setTotalPayable] = React.useState(null)
+    const [monthlyAmount, setMonthlyAmount] = React.useState(null)
+    const [expectedRate, setExpectedRate] = React.useState(null)
+    const [timePeriod, setTimePeriod] = React.useState(null)
+    const [wealthGained, setWealthGained] = React.useState(null)
+    const [totalWealth, setTotalWealth] = React.useState(null)
+    const [investedAmount, setInvestedAmount] = React.useState(null);
 
     const [errorMessageForAmount, setErrorMessageForAmount] = React.useState(null)
-    const [errorMessageForInterest, setErrorMessageForInterest] = React.useState(null)
-    const [errorMessageForTenure, setErrorMessageForTenure] = React.useState(null)
+    const [errorMessageForTimePeriod, setErrorMessageForTimePeriod] = React.useState(null)
+    const [errorMessageForExpectedRate, setErrorMessageForExpectedRate] = React.useState(null)
 
     useFocusEffect(
         React.useCallback(() => {
@@ -50,67 +50,80 @@ const EmiCalculator = () => {
     );
 
     const dispatchingModal = () => {
-        if (totalEMI !== null && totalEMI !== "") {
-            dispatch({
-                type: "set_modal_state",
-                payload: {
-                    show: true,
-                    from: "emi",
-                    dataToShow: {
-                        "totalEMI": totalEMI,
-                        "totalInterestPayable": totalInterestPayable,
-                        "totalPayable": totalPayable,
+        if (totalWealth !== null && totalWealth !== "") {
+            try {
+                dispatch({
+                    type: "set_modal_state",
+                    payload: {
+                        show: true,
+                        from: "sipCalculator",
+                        dataToShow: {
+                            "wealthGained": wealthGained.toFixed(2),
+                            "investedAmount": investedAmount.toFixed(2),
+                            "totalWealth": totalWealth.toFixed(2),
+                        }
                     }
-                }
-            })
+                })
+            }
+            catch { }
         }
     }
 
-    const calculateTotalInterestPayable = () => {
-        if (selectedTenture === "months") setTotalInterestPayable((totalEMI * tenure) - loanAmount);
-        else setTotalInterestPayable((totalEMI * (tenure * 12)) - loanAmount);
+    const calculateWealthGained = () => {
+        setWealthGained(totalWealth - investedAmount);
     }
-    const calculateTotalPayable = () => setTotalPayable(eval(`+${loanAmount} + +${totalInterestPayable}`));
 
-    React.useEffect(() => { calculateTotalInterestPayable() }, [totalEMI, selectedTenture])
-    React.useEffect(() => { calculateTotalPayable() }, [totalInterestPayable])
-    React.useEffect(() => { dispatchingModal() }, [totalPayable])
+    React.useEffect(() => { calculateWealthGained() }, [investedAmount])
+    React.useEffect(() => { dispatchingModal() }, [wealthGained])
 
     const monthlyCalcalation = () => {
-        let calcRateOfInterest = rateOfInterest / 12 / 100
-        let leftSideCalc = loanAmount * calcRateOfInterest;
-        let rightNumerator = Math.pow(eval("+1" + `+${calcRateOfInterest}`), tenure);
-        let rightDenomenator = rightNumerator - 1;
-        setTotalEMI(((leftSideCalc * rightNumerator) / rightDenomenator).toFixed());
+        let compoundRate = expectedRate / 12 / 100;
+        let changeInCompoundRate = eval(`1+${compoundRate}`)
+        let rightSide = changeInCompoundRate / compoundRate
+        let leftSide = ((Math.pow(changeInCompoundRate, timePeriod)) - 1)
+        setTotalWealth(monthlyAmount * leftSide * rightSide);
+        setInvestedAmount(timePeriod * monthlyAmount)
+        dispatchingModal()
+    }
+    const yearlyCalcalation = () => {
+        let compoundRate = expectedRate / 12 / 100;
+        let changeInCompoundRate = eval(`1+${compoundRate}`)
+        let rightSide = changeInCompoundRate / compoundRate
+        let totalTimePeriod = timePeriod * 12
+        let leftSide = ((Math.pow(changeInCompoundRate, totalTimePeriod)) - 1)
+        setTotalWealth(monthlyAmount * leftSide * rightSide);
+        setInvestedAmount(totalTimePeriod * monthlyAmount)
         dispatchingModal()
     }
 
     const inputValidation = () => {
-        if (loanAmount === null || loanAmount === "") {
+        if (monthlyAmount === null || monthlyAmount === "") {
             setErrorMessageForAmount("Please enter amount")
         }
         else {
             setErrorMessageForAmount(null)
         }
-        if (rateOfInterest === null || rateOfInterest === "") {
-            setErrorMessageForInterest("Please enter interest")
+        if (timePeriod === null || timePeriod === "") {
+            setErrorMessageForTimePeriod("Please enter time")
         }
         else {
-            setErrorMessageForInterest(null)
+            setErrorMessageForTimePeriod(null)
         }
-        if (tenure === null || tenure === "") {
-            setErrorMessageForTenure("Please enter Months")
+        if (expectedRate === null || expectedRate === "") {
+            setErrorMessageForExpectedRate("Please enter rates")
         }
         else {
-            setErrorMessageForTenure(null)
+            setErrorMessageForExpectedRate(null)
         }
 
     }
 
     const formSubmit = () => {
         inputValidation()
-        if (errorMessageForAmount === null && errorMessageForInterest === null && errorMessageForTenure === null)
-            monthlyCalcalation();
+        if (errorMessageForAmount === null && errorMessageForTimePeriod === null && errorMessageForExpectedRate === null) {
+            if (selectedTimePeriod === "months") monthlyCalcalation();
+            else yearlyCalcalation();
+        }
     }
 
     return (
@@ -120,15 +133,15 @@ const EmiCalculator = () => {
                 style={{ flex: 1 }}
             >
                 <SafeAreaView style={{ backgroundColor: screenTheme.backgroundColor, height: "100%" }}>
-                    <Header theme_mode={theme_back} tabsShow={false} headingFirst="EMI" intellisenseText="(Equated Monthly Instalment)" headingLast="Calculator" />
+                    <Header theme_mode={theme_back} tabsShow={false} headingFirst="SIP" headingLast="Calculator" intellisenseText="(Systematic Investment Plan)" />
+
                     <KeyboardAwareScrollView>
                         <View style={{ ...styles.container, backgroundColor: screenTheme.backgroundColor }}>
-
                             <ScrollView style={styles.scrollView}>
                                 <View style={styles.formContainer}>
 
                                     <View style={{ marginVertical: 5 }}>
-                                        <Text style={{ ...styles.inputText, color: screenTheme.headingColor }}>Loan Amount</Text>
+                                        <Text style={{ ...styles.inputText, color: screenTheme.headingColor }}>Monthly SIP Amount</Text>
                                         <Input
                                             placeholder="Enter Amount"
                                             keyboardType="numeric"
@@ -136,46 +149,20 @@ const EmiCalculator = () => {
                                             containerStyle={{ borderRadius: 10 }}
                                             inputStyle={{ color: screenTheme.inputColor, fontSize: 14, paddingHorizontal: 10 }}
                                             inputContainerStyle={{ borderWidth: 1, borderRadius: 10 }}
-                                            onChangeText={setLoanAmount}
+                                            onChangeText={setMonthlyAmount}
                                             errorMessage={errorMessageForAmount}
                                         />
                                     </View>
                                     <View style={{ marginVertical: 5 }}>
-                                        <Text style={{ ...styles.inputText, color: screenTheme.headingColor }}>Rate of Interest (%) </Text>
+                                        <Text style={{ ...styles.inputText, color: screenTheme.headingColor }}>Time Period</Text>
                                         <Input
-                                            placeholder="Enter Rates"
+                                            placeholder="Enter Period"
                                             keyboardType="numeric"
                                             containerStyle={{ borderRadius: 10 }}
                                             inputStyle={{ color: screenTheme.inputColor, fontSize: 14, paddingHorizontal: 10 }}
                                             inputContainerStyle={{ borderWidth: 1, borderRadius: 10 }}
-                                            onChangeText={setRateOfInterest}
-                                            errorMessage={errorMessageForInterest}
-                                            rightIcon={
-                                                <View
-                                                    style={{
-                                                        ...styles.iconContainer,
-                                                        borderBottomRightRadius: 8,
-                                                        borderTopRightRadius: 8
-                                                    }}>
-                                                    <Icon
-                                                        name='percent'
-                                                        type="font-awesome"
-                                                        color='#000'
-                                                        size={15}
-                                                    />
-                                                </View>}
-                                        />
-                                    </View>
-                                    <View style={{ marginVertical: 5 }}>
-                                        <Text style={{ ...styles.inputText, color: screenTheme.headingColor }}>Loan Tenure</Text>
-                                        <Input
-                                            placeholder="Enter Tenure"
-                                            keyboardType="numeric"
-                                            containerStyle={{ borderRadius: 10 }}
-                                            inputStyle={{ color: screenTheme.inputColor, fontSize: 14, paddingHorizontal: 10 }}
-                                            inputContainerStyle={{ borderWidth: 1, borderRadius: 10 }}
-                                            onChangeText={setTenure}
-                                            errorMessage={errorMessageForTenure}
+                                            onChangeText={setTimePeriod}
+                                            errorMessage={errorMessageForTimePeriod}
                                             rightIcon={
                                                 <View
                                                     style={{
@@ -195,20 +182,46 @@ const EmiCalculator = () => {
                                                         valueField="value"
                                                         placeholder="Select item"
                                                         searchPlaceholder="Search..."
-                                                        value={selectedTenture}
+                                                        value={selectedTimePeriod}
                                                         onChange={item => {
-                                                            setSelectedTenture(item.value);
+                                                            setSelectedTimePeriod(item.value);
                                                         }}
                                                     />
                                                 </View>
                                             }
                                         />
                                     </View>
+                                    <View style={{ marginVertical: 5 }}>
+                                        <Text style={{ ...styles.inputText, color: screenTheme.headingColor }}>Expected Return Rate (%) </Text>
+                                        <Input
+                                            placeholder="Enter Rate"
+                                            keyboardType="numeric"
+                                            containerStyle={{ borderRadius: 10 }}
+                                            inputStyle={{ color: screenTheme.inputColor, fontSize: 14, paddingHorizontal: 10 }}
+                                            inputContainerStyle={{ borderWidth: 1, borderRadius: 10 }}
+                                            onChangeText={setExpectedRate}
+                                            errorMessage={errorMessageForExpectedRate}
+                                            rightIcon={
+                                                <View
+                                                    style={{
+                                                        ...styles.iconContainer,
+                                                        borderBottomRightRadius: 8,
+                                                        borderTopRightRadius: 8
+                                                    }}>
+                                                    <Icon
+                                                        name='percent'
+                                                        type="font-awesome"
+                                                        color='#000'
+                                                        size={15}
+                                                    />
+                                                </View>}
+                                        />
+                                    </View>
 
                                     <View>
                                         {/* <Button title="Calculate GST" color="#008c85" style={styles.submitButton}/> */}
                                         <Button
-                                            title="Calculate EMI"
+                                            title="Calculate SIP"
                                             titleStyle={{ fontWeight: '500' }}
                                             buttonStyle={{
                                                 borderRadius: 10,
@@ -224,7 +237,7 @@ const EmiCalculator = () => {
                                     </View>
                                 </View>
                             </ScrollView>
-                            <Modal />
+                            <Modal from="simpleInterestCalculator" />
                         </View>
                     </KeyboardAwareScrollView>
                 </SafeAreaView>
@@ -305,9 +318,4 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
 })
-export default EmiCalculator
-
-// reference links:{
-    // https://www.calculatorsoup.com/calculators/financial/loan-calculator-simple.php
-    // https://www.personalfn.com/calculator/emi-calculator
-// }
+export default SipCalculator

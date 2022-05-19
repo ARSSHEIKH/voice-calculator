@@ -4,6 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import Header from "../../../components/header";
 import { Tooltip } from 'react-native-elements';
 import { useFocusEffect } from "@react-navigation/native";
+import separator from "./separator"
+import { create, all } from "mathjs";
+import InterstitialAdsShow from "../../../components/admob/interstitialAds/adShow";
+
+
+const Mathjs = create(all);
+const ln = (num) => Math.log(num);
+ln.transform = (num) => ln(num);
+Mathjs.import({ ln: ln })
 
 const exprFontSize = 30
 const previewBg = 'transparent';
@@ -34,18 +43,18 @@ export default function ScientificCalculator() {
     const dispatch = useDispatch()
     const theme_back = useSelector(state => state.theme_state.header);
     const screenTheme = useSelector(state => state.theme_state.screens.scientificCalculator);
+    const adClosed = useSelector(state => state.adClosed);
 
     const [expr, setExpr] = useState([0]);
     const [result, setResult] = useState(0);
-    const [solution, setSolution] = useState("0");
     const [equalled, setEqualled] = useState(false);
     const [inverted, setInverted] = useState(false);
 
     useFocusEffect(
         React.useCallback(() => {
             // Do something when the screen is focused
-                dispatch({ type: "set_tabs_state", payload: 1 })
-                dispatch({ type: "reset_adClosed" })
+            dispatch({ type: "set_tabs_state", payload: 1 })
+            dispatch({ type: "reset_adClosed" })
             return () => {
                 dispatch({ type: "reset_adClosed" })
                 dispatch({ type: "set_tabs_state", payload: 0 });
@@ -57,28 +66,17 @@ export default function ScientificCalculator() {
 
     //#region handles
 
-    function separator(numb) {
-        var str = numb.toString().split(".");
-        str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        return str.join(".");
-    }
-
     useEffect(() => {
         let res = result;
         try {
             let temp_arr = [...expr]
-            temp_arr.forEach((element, index)=>{
-                if(element===","){
-                    temp_arr[index] = ""
-                }
-
+            temp_arr.forEach((element, index) => {
+                if (element === ",") temp_arr[index] = ""
             });
-            res = eval(temp_arr.join(""));
+            res = Mathjs.evaluate(expr.join(""));
         } catch (error) {
-            //console.log(error)
         }
         if (isNaN(res)) {
-            //console.log("error occured1")
         } else {
             setResult(separator(res))
         }
@@ -179,9 +177,7 @@ export default function ScientificCalculator() {
 
     //#region display
 
-    const StyledText = ({ children: _children, style }) => {
-        return <Text style={{ color: style.color, fontSize: style.fontSize, fontWeight: style.fontWeight }}>{_children}</Text>
-    }
+    const StyledText = ({ children: _children, style }) => <Text style={{ color: style.color, fontSize: style.fontSize, fontWeight: style.fontWeight }}>{_children}</Text>
 
     const Invertable = ({ style, yes, no }) => {
         return inverted
@@ -214,27 +210,27 @@ export default function ScientificCalculator() {
     const Scientific = () => <View style={{ flex: 3 }}>
         <View style={styles.row}>
             <TouchableOpacity style={{ ...styles.button, borderColor: screenTheme.buttonBorderColor, backgroundColor: screenTheme.buttonBg, color: screenTheme.buttonTextColor }}
-            // onPressIn={() => numPressed("deg")}
+                onPressIn={() => numPressed("deg")}
             >
                 <StyledText style={{ ...styles.button, borderColor: screenTheme.buttonBorderColor, backgroundColor: screenTheme.buttonBg, color: screenTheme.buttonTextColor }}>deg</StyledText>
             </TouchableOpacity>
             <TouchableOpacity style={{ ...styles.button, borderColor: screenTheme.buttonBorderColor, backgroundColor: screenTheme.buttonBg, color: screenTheme.buttonTextColor }}
-            // onPressIn={() => numPressed("rad")}
+                onPressIn={() => numPressed("rad")}
             >
                 <StyledText style={{ ...styles.button, borderColor: screenTheme.buttonBorderColor, backgroundColor: screenTheme.buttonBg, color: screenTheme.buttonTextColor }}>rad</StyledText>
             </TouchableOpacity>
             <TouchableOpacity style={{ ...styles.button, borderColor: screenTheme.buttonBorderColor, backgroundColor: screenTheme.buttonBg, color: screenTheme.buttonTextColor }}
-            // onPressIn={() => numPressed("π", `π = ${22 / 7}`)}
+                onPressIn={() => numPressed("π", `π = ${22 / 7}`)}
             >
                 <StyledText style={{ ...styles.button, borderColor: screenTheme.buttonBorderColor, backgroundColor: screenTheme.buttonBg, color: screenTheme.buttonTextColor }}>π</StyledText>
             </TouchableOpacity>
             <TouchableOpacity style={{ ...styles.button, borderColor: screenTheme.buttonBorderColor, backgroundColor: screenTheme.buttonBg, color: screenTheme.buttonTextColor }}
-            // onPressIn={() => numPressed("e", `e = ${Math.E}`)}
+                onPressIn={() => numPressed("e", `e = ${Math.E}`)}
             >
                 <StyledText style={{ ...styles.button, borderColor: screenTheme.buttonBorderColor, backgroundColor: screenTheme.buttonBg, color: screenTheme.buttonTextColor }}>e</StyledText>
             </TouchableOpacity>
             <TouchableOpacity style={{ ...styles.button, borderColor: screenTheme.buttonBorderColor, backgroundColor: screenTheme.buttonBg, color: screenTheme.buttonTextColor }}
-            // onPressIn={() => functionPressed("exp(", "exp(x) - e to the power of x")}
+                onPressIn={() => functionPressed("exp(", "exp(x) - e to the power of x")}
             >
                 <StyledText style={{ ...styles.button, borderColor: screenTheme.buttonBorderColor, backgroundColor: screenTheme.buttonBg, color: screenTheme.buttonTextColor }}>Exp</StyledText>
             </TouchableOpacity>
@@ -419,16 +415,19 @@ export default function ScientificCalculator() {
     //#endregion
 
     return (
-        <>
-            <Header theme_mode={theme_back} tabsShow={false} />
-            <View style={{ ...styles.container, backgroundColor: screenTheme.backgroundColor }}>
-                <Display />
-                <View style={{ position: "relative", flex: 7 }}>
-                    <Scientific />
-                    <Actions />
+        adClosed ?
+            <>
+                <Header theme_mode={theme_back} tabsShow={false} headingFirst="Scientific Calculator" />
+                <View style={{ ...styles.container, backgroundColor: screenTheme.backgroundColor }}>
+                    <Display />
+                    <View style={{ position: "relative", flex: 7 }}>
+                        <Scientific />
+                        <Actions />
+                    </View>
                 </View>
-            </View>
-        </>
+            </>
+            :
+            <InterstitialAdsShow />
     );
 }
 

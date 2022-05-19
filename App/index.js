@@ -26,9 +26,7 @@ export default function App() {
       .then(() => {
         // Request config successfully set!
       });
-  }, [])
-
-
+  }, []);
 
   return (
     <Provider store={store}>

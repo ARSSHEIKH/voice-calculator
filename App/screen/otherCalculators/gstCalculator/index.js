@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { Dimensions, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, ToastAndroid, View } from "react-native";
+import { Dimensions, KeyboardAvoidingView, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, ToastAndroid, View } from "react-native";
 import { Button, Icon, Input } from "react-native-elements";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../../../components/header";
 import { Dropdown } from 'react-native-element-dropdown';
 import { useFocusEffect } from "@react-navigation/native";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import InterstitialAdsShow from "../../../components/admob/interstitialAds/adShow";
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -17,6 +19,7 @@ const data = [
 const GstCalculator = () => {
     const theme_back = useSelector(state => state.theme_state.header);
     const screenTheme = useSelector(state => state.theme_state.screens.gstCalculator);
+    const adClosed = useSelector(state => state.adClosed);
 
     const dispatch = useDispatch()
     const [selectedGst, setSelectedGst] = useState("inclusive");
@@ -42,7 +45,6 @@ const GstCalculator = () => {
         }, [])
     );
 
-
     const inclusiveCalculation = () => {
         setTotalGST((parseFloat(amount) - (parseFloat(amount) * (100 / (100 + parseFloat(rateOfGst))))).toFixed(2))
         setNetAmount(parseFloat(amount) - (parseFloat(amount) - (parseFloat(amount) * (100 / (100 + parseFloat(rateOfGst))))).toFixed(2));
@@ -64,135 +66,144 @@ const GstCalculator = () => {
 
     }
     return (
-        <SafeAreaView style={{ backgroundColor: screenTheme.backgroundColor, height: "100%" }}>
-            <Header theme_mode={theme_back} tabsShow={false} />
+        adClosed ?
+            <>
+                <KeyboardAvoidingView
+                    behavior={Platform.OS === "ios" ? "padding" : "height"}
+                    style={{ flex: 1 }}
+                >
+                    <SafeAreaView style={{ backgroundColor: screenTheme.backgroundColor, height: "100%" }}>
+                        <Header theme_mode={theme_back} tabsShow={false} headingFirst="GST" intellisenseText="(Goods and Services Tax)" headingLast="Calculator" />
 
-                <Text style={{ ...styles.heading, color: screenTheme.headingColor }}>Goods and Services Tax (GST) Calculator</Text>
+                        <KeyboardAwareScrollView>
+                            <ScrollView style={{ ...styles.container, backgroundColor: screenTheme.backgroundColor }}>
+                                <View style={styles.formContainer}>
+                                    <View>
 
-            <ScrollView style={{ ...styles.container, backgroundColor: screenTheme.backgroundColor }}>
-                <View style={styles.formContainer}>
+                                        <Text style={{ ...styles.inputText, color: screenTheme.headingColor }}>Initial Amount</Text>
 
-                    <View>
+                                        <View style={{ display: "flex", flexDirection: "row", borderRadius: 10 }}>
 
-                        <Text style={{ ...styles.inputText, color: screenTheme.headingColor}}>Initial Amount</Text>
+                                            <Input
+                                                placeholder="Enter Amount"
+                                                keyboardType="numeric"
+                                                containerStyle={{ borderRadius: 10 }}
+                                                inputStyle={{ fontSize: 14, paddingHorizontal: 10 }}
+                                                inputContainerStyle={{ borderWidth: 1, borderRadius: 10 }}
+                                                onChangeText={onChangeAmount}
+                                                rightIcon={
+                                                    <View
+                                                        style={{
+                                                            ...styles.iconContainer,
+                                                            borderBottomRightRadius: 8,
+                                                            borderTopRightRadius: 8,
+                                                        }}>
+                                                        <Dropdown
+                                                            style={styles.dropdown}
+                                                            placeholderStyle={styles.dropdownPlaceholerStyle}
+                                                            containerStyle={styles.dropdownContainerStyle}
+                                                            selectedTextStyle={styles.selectedTextStyle}
+                                                            iconStyle={styles.iconStyle}
+                                                            data={data}
+                                                            maxHeight={80}
+                                                            labelField="label"
+                                                            valueField="value"
+                                                            placeholder="Select item"
+                                                            searchPlaceholder="Search..."
+                                                            value={selectedGst}
+                                                            onChange={item => {
+                                                                setSelectedGst(item.value);
+                                                            }}
+                                                        />
+                                                    </View>
+                                                }
+                                                leftIcon={
+                                                    <View
+                                                        style={{
+                                                            ...styles.iconContainer,
+                                                            borderBottomLeftRadius: 8,
+                                                            borderTopLeftRadius: 8
+                                                        }}>
+                                                        <Icon
+                                                            name='dollar'
+                                                            type="font-awesome"
+                                                            color='#000'
+                                                            size={15}
+                                                        />
+                                                    </View>}
+                                            />
+                                        </View>
+                                    </View>
+                                    <View>
+                                        <Text style={{ ...styles.inputText, color: screenTheme.headingColor }}>Rate of GST (%) </Text>
+                                        <View>
+                                            <Input
+                                                keyboardType="numeric"
+                                                placeholder="Enter Rate"
+                                                inputStyle={{ fontSize: 14, paddingHorizontal: 10 }}
+                                                containerStyle={{ borderRadius: 10 }}
+                                                inputContainerStyle={{ borderWidth: 1, borderRadius: 10 }}
+                                                onChangeText={onChangeRateOfGst}
+                                                rightIcon={
+                                                    <View
+                                                        style={{
+                                                            ...styles.iconContainer,
+                                                            borderBottomRightRadius: 8,
+                                                            borderTopRightRadius: 8
+                                                        }}>
+                                                        <Icon
+                                                            name='percent'
+                                                            type="font-awesome"
+                                                            color='#000'
+                                                            size={15}
+                                                        />
+                                                    </View>}
+                                            />
+                                        </View>
+                                    </View>
 
-                        <View style={{ display: "flex", flexDirection: "row", borderRadius: 10 }}>
-                            
-                            <Input
-                                placeholder="Enter Amount"
-                                keyboardType="numeric"
-                                containerStyle={{borderRadius: 10}}
-                                inputStyle={{fontSize:14, paddingHorizontal: 10}}
-                                inputContainerStyle={{ borderWidth: 1, borderRadius: 10 }}
-                                onChangeText={onChangeAmount}
-                                rightIcon={
-                                    <View
-                                        style={{
-                                            ...styles.iconContainer,
-                                            borderBottomRightRadius: 8,
-                                            borderTopRightRadius: 8,
-                                        }}>
-                                        <Dropdown
-                                            style={styles.dropdown}
-                                            placeholderStyle={styles.dropdownPlaceholerStyle}
-                                            containerStyle={styles.dropdownContainerStyle}
-                                            selectedTextStyle={styles.selectedTextStyle}
-                                            iconStyle={styles.iconStyle}
-                                            data={data}
-                                            maxHeight={80}
-                                            labelField="label"
-                                            valueField="value"
-                                            placeholder="Select item"
-                                            searchPlaceholder="Search..."
-                                            value={selectedGst}
-                                            onChange={item => {
-                                                setSelectedGst(item.value);
+                                    <View>
+                                        {/* <Button title="Calculate GST" color="#008c85" style={styles.submitButton}/> */}
+                                        <Button
+                                            title="Calculate GST"
+                                            titleStyle={{ fontWeight: '500' }}
+                                            buttonStyle={{
+                                                borderRadius: 10,
+                                                backgroundColor: '#008c85',
+                                                borderColor: 'transparent',
+                                                borderWidth: 0,
                                             }}
+                                            containerStyle={{
+                                                height: 45,
+                                            }}
+                                            onPressIn={formSubmit}
                                         />
-                                    </View> 
-                                }
-                                leftIcon={
-                                    <View
-                                        style={{
-                                            ...styles.iconContainer,
-                                            borderBottomLeftRadius: 8,
-                                            borderTopLeftRadius: 8
-                                        }}>
-                                        <Icon
-                                            name='dollar'
-                                            type="font-awesome"
-                                            color='#000'
-                                            size={15}
-                                        />
-                                    </View>}
-                            />
-                        </View>
-                    </View>
-                    <View>
-                        <Text style={{ ...styles.inputText, color: screenTheme.headingColor}}>Rate of GST (%) </Text>
-                        <View>
-                            <Input
-                            keyboardType="numeric"
-                                placeholder="Enter Rate"
-                                inputStyle={{fontSize:14, paddingHorizontal: 10}}
-                                containerStyle={{borderRadius: 10}}
-                                inputContainerStyle={{ borderWidth: 1, borderRadius: 10 }}
-                                onChangeText={onChangeRateOfGst}
-                                rightIcon={
-                                    <View
-                                        style={{
-                                            ...styles.iconContainer,
-                                            borderBottomRightRadius: 8,
-                                            borderTopRightRadius: 8
-                                        }}>
-                                        <Icon
-                                            name='percent'
-                                            type="font-awesome"
-                                            color='#000'
-                                            size={15}
-                                        />
-                                    </View>}
-                            />
-                        </View>
-                    </View> 
+                                    </View>
+                                </View>
 
-                    <View>
-                        {/* <Button title="Calculate GST" color="#008c85" style={styles.submitButton}/> */}
-                        <Button
-                            title="Calculate GST"
-                            titleStyle={{ fontWeight: '500' }}
-                            buttonStyle={{
-                                borderRadius: 10,
-                                backgroundColor: '#008c85',
-                                borderColor: 'transparent',
-                                borderWidth: 0,
-                            }}
-                            containerStyle={{
-                                height: 45,
-                            }}
-                            onPressIn={formSubmit}
-                        />
-                    </View>
-                </View>
-
-                <View style={styles.resultContainer}>
-                    <View style={styles.row}>
-                        <Text style={[{ ...styles.resultText, ...styles.resultHeading, color: screenTheme.headingColor }]}>Net Amount (excluding GST)</Text>
-                        <Text style={{ ...styles.resultText, color: screenTheme.headingColor }}>{netAmount}</Text>
-                    </View>
-                    <View style={styles.row}>
-                        <Text style={[{ ...styles.resultText, ...styles.resultHeading, color: screenTheme.headingColor }]}>GST ({rateOfGst}%)</Text>
-                        <Text style={{ ...styles.resultText, color: screenTheme.headingColor }}>{totalGST}</Text>
-                    </View>
-                    <View style={styles.row}>
-                        <Text style={[{ ...styles.resultText, ...styles.resultHeading, color: screenTheme.headingColor }]}>Gross Amount (including GST)</Text>
-                        <Text style={{ ...styles.resultText, color: screenTheme.headingColor }}>{grossAmount}</Text>
-                    </View>
-                </View>
+                                <View style={styles.resultContainer}>
+                                    <View style={styles.row}>
+                                        <Text style={[{ ...styles.resultText, ...styles.resultHeading, color: screenTheme.headingColor }]}>Net Amount (excluding GST)</Text>
+                                        <Text style={{ ...styles.resultText, color: screenTheme.headingColor }}>{netAmount}</Text>
+                                    </View>
+                                    <View style={styles.row}>
+                                        <Text style={[{ ...styles.resultText, ...styles.resultHeading, color: screenTheme.headingColor }]}>GST ({rateOfGst}%)</Text>
+                                        <Text style={{ ...styles.resultText, color: screenTheme.headingColor }}>{totalGST}</Text>
+                                    </View>
+                                    <View style={styles.row}>
+                                        <Text style={[{ ...styles.resultText, ...styles.resultHeading, color: screenTheme.headingColor }]}>Gross Amount (including GST)</Text>
+                                        <Text style={{ ...styles.resultText, color: screenTheme.headingColor }}>{grossAmount}</Text>
+                                    </View>
+                                </View>
 
 
-            </ScrollView>
-        </SafeAreaView>
+                            </ScrollView>
+                        </KeyboardAwareScrollView>
+                    </SafeAreaView>
+                </KeyboardAvoidingView>
+            </>
+            :
+            <InterstitialAdsShow />
 
     )
 }
@@ -229,10 +240,10 @@ const styles = StyleSheet.create({
         height: 50,
         display: "flex",
         justifyContent: "center",
-        paddingHorizontal: 25,
+        paddingHorizontal: 15,
     },
     dropdown: {
-        width: 100,
+        width: 80,
         height: 20
     },
     dropdownPlaceholerStyle: {

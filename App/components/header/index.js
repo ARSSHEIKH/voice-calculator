@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 import { Header as HeaderRNE, Icon } from 'react-native-elements';
 import { useDispatch, useSelector } from 'react-redux';
 import Tabs from './tabs';
@@ -16,11 +16,11 @@ type ParamList = {
     };
 };
 
-const Header: React.FunctionComponent<HeaderComponentProps> = ({ theme_mode, tabsShow }) => {
+const Header: React.FunctionComponent<HeaderComponentProps> = ({ theme_mode, tabsShow, headingFirst, intellisenseText, headingLast }) => {
     const dispatch = useDispatch();
     const navigation = useNavigation();
     const toggle = useSelector(state => state.drawerToggle_state);
-    const [themeChange, setthemeChange] = useState(true)
+    const [themeChange, setthemeChange] = useState(true);
 
     const themeChanger = () => {
         setthemeChange(!themeChange)
@@ -47,7 +47,19 @@ const Header: React.FunctionComponent<HeaderComponentProps> = ({ theme_mode, tab
                     </TouchableOpacity>
                 </View>
             }
-            centerComponent={tabsShow ? <Tabs theme_mode={theme_mode.tabs} /> : null}
+            centerComponent={tabsShow ? <Tabs theme_mode={theme_mode.tabs} /> :
+                <View style={styles.headingView}>
+                    <Text style={{ ...styles.heading, color: theme_mode.headingColor }}>
+                        {headingFirst}
+                    </Text>
+                    <Text style={{ ...styles.intellisenseText, color: theme_mode.headingColor }}>
+                        {intellisenseText}
+                    </Text>
+                    <Text style={{ ...styles.heading, color: theme_mode.headingColor }}>
+                        {headingLast}
+                    </Text>
+                </View>
+            }
         />
     );
 };
@@ -64,6 +76,23 @@ const styles = StyleSheet.create({
     icon: {
         fontWeight: "900",
         fontSize: 24
+    },
+    heading: {
+        fontSize: 22,
+        fontWeight: "700",
+        padding: 3,
+        textAlign: "center",
+    },
+    intellisenseText: {
+        fontSize: 12,
+        fontWeight: "700",
+        padding: 3,
+        textAlign: "center",
+    },
+    headingView:{
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
     }
 });
 

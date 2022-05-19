@@ -4,37 +4,50 @@ import { Button, Icon, Input } from "react-native-elements";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../../../components/header";
 import { useFocusEffect } from "@react-navigation/native";
-import Modal from "./modal"
-import { Dropdown } from "react-native-element-dropdown";
-import InterstitialAdsShow from "../../../components/admob/interstitialAds/adShow";
+import Modal from "../emiCalculator/modal"
+import RadioGroup from 'react-native-radio-buttons-group';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import InterstitialAdsShow from "../../../components/admob/interstitialAds/adShow";
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const data = [
-    { label: 'Monthly', value: 'months' },
-    { label: 'Yearly', value: 'years' },
-];
+const radioButtonsData = [{
+    id: '1', // acts as primary key, should be unique and non-empty string
+    label: 'Add VAT (+)',
+    selected: true,
+    value: 'addVat'
+}, {
+    id: '2',
+    label: 'Remove VAT (-)',
+    selected: false,
+    value: 'removeVat'
+}];
 
-const EmiCalculator = () => {
+const VatCalculator = () => {
     const dispatch = useDispatch()
     const theme_back = useSelector(state => state.theme_state.header);
     const screenTheme = useSelector(state => state.theme_state.screens.gstCalculator);
-    const [selectedTenture, setSelectedTenture] = useState("months");
+    const [selectedVAT, setSelectedVAT] = useState("addVat");
     const adClosed = useSelector(state => state.adClosed);
 
-    const [rateOfInterest, setRateOfInterest] = React.useState(null);
-    const [totalEMI, setTotalEMI] = React.useState(null)
-    const [loanAmount, setLoanAmount] = React.useState(null)
-    const [tenure, setTenure] = React.useState(null)
-    const [totalInterestPayable, setTotalInterestPayable] = React.useState(null)
-    const [totalPayable, setTotalPayable] = React.useState(null)
+    const [radioButtons, setRadioButtons] = useState(radioButtonsData)
 
+    const [rates, setRates] = React.useState(null);
+    const [initialAmount, setInitialAmount] = React.useState(null)
+    const [grossAmount, setGrossAmount] = React.useState(null)
+    const [vatPrice, setVatPrice] = React.useState(null)
+
+    const [netAmount, setNetAmount] = React.useState(null)
     const [errorMessageForAmount, setErrorMessageForAmount] = React.useState(null)
-    const [errorMessageForInterest, setErrorMessageForInterest] = React.useState(null)
-    const [errorMessageForTenure, setErrorMessageForTenure] = React.useState(null)
+    const [errorMessageForAnnualRate, setErrorMessageForAnnualRate] = React.useState(null)
+    const [errorMessageForLoanTerm, setErrorMessageForLoanTerm] = React.useState(null)
 
+    function onPressRadioButton(radioButtonsArray) {
+        let selected = radioButtonsArray.filter(item => item.selected === true);
+        setSelectedVAT(selected[0].value)
+        setRadioButtons(radioButtonsArray);
+    }
     useFocusEffect(
         React.useCallback(() => {
             // Do something when the screen is focused
@@ -48,69 +61,72 @@ const EmiCalculator = () => {
             };
         }, [])
     );
-
     const dispatchingModal = () => {
-        if (totalEMI !== null && totalEMI !== "") {
+        if (initialAmount !== null && initialAmount !== "") {
             dispatch({
                 type: "set_modal_state",
                 payload: {
                     show: true,
-                    from: "emi",
+                    from: "vatCalculator",
                     dataToShow: {
-                        "totalEMI": totalEMI,
-                        "totalInterestPayable": totalInterestPayable,
-                        "totalPayable": totalPayable,
+                        "netAmount": parseFloat(netAmount).toFixed(2),
+                        "vatPrice": parseFloat(vatPrice).toFixed(2),
+                        "grossAmount": parseFloat(grossAmount).toFixed(2),
                     }
                 }
             })
         }
     }
 
-    const calculateTotalInterestPayable = () => {
-        if (selectedTenture === "months") setTotalInterestPayable((totalEMI * tenure) - loanAmount);
-        else setTotalInterestPayable((totalEMI * (tenure * 12)) - loanAmount);
-    }
-    const calculateTotalPayable = () => setTotalPayable(eval(`+${loanAmount} + +${totalInterestPayable}`));
-
-    React.useEffect(() => { calculateTotalInterestPayable() }, [totalEMI, selectedTenture])
-    React.useEffect(() => { calculateTotalPayable() }, [totalInterestPayable])
-    React.useEffect(() => { dispatchingModal() }, [totalPayable])
-
-    const monthlyCalcalation = () => {
-        let calcRateOfInterest = rateOfInterest / 12 / 100
-        let leftSideCalc = loanAmount * calcRateOfInterest;
-        let rightNumerator = Math.pow(eval("+1" + `+${calcRateOfInterest}`), tenure);
-        let rightDenomenator = rightNumerator - 1;
-        setTotalEMI(((leftSideCalc * rightNumerator) / rightDenomenator).toFixed());
+    const calculateVatPrice = () => {
+        setVatPrice(grossAmount - netAmount);
         dispatchingModal()
     }
 
+    React.useEffect(() => { dispatchingModal() }, [vatPrice])
+    React.useEffect(() => { calculateVatPrice() }, [grossAmount, netAmount])
+
+    const addingVATCalculation = () => {
+        let leftSide = initialAmount / 100;
+        let rightSide = eval(`+100 + +${rates}`)
+        setNetAmount(initialAmount);
+        setGrossAmount(leftSide * rightSide);
+        calculateVatPrice()
+        dispatchingModal()
+    }
+    const removingVATCalculation = () => {
+        let addedRates = eval(`+100 + +${rates}`)
+        let leftSide = initialAmount / addedRates;
+        setNetAmount(leftSide * 100);
+        setGrossAmount(initialAmount);
+        calculateVatPrice()
+        dispatchingModal()
+    }
     const inputValidation = () => {
-        if (loanAmount === null || loanAmount === "") {
+        if (initialAmount === null || initialAmount === "") {
             setErrorMessageForAmount("Please enter amount")
         }
         else {
             setErrorMessageForAmount(null)
         }
-        if (rateOfInterest === null || rateOfInterest === "") {
-            setErrorMessageForInterest("Please enter interest")
+        if (rates === null || rates === "") {
+            setErrorMessageForAnnualRate("Please enter interest")
         }
         else {
-            setErrorMessageForInterest(null)
-        }
-        if (tenure === null || tenure === "") {
-            setErrorMessageForTenure("Please enter Months")
-        }
-        else {
-            setErrorMessageForTenure(null)
+            setErrorMessageForAnnualRate(null)
         }
 
     }
 
     const formSubmit = () => {
         inputValidation()
-        if (errorMessageForAmount === null && errorMessageForInterest === null && errorMessageForTenure === null)
-            monthlyCalcalation();
+        if (errorMessageForAmount === null && errorMessageForAnnualRate === null && errorMessageForLoanTerm === null) {
+            if (selectedVAT === "addVat")
+                addingVATCalculation()
+            else
+                removingVATCalculation()
+
+        }
     }
 
     return (
@@ -120,7 +136,7 @@ const EmiCalculator = () => {
                 style={{ flex: 1 }}
             >
                 <SafeAreaView style={{ backgroundColor: screenTheme.backgroundColor, height: "100%" }}>
-                    <Header theme_mode={theme_back} tabsShow={false} headingFirst="EMI" intellisenseText="(Equated Monthly Instalment)" headingLast="Calculator" />
+                    <Header theme_mode={theme_back} tabsShow={false} headingFirst="VAT" intellisenseText="(Value added tax)" headingLast="Calculator" />
                     <KeyboardAwareScrollView>
                         <View style={{ ...styles.container, backgroundColor: screenTheme.backgroundColor }}>
 
@@ -128,7 +144,7 @@ const EmiCalculator = () => {
                                 <View style={styles.formContainer}>
 
                                     <View style={{ marginVertical: 5 }}>
-                                        <Text style={{ ...styles.inputText, color: screenTheme.headingColor }}>Loan Amount</Text>
+                                        <Text style={{ ...styles.inputText, color: screenTheme.headingColor }}>Initial Amount</Text>
                                         <Input
                                             placeholder="Enter Amount"
                                             keyboardType="numeric"
@@ -136,20 +152,20 @@ const EmiCalculator = () => {
                                             containerStyle={{ borderRadius: 10 }}
                                             inputStyle={{ color: screenTheme.inputColor, fontSize: 14, paddingHorizontal: 10 }}
                                             inputContainerStyle={{ borderWidth: 1, borderRadius: 10 }}
-                                            onChangeText={setLoanAmount}
+                                            onChangeText={setInitialAmount}
                                             errorMessage={errorMessageForAmount}
                                         />
                                     </View>
                                     <View style={{ marginVertical: 5 }}>
-                                        <Text style={{ ...styles.inputText, color: screenTheme.headingColor }}>Rate of Interest (%) </Text>
+                                        <Text style={{ ...styles.inputText, color: screenTheme.headingColor }}>Rate of VAT (%) </Text>
                                         <Input
-                                            placeholder="Enter Rates"
+                                            placeholder="Enter Rate"
                                             keyboardType="numeric"
                                             containerStyle={{ borderRadius: 10 }}
                                             inputStyle={{ color: screenTheme.inputColor, fontSize: 14, paddingHorizontal: 10 }}
                                             inputContainerStyle={{ borderWidth: 1, borderRadius: 10 }}
-                                            onChangeText={setRateOfInterest}
-                                            errorMessage={errorMessageForInterest}
+                                            onChangeText={setRates}
+                                            errorMessage={errorMessageForAnnualRate}
                                             rightIcon={
                                                 <View
                                                     style={{
@@ -166,49 +182,16 @@ const EmiCalculator = () => {
                                                 </View>}
                                         />
                                     </View>
-                                    <View style={{ marginVertical: 5 }}>
-                                        <Text style={{ ...styles.inputText, color: screenTheme.headingColor }}>Loan Tenure</Text>
-                                        <Input
-                                            placeholder="Enter Tenure"
-                                            keyboardType="numeric"
-                                            containerStyle={{ borderRadius: 10 }}
-                                            inputStyle={{ color: screenTheme.inputColor, fontSize: 14, paddingHorizontal: 10 }}
-                                            inputContainerStyle={{ borderWidth: 1, borderRadius: 10 }}
-                                            onChangeText={setTenure}
-                                            errorMessage={errorMessageForTenure}
-                                            rightIcon={
-                                                <View
-                                                    style={{
-                                                        ...styles.iconContainer,
-                                                        borderBottomRightRadius: 8,
-                                                        borderTopRightRadius: 8,
-                                                    }}>
-                                                    <Dropdown
-                                                        style={styles.dropdown}
-                                                        placeholderStyle={styles.dropdownPlaceholerStyle}
-                                                        containerStyle={styles.dropdownContainerStyle}
-                                                        selectedTextStyle={styles.selectedTextStyle}
-                                                        iconStyle={styles.iconStyle}
-                                                        data={data}
-                                                        maxHeight={80}
-                                                        labelField="label"
-                                                        valueField="value"
-                                                        placeholder="Select item"
-                                                        searchPlaceholder="Search..."
-                                                        value={selectedTenture}
-                                                        onChange={item => {
-                                                            setSelectedTenture(item.value);
-                                                        }}
-                                                    />
-                                                </View>
-                                            }
-                                        />
+
+                                    <View style={{ marginBottom: 10 }}>
+                                        <RadioGroup layout="row" radioButtons={radioButtons} onPress={onPressRadioButton}
+                                            containerStyle={{ alignSelf: "center" }}
+                                            color="#444" borderColor="red" />
                                     </View>
 
-                                    <View>
-                                        {/* <Button title="Calculate GST" color="#008c85" style={styles.submitButton}/> */}
+                                    <View style={{ marginTop: 10 }}>
                                         <Button
-                                            title="Calculate EMI"
+                                            title="Calculate VAT"
                                             titleStyle={{ fontWeight: '500' }}
                                             buttonStyle={{
                                                 borderRadius: 10,
@@ -224,7 +207,7 @@ const EmiCalculator = () => {
                                     </View>
                                 </View>
                             </ScrollView>
-                            <Modal />
+                            <Modal from="vatCalculator" />
                         </View>
                     </KeyboardAwareScrollView>
                 </SafeAreaView>
@@ -232,7 +215,8 @@ const EmiCalculator = () => {
             :
             <InterstitialAdsShow />
     )
-}
+};
+
 const styles = StyleSheet.create({
     container: {
         paddingVertical: 10,
@@ -304,10 +288,6 @@ const styles = StyleSheet.create({
     submitButton: {
         borderRadius: 10,
     },
-})
-export default EmiCalculator
+});
 
-// reference links:{
-    // https://www.calculatorsoup.com/calculators/financial/loan-calculator-simple.php
-    // https://www.personalfn.com/calculator/emi-calculator
-// }
+export default VatCalculator

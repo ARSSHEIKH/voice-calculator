@@ -7,7 +7,6 @@ import { useSelector, useDispatch } from "react-redux";
 import Header from '../../../components/header';
 import InterstitialAdsShow from '../../../components/admob/interstitialAds/adShow';
 import { useFocusEffect } from "@react-navigation/native";
-import { StatusBar } from "react-native";
 
 const windowHeight = Dimensions.get('window').height;
 
@@ -22,15 +21,16 @@ export default function SimpleCalculator() {
     const theme_mode = useSelector(state => state.theme_state.screens.simpleCalculator);
     const theme_back = useSelector(state => state.theme_state.header);
     const adClosed = useSelector(state => state.adClosed);
-    // useFocusEffect(
-    //     React.useCallback(() => {
-    //         dispatch({ type: "set_tabs_state", payload: 0 })
-    //         dispatch({ type: "reset_adClosed" })
-    //         return () => {
-    //             dispatch({ type: "reset_adClosed" })
-    //         };
-    //     }, [])
-    // );
+    
+    useFocusEffect(
+        React.useCallback(() => {
+            dispatch({ type: "set_tabs_state", payload: 0 })
+            dispatch({ type: "reset_adClosed" })
+            return () => {
+                dispatch({ type: "reset_adClosed" })
+            };
+        }, [])
+    );
 
     const handleTap = (type, value) => {
         if (value === 0 && calc === "" || operators.includes(value) && calc === "" || operators.includes(value) && operators.includes(calc.slice(-1)))
@@ -55,7 +55,6 @@ export default function SimpleCalculator() {
                 values_array.forEach(element => {
 
                     if (operators.includes(element)) {
-                        console.log("49")
                         findOperatorInString = true
                         return
                     }
@@ -114,7 +113,7 @@ export default function SimpleCalculator() {
     return (
         adClosed ?
             <SafeAreaView style={{ backgroundColor: theme_mode.backgroundColor }}>
-                <Header theme_mode={theme_back} tabsShow={true} />
+                <Header theme_mode={theme_back} tabsShow={false} headingFirst="Simple Calculator" />
 
                 <View style={{...styles.calcContainer, color: theme_mode.backgroundColor, }}>
                     <View style={styles.subContainer}>
@@ -174,8 +173,6 @@ export default function SimpleCalculator() {
                         </View >
                     </View >
                 </View >
-
-
             </SafeAreaView>
             :
             <InterstitialAdsShow />
