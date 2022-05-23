@@ -52,9 +52,9 @@ const Header: React.FunctionComponent<HeaderComponentProps> = ({ theme_mode, tab
                     <Text style={{ ...styles.heading, color: theme_mode.headingColor }}>
                         {headingFirst}
                     </Text>
-                    <Text style={{ ...styles.intellisenseText, color: theme_mode.headingColor }}>
+                    {/* <Text style={{ ...styles.intellisenseText, color: theme_mode.headingColor }}>
                         {intellisenseText}
-                    </Text>
+                    </Text> */}
                     <Text style={{ ...styles.heading, color: theme_mode.headingColor }}>
                         {headingLast}
                     </Text>

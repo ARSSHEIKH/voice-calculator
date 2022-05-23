@@ -50,8 +50,8 @@ const dropdownList = [
         symbol: "ha"
     },
     {
-        label: "Are",
-        value: "are",
+        label: "Arc",
+        value: "arc",
         symbol: "a"
     },
     {
@@ -105,13 +105,13 @@ const dropdownList = [
         symbol: "sec"
     },
     {
-        label: "Arce",
-        value: "arce",
+        label: "Arce ",
+        value: "arce ",
         symbol: "ac"
     },
     {
         label: "Arce (US survey)",
-        value: "arce_us",
+        value: "arce_us ",
         symbol: "ac"
     },
     {

@@ -6,11 +6,11 @@ import Button from "../../../../components/Button";
 import { useSelector, useDispatch } from "react-redux";
 import Header from '../../../../components/header';
 import InterstitialAdsShow from '../../../../components/admob/interstitialAds/adShow';
-import { useFocusEffect } from "@react-navigation/native";
 import { Dropdown } from "react-native-element-dropdown";
 import { Divider } from "react-native-elements";
 import dropdownList from "./dropdownList";
 import { degreeCalculation, radianCalculation, gradianCalculation, minuteCalculation, secondCalculation, signCalculation, milCalculation, revolutionCalculation, circleCalculation, turnCalculation, quadrantCalculation, sextantCalculation } from "./calculationLogic/angleCalculation";
+import { CommonActions, useFocusEffect, useNavigation } from '@react-navigation/native';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -18,7 +18,8 @@ const windowHeight = Dimensions.get('window').height;
 let values_array = [];
 let lastIndexOfCalc = 0;
 export default function AngleCalculator() {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const navigation = useNavigation()
     const [calc, setCalc] = useState('')
     const [res, setRes] = useState('')
     const [noOfLines, setNoOfLines] = useState(4)
@@ -29,16 +30,16 @@ export default function AngleCalculator() {
     const [selectedAngleFrom, setSelectedAngleFrom] = useState(dropdownList[0].value);
     const [selectedAngleTo, setSelectedAngleTo] = useState(dropdownList[1].value);
 
-    console.log("dropdownList", dropdownList.length)
-    // useFocusEffect(
-    //     React.useCallback(() => {
-    //         dispatch({ type: "set_tabs_state", payload: 0 })
-    //         dispatch({ type: "reset_adClosed" })
-    //         return () => {
-    //             dispatch({ type: "reset_adClosed" })
-    //         };
-    //     }, [])
-    // )
+    useFocusEffect(
+        React.useCallback(() => {
+            dispatch({ type: "set_tabs_state", payload: 0 })
+            dispatch({ type: "reset_adClosed" });
+            return () => {
+                dispatch({ type: "reset_adClosed" })
+            };
+
+        }, [])
+    )
 
     const forDegree = () => {
         if (selectedAngleFrom === "radian" && selectedAngleTo === "degree") {
@@ -796,7 +797,7 @@ export default function AngleCalculator() {
             setRes(value)
         }
     }
-    
+
     useEffect(() => {
         if (selectedAngleTo === "degree") forDegree();
         else if (selectedAngleTo === "radian") forRadian();
@@ -884,105 +885,105 @@ export default function AngleCalculator() {
     };
 
     return (
-        // adClosed ?
-        <SafeAreaView style={{ backgroundColor: theme_mode.backgroundColor }}>
-            <Header theme_mode={theme_back} tabsShow={false} headingFirst="Angle Calculator" />
+        adClosed ?
+            <SafeAreaView style={{ backgroundColor: theme_mode.backgroundColor }}>
+                <Header theme_mode={theme_back} tabsShow={false} headingFirst="Angle Calculator" />
 
-            <View style={{ ...styles.calcContainer, color: theme_mode.backgroundColor, }}>
-                <View style={styles.subContainer}>
-                    <View style={styles.innerContainer}>
+                <View style={{ ...styles.calcContainer, color: theme_mode.backgroundColor, }}>
+                    <View style={styles.subContainer}>
+                        <View style={styles.innerContainer}>
 
-                        <View style={styles.inputContainer}>
-                            <View style={styles.inputCard}>
-                                <View style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                                    <Text style={styles.lbltext}>From</Text>
-                                    <Text style={styles.lbltext}>{calc || 0}</Text>
+                            <View style={styles.inputContainer}>
+                                <View style={styles.inputCard}>
+                                    <View style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+                                        <Text style={styles.lbltext}>From</Text>
+                                        <Text style={styles.lbltext}>{calc || 0}</Text>
+                                    </View>
+                                    <View>
+                                        <Dropdown
+                                            style={styles.dropdown}
+                                            placeholderStyle={styles.dropdownPlaceholerStyle}
+                                            containerStyle={styles.dropdownContainerStyle}
+                                            selectedTextStyle={styles.selectedTextStyle}
+                                            iconStyle={styles.iconStyle}
+                                            data={dropdownList}
+                                            maxHeight={windowHeight / 2}
+                                            labelField="label"
+                                            valueField="value"
+                                            placeholder="Select item"
+                                            searchPlaceholder="Search..."
+                                            value={selectedAngleFrom}
+                                            onChange={item => {
+                                                setSelectedAngleFrom(item.value);
+                                            }}
+                                        />
+                                    </View>
+                                    <Divider width={1} color="#0c0c0c" />
                                 </View>
-                                <View>
-                                    <Dropdown
-                                        style={styles.dropdown}
-                                        placeholderStyle={styles.dropdownPlaceholerStyle}
-                                        containerStyle={styles.dropdownContainerStyle}
-                                        selectedTextStyle={styles.selectedTextStyle}
-                                        iconStyle={styles.iconStyle}
-                                        data={dropdownList}
-                                        maxHeight={windowHeight / 2}
-                                        labelField="label"
-                                        valueField="value"
-                                        placeholder="Select item"
-                                        searchPlaceholder="Search..."
-                                        value={selectedAngleFrom}
-                                        onChange={item => {
-                                            setSelectedAngleFrom(item.value);
-                                        }}
-                                    />
+                                <View style={styles.inputCard}>
+                                    <View style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+                                        <Text style={styles.lbltext}>To</Text>
+                                        <Text style={styles.lbltext}>{res !== 0 ? res : 0}</Text>
+                                    </View>
+                                    <View>
+                                        <Dropdown
+                                            style={styles.dropdown}
+                                            placeholderStyle={styles.dropdownPlaceholerStyle}
+                                            containerStyle={styles.dropdownContainerStyle}
+                                            selectedTextStyle={styles.selectedTextStyle}
+                                            iconStyle={styles.iconStyle}
+
+                                            data={dropdownList}
+                                            maxHeight={windowHeight / 2}
+                                            labelField="label"
+                                            valueField="value"
+                                            placeholder="Select item"
+                                            searchPlaceholder="Search..."
+                                            value={selectedAngleTo}
+                                            onChange={item => {
+                                                setSelectedAngleTo(item.value);
+                                            }}
+                                        />
+                                    </View>
+                                    <Divider width={1} color="#0c0c0c" />
                                 </View>
-                                <Divider width={1} color="#0c0c0c" />
                             </View>
-                            <View style={styles.inputCard}>
-                                <View style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                                    <Text style={styles.lbltext}>To</Text>
-                                    <Text style={styles.lbltext}>{res !== 0 ? res : 0}</Text>
-                                </View>
-                                <View>
-                                    <Dropdown
-                                        style={styles.dropdown}
-                                        placeholderStyle={styles.dropdownPlaceholerStyle}
-                                        containerStyle={styles.dropdownContainerStyle}
-                                        selectedTextStyle={styles.selectedTextStyle}
-                                        iconStyle={styles.iconStyle}
+                            <View style={styles.buttonContainer}>
+                                <Row>
+                                    <Button theme_mode={theme_mode.buttons} text="7" theme="accent" onPress={() => handleTap("number", 7)} />
+                                    <Button theme_mode={theme_mode.buttons} text="8" theme="accent" onPress={() => handleTap("number", 8)} />
+                                    <Button theme_mode={theme_mode.buttons} text="9" theme="accent" onPress={() => handleTap("number", 9)} />
+                                </Row>
 
-                                        data={dropdownList}
-                                        maxHeight={windowHeight / 2}
-                                        labelField="label"
-                                        valueField="value"
-                                        placeholder="Select item"
-                                        searchPlaceholder="Search..."
-                                        value={selectedAngleTo}
-                                        onChange={item => {
-                                            setSelectedAngleTo(item.value);
-                                        }}
-                                    />
-                                </View>
-                                <Divider width={1} color="#0c0c0c" />
+                                <Row>
+                                    <Button theme_mode={theme_mode.buttons} text="4" theme="accent" onPress={() => handleTap("number", 4)} />
+                                    <Button theme_mode={theme_mode.buttons} text="5" theme="accent" onPress={() => handleTap("number", 5)} />
+                                    <Button theme_mode={theme_mode.buttons} text="6" theme="accent" onPress={() => handleTap("number", 6)} />
+                                    <Button theme_mode={theme_mode.buttons} text="AC" theme="secondary" onPress={clearAll} />
+                                </Row>
+
+                                <Row>
+                                    <Button theme_mode={theme_mode.buttons} text="1" theme="accent" onPress={() => handleTap("number", 1)} />
+                                    <Button theme_mode={theme_mode.buttons} text="2" theme="accent" onPress={() => handleTap("number", 2)} />
+                                    <Button theme_mode={theme_mode.buttons} text="3" theme="accent" onPress={() => handleTap("number", 3)} />
+                                    <Button theme_mode={theme_mode.buttons} text="backspace" theme="secondary" onPress={deleteLast} />
+                                </Row>
+
+                                <Row>
+                                    <Button theme_mode={theme_mode.buttons} text="." theme="accent" onPress={() => handleTap("number", ".")} />
+                                    <Button theme_mode={theme_mode.buttons} text="+/-" theme="accent" onPress={() => handleTap("posneg", "+/-")} />
+                                    <Button theme_mode={theme_mode.buttons} text="0" theme="accent" onPress={() => handleTap("number", 0)} />
+                                    <Button theme_mode={theme_mode.buttons} text="=" theme="accent" onPress={() => handleTap("operator", "=")} />
+                                </Row>
                             </View>
-                        </View>
-                        <View style={styles.buttonContainer}>
-                            <Row>
-                                <Button theme_mode={theme_mode.buttons} text="7" theme="accent" onPress={() => handleTap("number", 7)} />
-                                <Button theme_mode={theme_mode.buttons} text="8" theme="accent" onPress={() => handleTap("number", 8)} />
-                                <Button theme_mode={theme_mode.buttons} text="9" theme="accent" onPress={() => handleTap("number", 9)} />
-                            </Row>
 
-                            <Row>
-                                <Button theme_mode={theme_mode.buttons} text="4" theme="accent" onPress={() => handleTap("number", 4)} />
-                                <Button theme_mode={theme_mode.buttons} text="5" theme="accent" onPress={() => handleTap("number", 5)} />
-                                <Button theme_mode={theme_mode.buttons} text="6" theme="accent" onPress={() => handleTap("number", 6)} />
-                                <Button theme_mode={theme_mode.buttons} text="AC" theme="secondary" onPress={clearAll} />
-                            </Row>
-
-                            <Row>
-                                <Button theme_mode={theme_mode.buttons} text="1" theme="accent" onPress={() => handleTap("number", 1)} />
-                                <Button theme_mode={theme_mode.buttons} text="2" theme="accent" onPress={() => handleTap("number", 2)} />
-                                <Button theme_mode={theme_mode.buttons} text="3" theme="accent" onPress={() => handleTap("number", 3)} />
-                                <Button theme_mode={theme_mode.buttons} text="backspace" theme="secondary" onPress={deleteLast} />
-                            </Row>
-
-                            <Row>
-                                <Button theme_mode={theme_mode.buttons} text="." theme="accent" onPress={() => handleTap("number", ".")} />
-                                <Button theme_mode={theme_mode.buttons} text="+/-" theme="accent" onPress={() => handleTap("posneg", "+/-")} />
-                                <Button theme_mode={theme_mode.buttons} text="0" theme="accent" onPress={() => handleTap("number", 0)} />
-                                <Button theme_mode={theme_mode.buttons} text="=" theme="accent" onPress={() => handleTap("operator", "=")} />
-                            </Row>
-                        </View>
-
+                        </View >
                     </View >
                 </View >
-            </View >
 
-        </SafeAreaView>
-        // :
-        // <InterstitialAdsShow />
+            </SafeAreaView>
+            :
+            <InterstitialAdsShow />
     );
 }
 

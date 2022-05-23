@@ -11,7 +11,7 @@ const UnitCalculator = () => {
     const [searchText, setSearchText] = React.useState({ search: "" })
     const theme_back = useSelector(state => state.theme_state.header);
     const screenTheme = useSelector(state => state.theme_state.screens.gstCalculator);
-
+    
     const updateSearch = (search) => setSearchText({ search });
     
     return (

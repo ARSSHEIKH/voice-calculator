@@ -8,7 +8,6 @@ import Modal from "../emiCalculator/modal"
 import { Dropdown } from "react-native-element-dropdown";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 

@@ -1,5 +1,6 @@
 import AngleCalculator from "../../screen/otherCalculators/unitCalculator/angle"
 import AreaCalculator from "../../screen/otherCalculators/unitCalculator/area"
+import UnderConstruction from "../../screen/otherCalculators/unitCalculator/underConstruction"
 
 const unitCalulatorLists = [
     {
@@ -18,235 +19,235 @@ const unitCalulatorLists = [
         name: "Capacitance",
         path: "Capacitance",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Charge",
         path: "Charge",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Concentration",
         path: "Concentration",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Conductivity",
         path: "Conductivity",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Conductance",
         path: "Conductance",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Cooking",
         path: "Cooking",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Currency",
         path: "Currency",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Current",
         path: "Current",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Density",
         path: "Density",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Energy",
         path: "Energy",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Flow",
         path: "Flow",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Force",
         path: "Force",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Frequency",
         path: "Frequency",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Fuel Efficiency",
         path: "Fuel Efficiency",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Fuel",
         path: "Fuel",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Heat Capacity",
         path: "Heat Capacity",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Illumination",
         path: "Illumination",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Image",
         path: "Image",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Inductance",
         path: "Inductance",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Interia",
         path: "Interia",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Length",
         path: "Length",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Luminance",
         path: "Luminance",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Magnet",
         path: "Magnet",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Permiability",
         path: "Permiability",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Power",
         path: "Power",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Pressure",
         path: "Pressure",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Prefix",
         path: "Prefix",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Radiation",
         path: "Radiation",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Solution",
         path: "Solution",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Sound",
         path: "Sound",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Speed",
         path: "Speed",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Storage",
         path: "Storage",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Surface Tension",
         path: "Surface Tension",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Temperature",
         path: "Temperature",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Time",
         path: "Time",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Torque",
         path: "Torque",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Viscosity",
         path: "Viscosity",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Volume",
         path: "Volume",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
     {
         name: "Weight",
         path: "Weight",
         icon:"",
-        components: AngleCalculator
+        components: UnderConstruction
     },
 ]
 export default unitCalulatorLists

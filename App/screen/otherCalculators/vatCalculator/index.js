@@ -3,11 +3,11 @@ import { Dimensions, KeyboardAvoidingView, SafeAreaView, ScrollView, StyleSheet,
 import { Button, Icon, Input } from "react-native-elements";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../../../components/header";
-import { useFocusEffect } from "@react-navigation/native";
 import Modal from "../emiCalculator/modal"
 import RadioGroup from 'react-native-radio-buttons-group';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import InterstitialAdsShow from "../../../components/admob/interstitialAds/adShow";
+import { CommonActions, useFocusEffect, useNavigation } from '@react-navigation/native';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -25,7 +25,8 @@ const radioButtonsData = [{
 }];
 
 const VatCalculator = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const navigation = useNavigation();
     const theme_back = useSelector(state => state.theme_state.header);
     const screenTheme = useSelector(state => state.theme_state.screens.gstCalculator);
     const [selectedVAT, setSelectedVAT] = useState("addVat");
@@ -56,8 +57,6 @@ const VatCalculator = () => {
             return () => {
                 dispatch({ type: "reset_adClosed" })
                 dispatch({ type: "set_tabs_state", payload: 0 });
-                // Do something when the screen is unfocused
-                // Useful for cleanup functions
             };
         }, [])
     );

@@ -3,11 +3,11 @@ import { Dimensions, KeyboardAvoidingView, SafeAreaView, ScrollView, StyleSheet,
 import { Button, Icon, Input } from "react-native-elements";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../../../components/header";
-import { useFocusEffect } from "@react-navigation/native";
 import Modal from "./modal"
 import { Dropdown } from "react-native-element-dropdown";
 import InterstitialAdsShow from "../../../components/admob/interstitialAds/adShow";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { CommonActions, useFocusEffect, useNavigation } from '@react-navigation/native';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -19,6 +19,7 @@ const data = [
 
 const EmiCalculator = () => {
     const dispatch = useDispatch()
+    const navigation = useNavigation();
     const theme_back = useSelector(state => state.theme_state.header);
     const screenTheme = useSelector(state => state.theme_state.screens.gstCalculator);
     const [selectedTenture, setSelectedTenture] = useState("months");
@@ -37,14 +38,16 @@ const EmiCalculator = () => {
 
     useFocusEffect(
         React.useCallback(() => {
-            // Do something when the screen is focused
             dispatch({ type: "set_tabs_state", payload: 1 })
             dispatch({ type: "reset_adClosed" })
             return () => {
                 dispatch({ type: "reset_adClosed" })
                 dispatch({ type: "set_tabs_state", payload: 0 });
-                // Do something when the screen is unfocused
-                // Useful for cleanup functions
+                navigation.dispatch(
+                    CommonActions.navigate({
+                        name: 'Other Calculator',
+                    })
+                );
             };
         }, [])
     );
