@@ -799,7 +799,8 @@ export default function AngleCalculator() {
     }
 
     useEffect(() => {
-        if (selectedAngleTo === "degree") forDegree();
+        if (selectedAngleToFrom === selectedAngleTo) setRes(calc)
+        else if (selectedAngleTo === "degree") forDegree();
         else if (selectedAngleTo === "radian") forRadian();
         else if (selectedAngleTo === "gradian") forGradian();
         else if (selectedAngleTo === "gon") forGon();
@@ -887,7 +888,7 @@ export default function AngleCalculator() {
     return (
         adClosed ?
             <SafeAreaView style={{ backgroundColor: theme_mode.backgroundColor }}>
-                <Header theme_mode={theme_back} tabsShow={false} headingFirst="Angle Calculator" />
+                <Header theme_mode={theme_back} tabsShow={false} headingFirst="Angle" headingLast="Calculator" />
 
                 <View style={{ ...styles.calcContainer, color: theme_mode.backgroundColor, }}>
                     <View style={styles.subContainer}>

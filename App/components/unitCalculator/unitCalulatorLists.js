@@ -1,5 +1,10 @@
 import AngleCalculator from "../../screen/otherCalculators/unitCalculator/angle"
 import AreaCalculator from "../../screen/otherCalculators/unitCalculator/area"
+import CapacitanceCalculator from "../../screen/otherCalculators/unitCalculator/capacitance"
+import ChargeCalculator from "../../screen/otherCalculators/unitCalculator/charge"
+import ConcentrationCalculator from "../../screen/otherCalculators/unitCalculator/concentration"
+import ConductivityCalculator from "../../screen/otherCalculators/unitCalculator/conductivity"
+import CookingCalculator from "../../screen/otherCalculators/unitCalculator/cooking"
 import UnderConstruction from "../../screen/otherCalculators/unitCalculator/underConstruction"
 
 const unitCalulatorLists = [
@@ -19,27 +24,27 @@ const unitCalulatorLists = [
         name: "Capacitance",
         path: "Capacitance",
         icon:"",
-        components: UnderConstruction
+        components: CapacitanceCalculator
     },
     {
         name: "Charge",
         path: "Charge",
         icon:"",
-        components: UnderConstruction
+        components: ChargeCalculator
     },
     {
         name: "Concentration",
         path: "Concentration",
         icon:"",
-        components: UnderConstruction
+        components: ConcentrationCalculator
     },
     {
         name: "Conductivity",
         path: "Conductivity",
         icon:"",
-        components: UnderConstruction
+        components: ConductivityCalculator
     },
-    {
+    { 
         name: "Conductance",
         path: "Conductance",
         icon:"",
@@ -49,7 +54,7 @@ const unitCalulatorLists = [
         name: "Cooking",
         path: "Cooking",
         icon:"",
-        components: UnderConstruction
+        components: CookingCalculator
     },
     {
         name: "Currency",

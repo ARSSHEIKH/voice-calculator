@@ -1,198 +1,113 @@
 const dropdownList = [
     {
-        label: "Square meter",
-        value: "square_meter",
-        symbol: "m2"
+        label: "farad",
+        value: "farad",
+        symbol: "F"
     },
     {
-        label: "Square kilometer",
-        value: "square_kilometer",
-        symbol: "km2"
+        label: "exafarad",
+        value: "exafarad",
+        symbol: "EF"
     },
     {
-        label: "Square hectometer",
-        value: "square_hectometer",
-        symbol: "hm2"
+        label: "petafarad",
+        value: "petafarad",
+        symbol: "PF"
     },
     {
-        label: "Square dekameter",
-        value: "square_dekameter",
-        symbol: "dam2"
+        label: "terafarad",
+        value: "terafarad",
+        symbol: "TF"
     },
     {
-        label: "Square decimeter",
-        value: "square_decimeter",
-        symbol: "dm2"
+        label: "gigafarad",
+        value: "gigafarad",
+        symbol: "GF"
     },
     {
-        label: "Square centimeter",
-        value: "square_centimeter",
-        symbol: "cm2"
+        label: "megafarad",
+        value: "megafarad",
+        symbol: "MF"
     },
     {
-        label: "Square milimeter",
-        value: "square_milimeter",
-        symbol: "mm2"
+        label: "kilofarad",
+        value: "kilofarad",
+        symbol: "kF"
     },
     {
-        label: "Square micrometer",
-        value: "square_micrometer",
-        symbol: "mm2"
+        label: "hectofarad",
+        value: "hectofarad",
+        symbol: "hF"
     },
     {
-        label: "Square nanometer",
-        value: "square_nanometer",
-        symbol: "nm2"
+        label: "dekafarad",
+        value: "dekafarad",
+        symbol: "daF"
     },
     {
-        label: "Hectare",
-        value: "hectare",
-        symbol: "ha"
+        label: "decifarad",
+        value: "decifarad",
+        symbol: "fF"
     },
     {
-        label: "Arc",
-        value: "arc",
-        symbol: "a"
+        label: "centifarad",
+        value: "centifarad",
+        symbol: "cF"
     },
     {
-        label: "Barn",
-        value: "barn",
-        symbol: "b"
+        label: "millifarad",
+        value: "millifarad",
+        symbol: "mF"
     },
     {
-        label: "Square mile",
-        value: "square_mile",
-        symbol: "mi2"
+        label: "microfarad",
+        value: "microfarad",
+        symbol: "μF"
     },
     {
-        label: "Square mile (US survey)",
-        value: "square_mile_us",
-        symbol: "mi2"
+        label: "nanofarad",
+        value: "nanofarad",
+        symbol: "nF"
     },
     {
-        label: "Square yard",
-        value: "square_yard",
-        symbol: "yd2"
+        label: "picofarad",
+        value: "picofarad",
+        symbol: "pF"
     },
     {
-        label: "Square foot",
-        value: "square_foot",
-        symbol: "ft2"
+        label: "femtofarad",
+        value: "femtofarad",
+        symbol: "fF"
     },
     {
-        label: "Square foot (US survey)",
-        value: "square_foot_us",
-        symbol: "ft2"
+        label: "attofarad",
+        value: "attofarad",
+        symbol: "aF"
     },
     {
-        label: "Square inch",
-        value: "square_inch",
-        symbol: "in2"
+        label: "abfarad",
+        value: "abfarad",
+        symbol: "abF"
     },
     {
-        label: "Circular inch",
-        value: "circular_inch",
-        symbol: "cin"
+        label: "statfarad",
+        value: "statfarad",
+        symbol: "stF"
     },
     {
-        label: "Township",
-        value: "township",
-        symbol: "town"
+        label: "Coulumb / Volt",
+        value: "coulumb_volt",
+        symbol: "c/v"
     },
     {
-        label: "Section",
-        value: "section",
-        symbol: "sec"
+        label: "EMU of Capacitance",
+        value: "emu_capacitance",
+        symbol: "e.m.u"
     },
     {
-        label: "Arce ",
-        value: "arce ",
-        symbol: "ac"
-    },
-    {
-        label: "Arce (US survey)",
-        value: "arce_us ",
-        symbol: "ac"
-    },
-    {
-        label: "Rood",
-        value: "rood",
-        symbol: "town"
-    },
-    {
-        label: "Square chain",
-        value: "square_chain",
-        symbol: "ch2"
-    },
-    {
-        label: "Square rod",
-        value: "square_rod",
-        symbol: "rod2"
-    },
-    {
-        label: "Square rod (US survey)",
-        value: "square_rod_us",
-        symbol: "rod2"
-    },
-    {
-        label: "Square perch",
-        value: "square_perch",
-        symbol: "perch2"
-    },
-    {
-        label: "Square pole",
-        value: "square_pole",
-        symbol: "pole2"
-    },
-    {
-        label: "Square mil",
-        value: "square_mil",
-        symbol: "mil2"
-    },
-    {
-        label: "Circular mil",
-        value: "circular_mil",
-        symbol: "cmil2"
-    },
-    {
-        label: "Homestead",
-        value: "homestead",
-        symbol: "hs"
-    },
-    {
-        label: "Sabin",
-        value: "sabin",
-        symbol: "sabin"
-    },
-    {
-        label: "Arpent",
-        value: "arpent",
-        symbol: "arpent"
-    },
-    {
-        label: "Cuerda",
-        value: "cuerda",
-        symbol: "cuerda"
-    },
-    {
-        label: "Plaza",
-        value: "plaza",
-        symbol: "plaza"
-    },
-    {
-        label: "Varas castellanas cuad",
-        value: "varas_castellanas_cuad",
-        symbol: "vcs"
-    },
-    {
-        label: "Varas conuqueras cuad",
-        value: "varas_conuqueras_cuad",
-        symbol: "vcc"
-    },
-    {
-        label: "Electron cross section",
-        value: "electron_cross_section",
-        symbol: "e-cs"
+        label: "ESU of Capacitance",
+        value: "esu_capacitance",
+        symbol: "e.s.u"
     },
     
 ]

@@ -11,7 +11,7 @@ import dropdownList from "./dropdownList";
 import { StyleSheet, Text, View, SafeAreaView, Dimensions } from "react-native";
 
 // utils Calculator logics components
-import { arceUs_Calculation, arce_Calculation, circularInch_Calculation, rood_Calculation, section_Calculation, squareAre_Calculation, squareBarn_Calculation, squareCentimeter_Calculation, squareChain_Calculation, squareDecimeter_Calculation, squareDekameter_Calculation, squareFootUs_Calculation, squareHectare_Calculation, squareHectometer_Calculation, squareInch_Calculation, squarekilometer_Calculation, squaremeter_Calculation, squareMicrometer_Calculation, squareMileUs_Calculation, squareMile_Calculation, squareMilimeter_Calculation, squareNanometer_Calculation, squarePerch_Calculation, squarePole_Calculation, squareRodUs_Calculation, squareRod_Calculation, squareYard_Calculation, township_Calculation } from "./calculationLogic/areaCalculation";
+import { arceUs_Calculation, arce_Calculation, circularInch_Calculation, circularMil_Calculation, homestead_calculation, rood_Calculation, sabin_calculation, section_Calculation, squareAre_Calculation, squareBarn_Calculation, squareCentimeter_Calculation, squareChain_Calculation, squareDecimeter_Calculation, squareDekameter_Calculation, squareFootUs_Calculation, squareHectare_Calculation, squareHectometer_Calculation, squareInch_Calculation, squarekilometer_Calculation, squaremeter_Calculation, squareMicrometer_Calculation, squareMileUs_Calculation, squareMile_Calculation, squareMilimeter_Calculation, squareMil_Calculation, squareNanometer_Calculation, squarePerch_Calculation, squarePole_Calculation, squareRodUs_Calculation, squareRod_Calculation, squareYard_Calculation, township_Calculation, arpent_calculation, cuerda_calculation, plaza_calculation, varasCastellanasCuad_calculation, varasConuquerasCuad_calculation, electronCrossSection_calculation } from "./calculationLogic/areaCalculation";
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -28,7 +28,6 @@ export default function AreaCalculator() {
     const adClosed = useSelector(state => state.adClosed);
     const [selectedAngleFrom, setSelectedAngleFrom] = useState(dropdownList[0].value);
     const [selectedAngleTo, setSelectedAngleTo] = useState(dropdownList[1].value);
-
 
     useFocusEffect(
         React.useCallback(() => {
@@ -4508,11 +4507,1552 @@ export default function AreaCalculator() {
             setRes(value)
         }
     }
+    const forSquareMil = () => {
+        if (selectedAngleFrom === "square_meter" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("square_meter to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_kilometer" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("square_kilometer to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_hectometer" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("square_hectometer to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_dekameter" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("square_dekameter to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_decimeter" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("square_decimeter to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_centimeter" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("square_centimeter to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_milimeter" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("square_milimeter to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_micrometer" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("square_micrometer to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_nanometer" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("square_nanometer to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "hectare" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("hectare to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "are" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("are to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "barn" && selectedAngleTo === "barn") {
+            const value = squareMil_Calculation("barn to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_mile" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("square_mile to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_mile_us" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("square_mile_us to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_yard" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("square_yard to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_foot" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("square_foot to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_foot_us" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("square_foot_us to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_inch" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("square_inch to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "circular_inch" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("circular_inch to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "township" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("township to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "section" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("section to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "arce" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("arce to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "arce_us" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("arce_us to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "rood" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("rood to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_chain" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("square_chain to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_rod" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("square_rod to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_rod_us" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("square_rod_us to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_perch" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("square_perch to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_pole" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("square_pole to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "circular_mil" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("circular_mil to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "homestead" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("homestead to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "sabin" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("sabin to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "arpent" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("arpent to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "cuerda" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("cuerda to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "plaza" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("plaza to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "varas_castellanas_cuad" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("varas_castellanas_cuad to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "varas_conuqueras_cuad" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("varas_conuqueras_cuad to square_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "electron_cross_section" && selectedAngleTo === "square_mil") {
+            const value = squareMil_Calculation("electron_cross_section to square_mil", calc);
+            setRes(value)
+        }
+    }
+    const forCircularMil = () => {
+        if (selectedAngleFrom === "square_meter" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("square_meter to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_kilometer" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("square_kilometer to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_hectometer" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("square_hectometer to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_dekameter" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("square_dekameter to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_decimeter" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("square_decimeter to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_centimeter" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("square_centimeter to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_milimeter" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("square_milimeter to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_micrometer" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("square_micrometer to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_nanometer" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("square_nanometer to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "hectare" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("hectare to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "are" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("are to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "barn" && selectedAngleTo === "barn") {
+            const value = circularMil_Calculation("barn to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_mile" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("square_mile to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_mile_us" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("square_mile_us to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_yard" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("square_yard to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_foot" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("square_foot to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_foot_us" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("square_foot_us to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_inch" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("square_inch to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "circular_inch" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("circular_inch to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "township" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("township to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "section" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("section to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "arce" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("arce to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "arce_us" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("arce_us to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "rood" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("rood to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_chain" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("square_chain to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_rod" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("square_rod to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_rod_us" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("square_rod_us to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_perch" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("square_perch to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_pole" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("square_pole to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_mil" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("square_mil to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "homestead" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("homestead to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "sabin" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("sabin to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "arpent" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("arpent to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "cuerda" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("cuerda to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "plaza" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("plaza to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "varas_castellanas_cuad" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("varas_castellanas_cuad to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "varas_conuqueras_cuad" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("varas_conuqueras_cuad to circular_mil", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "electron_cross_section" && selectedAngleTo === "circular_mil") {
+            const value = circularMil_Calculation("electron_cross_section to circular_mil", calc);
+            setRes(value)
+        }
+    }
+    const forHomestead = () => {
+        if (selectedAngleFrom === "square_meter" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("square_meter to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_kilometer" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("square_kilometer to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_hectometer" && selectedAngleTo === "homestead") {
+            const value = homestead_Calculation("square_hectometer to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_dekameter" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("square_dekameter to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_decimeter" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("square_decimeter to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_centimeter" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("square_centimeter to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_milimeter" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("square_milimeter to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_micrometer" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("square_micrometer to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_nanometer" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("square_nanometer to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "hectare" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("hectare to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "are" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("are to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "barn" && selectedAngleTo === "barn") {
+            const value = homestead_calculation("barn to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_mile" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("square_mile to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_mile_us" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("square_mile_us to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_yard" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("square_yard to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_foot" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("square_foot to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_foot_us" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("square_foot_us to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_inch" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("square_inch to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "circular_inch" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("circular_inch to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "township" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("township to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "section" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("section to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "arce" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("arce to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "arce_us" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("arce_us to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "rood" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("rood to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_chain" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("square_chain to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_rod" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("square_rod to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_rod_us" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("square_rod_us to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_perch" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("square_perch to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_pole" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("square_pole to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_mil" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("square_mil to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "circular_mil" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("circular_mil to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "sabin" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("sabin to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "arpent" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("arpent to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "cuerda" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("cuerda to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "plaza" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("plaza to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "varas_castellanas_cuad" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("varas_castellanas_cuad to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "varas_conuqueras_cuad" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("varas_conuqueras_cuad to homestead", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "electron_cross_section" && selectedAngleTo === "homestead") {
+            const value = homestead_calculation("electron_cross_section to homestead", calc);
+            setRes(value)
+        }
+    }
+    const forSabin = () => {
+        if (selectedAngleFrom === "square_meter" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("square_meter to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_kilometer" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("square_kilometer to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_hectometer" && selectedAngleTo === "sabin") {
+            const value = sabin_Calculation("square_hectometer to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_dekameter" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("square_dekameter to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_decimeter" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("square_decimeter to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_centimeter" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("square_centimeter to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_milimeter" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("square_milimeter to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_micrometer" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("square_micrometer to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_nanometer" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("square_nanometer to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "hectare" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("hectare to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "are" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("are to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "barn" && selectedAngleTo === "barn") {
+            const value = sabin_calculation("barn to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_mile" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("square_mile to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_mile_us" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("square_mile_us to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_yard" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("square_yard to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_foot" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("square_foot to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_foot_us" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("square_foot_us to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_inch" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("square_inch to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "circular_inch" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("circular_inch to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "township" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("township to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "section" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("section to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "arce" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("arce to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "arce_us" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("arce_us to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "rood" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("rood to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_chain" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("square_chain to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_rod" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("square_rod to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_rod_us" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("square_rod_us to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_perch" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("square_perch to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_pole" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("square_pole to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_mil" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("square_mil to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "circular_mil" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("circular_mil to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "homestead" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("homestead to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "arpent" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("arpent to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "cuerda" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("cuerda to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "plaza" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("plaza to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "varas_castellanas_cuad" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("varas_castellanas_cuad to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "varas_conuqueras_cuad" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("varas_conuqueras_cuad to sabin", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "electron_cross_section" && selectedAngleTo === "sabin") {
+            const value = sabin_calculation("electron_cross_section to sabin", calc);
+            setRes(value)
+        }
+    }
+    const forArpent = () => {
+        if (selectedAngleFrom === "square_meter" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("square_meter to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_kilometer" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("square_kilometer to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_hectometer" && selectedAngleTo === "arpent") {
+            const value = arpent_Calculation("square_hectometer to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_dekameter" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("square_dekameter to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_decimeter" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("square_decimeter to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_centimeter" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("square_centimeter to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_milimeter" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("square_milimeter to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_micrometer" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("square_micrometer to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_nanometer" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("square_nanometer to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "hectare" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("hectare to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "are" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("are to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "barn" && selectedAngleTo === "barn") {
+            const value = arpent_calculation("barn to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_mile" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("square_mile to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_mile_us" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("square_mile_us to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_yard" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("square_yard to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_foot" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("square_foot to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_foot_us" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("square_foot_us to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_inch" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("square_inch to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "circular_inch" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("circular_inch to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "township" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("township to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "section" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("section to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "arce" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("arce to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "arce_us" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("arce_us to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "rood" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("rood to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_chain" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("square_chain to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_rod" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("square_rod to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_rod_us" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("square_rod_us to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_perch" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("square_perch to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_pole" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("square_pole to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_mil" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("square_mil to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "circular_mil" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("circular_mil to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "homestead" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("homestead to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "sabin" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("sabin to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "cuerda" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("cuerda to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "plaza" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("plaza to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "varas_castellanas_cuad" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("varas_castellanas_cuad to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "varas_conuqueras_cuad" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("varas_conuqueras_cuad to arpent", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "electron_cross_section" && selectedAngleTo === "arpent") {
+            const value = arpent_calculation("electron_cross_section to arpent", calc);
+            setRes(value)
+        }
+    }
+    const forCuerda = () => {
+        if (selectedAngleFrom === "square_meter" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("square_meter to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_kilometer" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("square_kilometer to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_hectometer" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("square_hectometer to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_dekameter" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("square_dekameter to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_decimeter" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("square_decimeter to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_centimeter" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("square_centimeter to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_milimeter" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("square_milimeter to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_micrometer" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("square_micrometer to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_nanometer" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("square_nanometer to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "hectare" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("hectare to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "are" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("are to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "barn" && selectedAngleTo === "barn") {
+            const value = cuerda_calculation("barn to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_mile" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("square_mile to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_mile_us" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("square_mile_us to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_yard" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("square_yard to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_foot" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("square_foot to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_foot_us" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("square_foot_us to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_inch" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("square_inch to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "circular_inch" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("circular_inch to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "township" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("township to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "section" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("section to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "arce" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("arce to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "arce_us" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("arce_us to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "rood" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("rood to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_chain" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("square_chain to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_rod" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("square_rod to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_rod_us" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("square_rod_us to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_perch" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("square_perch to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_pole" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("square_pole to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_mil" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("square_mil to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "circular_mil" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("circular_mil to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "homestead" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("homestead to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "sabin" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("sabin to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "cuerda" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("cuerda to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "plaza" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("plaza to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "varas_castellanas_cuad" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("varas_castellanas_cuad to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "varas_conuqueras_cuad" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("varas_conuqueras_cuad to cuerda", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "electron_cross_section" && selectedAngleTo === "cuerda") {
+            const value = cuerda_calculation("electron_cross_section to cuerda", calc);
+            setRes(value)
+        }
+    }
+    const forPlaza = () => {
+        if (selectedAngleFrom === "square_meter" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("square_meter to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_kilometer" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("square_kilometer to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_hectometer" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("square_hectometer to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_dekameter" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("square_dekameter to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_decimeter" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("square_decimeter to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_centimeter" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("square_centimeter to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_milimeter" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("square_milimeter to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_micrometer" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("square_micrometer to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_nanometer" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("square_nanometer to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "hectare" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("hectare to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "are" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("are to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "barn" && selectedAngleTo === "barn") {
+            const value = plaza_calculation("barn to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_mile" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("square_mile to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_mile_us" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("square_mile_us to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_yard" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("square_yard to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_foot" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("square_foot to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_foot_us" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("square_foot_us to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_inch" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("square_inch to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "circular_inch" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("circular_inch to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "township" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("township to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "section" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("section to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "arce" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("arce to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "arce_us" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("arce_us to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "rood" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("rood to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_chain" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("square_chain to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_rod" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("square_rod to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_rod_us" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("square_rod_us to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_perch" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("square_perch to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_pole" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("square_pole to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_mil" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("square_mil to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "circular_mil" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("circular_mil to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "homestead" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("homestead to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "sabin" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("sabin to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "arpent" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("arpent to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "cuerda" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("cuerda to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "varas_castellanas_cuad" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("varas_castellanas_cuad to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "varas_conuqueras_cuad" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("varas_conuqueras_cuad to plaza", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "electron_cross_section" && selectedAngleTo === "plaza") {
+            const value = plaza_calculation("electron_cross_section to plaza", calc);
+            setRes(value)
+        }
+    }
+    const forVarasCastellanasCuad = () => {
+        if (selectedAngleFrom === "square_meter" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("square_meter to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_kilometer" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("square_kilometer to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_hectometer" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("square_hectometer to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_dekameter" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("square_dekameter to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_decimeter" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("square_decimeter to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_centimeter" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("square_centimeter to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_milimeter" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("square_milimeter to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_micrometer" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("square_micrometer to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_nanometer" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("square_nanometer to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "hectare" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("hectare to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "are" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("are to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "barn" && selectedAngleTo === "barn") {
+            const value = varasCastellanasCuad_calculation("barn to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_mile" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("square_mile to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_mile_us" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("square_mile_us to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_yard" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("square_yard to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_foot" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("square_foot to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_foot_us" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("square_foot_us to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_inch" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("square_inch to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "circular_inch" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("circular_inch to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "township" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("township to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "section" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("section to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "arce" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("arce to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "arce_us" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("arce_us to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "rood" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("rood to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_chain" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("square_chain to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_rod" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("square_rod to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_rod_us" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("square_rod_us to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_perch" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("square_perch to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_pole" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("square_pole to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_mil" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("square_mil to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "circular_mil" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("circular_mil to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "homestead" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("homestead to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "sabin" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("sabin to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "arpent" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("arpent to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "cuerda" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("cuerda to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "plaza" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("plaza to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "varas_conuqueras_cuad" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("varas_conuqueras_cuad to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "electron_cross_section" && selectedAngleTo === "varas_castellanas_cuad") {
+            const value = varasCastellanasCuad_calculation("electron_cross_section to varas_castellanas_cuad", calc);
+            setRes(value)
+        }
+    }
+    const forVarasConuquerasCuad = () => {
+        if (selectedAngleFrom === "square_meter" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("square_meter to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_kilometer" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("square_kilometer to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_hectometer" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("square_hectometer to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_dekameter" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("square_dekameter to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_decimeter" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("square_decimeter to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_centimeter" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("square_centimeter to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_milimeter" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("square_milimeter to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_micrometer" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("square_micrometer to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_nanometer" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("square_nanometer to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "hectare" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("hectare to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "are" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("are to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "barn" && selectedAngleTo === "barn") {
+            const value = varasConuquerasCuad_calculation("barn to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_mile" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("square_mile to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_mile_us" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("square_mile_us to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_yard" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("square_yard to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_foot" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("square_foot to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_foot_us" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("square_foot_us to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_inch" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("square_inch to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "circular_inch" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("circular_inch to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "township" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("township to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "section" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("section to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "arce" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("arce to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "arce_us" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("arce_us to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "rood" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("rood to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_chain" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("square_chain to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_rod" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("square_rod to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_rod_us" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("square_rod_us to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_perch" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("square_perch to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_pole" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("square_pole to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_mil" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("square_mil to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "circular_mil" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("circular_mil to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "homestead" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("homestead to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "sabin" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("sabin to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "arpent" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("arpent to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "cuerda" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("cuerda to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "plaza" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("plaza to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "varas_castellanas_cuad" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("varas_castellanas_cuad to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "electron_cross_section" && selectedAngleTo === "varas_conuqueras_cuad") {
+            const value = varasConuquerasCuad_calculation("electron_cross_section to varas_conuqueras_cuad", calc);
+            setRes(value)
+        }
+    }
+    const forElectronCrossSection = () => {
+        if (selectedAngleFrom === "square_meter" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("square_meter to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_kilometer" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("square_kilometer to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_hectometer" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("square_hectometer to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_dekameter" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("square_dekameter to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_decimeter" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("square_decimeter to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_centimeter" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("square_centimeter to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_milimeter" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("square_milimeter to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_micrometer" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("square_micrometer to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_nanometer" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("square_nanometer to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "hectare" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("hectare to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "are" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("are to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "barn" && selectedAngleTo === "barn") {
+            const value = electronCrossSection_calculation("barn to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_mile" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("square_mile to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_mile_us" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("square_mile_us to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_yard" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("square_yard to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_foot" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("square_foot to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_foot_us" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("square_foot_us to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_inch" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("square_inch to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "circular_inch" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("circular_inch to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "township" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("township to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "section" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("section to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "arce" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("arce to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "arce_us" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("arce_us to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "rood" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("rood to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_chain" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("square_chain to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_rod" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("square_rod to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_rod_us" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("square_rod_us to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_perch" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("square_perch to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_pole" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("square_pole to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "square_mil" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("square_mil to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "circular_mil" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("circular_mil to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "homestead" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("homestead to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "sabin" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("sabin to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "arpent" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("arpent to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "cuerda" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("cuerda to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "plaza" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("plaza to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "varas_castellanas_cuad" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("varas_castellanas_cuad to electron_cross_section", calc);
+            setRes(value)
+        }
+        else if (selectedAngleFrom === "varas_conuqueras_cuad" && selectedAngleTo === "electron_cross_section") {
+            const value = electronCrossSection_calculation("varas_conuqueras_cuad to electron_cross_section", calc);
+            setRes(value)
+        }
+    }
 
     //#endregion
 
     useEffect(() => {
-        if (selectedAngleTo === "square_meter") forSquareMeter();
+        if (selectedAngleFrom === selectedAngleTo) setRes(calc)
+        else if (selectedAngleTo === "square_meter") forSquareMeter();
         else if (selectedAngleTo === "square_kilometer") forSquarekilometer();
         else if (selectedAngleTo === "square_hectometer") forSquareHectometer();
         else if (selectedAngleTo === "square_dekameter") forSquareDekameter();
@@ -4541,179 +6081,189 @@ export default function AreaCalculator() {
         else if (selectedAngleTo === "square_rod_us") forSquareRodUs();
         else if (selectedAngleTo === "square_perch") forSquarePearch();
         else if (selectedAngleTo === "square_pole") forSquarePole();
-    }, [selectedAngleFrom, selectedAngleTo, calc])
+        else if (selectedAngleTo === "square_mil") forSquareMil();
+        else if (selectedAngleTo === "circular_mil") forCircularMil();
+        else if (selectedAngleTo === "homestead") forHomestead();
+        else if (selectedAngleTo === "sabin") forSabin();
+        else if (selectedAngleTo === "arpent") forArpent();
+        else if (selectedAngleTo === "cuerda") forCuerda();
+        else if (selectedAngleTo === "plaza") forPlaza();
+        else if (selectedAngleTo === "varas_castellanas_cuad") forVarasCastellanasCuad();
+        else if (selectedAngleTo === "varas_conuqueras_cuad") forVarasConuquerasCuad();
+        else if (selectedAngleTo === "electron_cross_section") forElectronCrossSection();
+}, [selectedAngleFrom, selectedAngleTo, calc])
 
-    const handleTap = (type, value) => {
-        if (value === 0 && calc === "" || operators.includes(value) && calc === "" || operators.includes(value) && operators.includes(calc.slice(-1)))
-            return;
-        if (value !== "=") {
-            if (value !== "+/-") {
-                let temp_str = ""
-                setCalc(calc + value);
-                temp_str = calc + value
-                values_array = temp_str.split("");
+const handleTap = (type, value) => {
+    if (value === 0 && calc === "" || operators.includes(value) && calc === "" || operators.includes(value) && operators.includes(calc.slice(-1)))
+        return;
+    if (value !== "=") {
+        if (value !== "+/-") {
+            let temp_str = ""
+            setCalc(calc + value);
+            temp_str = calc + value
+            values_array = temp_str.split("");
+        }
+        else {
+            if (lastIndexOfCalc > 0) {
+                values_array.splice(lastIndexOfCalc + 1, 1)
+                setCalc(values_array.toString().replace(/,/g, ""))
+                setRes(eval(values_array.toString().replace(/,/g, "")));
+                lastIndexOfCalc = 0
+                return
+            }
+            let findOperatorInString = false
+            values_array.forEach(element => {
+
+                if (operators.includes(element)) {
+                    findOperatorInString = true
+                    return
+                }
+            });
+            if (!findOperatorInString) {
+                values_array[0] = parseFloat(values_array[0]) * -1;
+                setCalc(values_array.toString().replace(/,/g, ""))
+                setRes(eval(values_array.toString().replace(/,/g, "")));
             }
             else {
                 if (lastIndexOfCalc > 0) {
-                    values_array.splice(lastIndexOfCalc + 1, 1)
+                    values_array.splice(lastIndexOfCalc + 1, 0, "-")
                     setCalc(values_array.toString().replace(/,/g, ""))
                     setRes(eval(values_array.toString().replace(/,/g, "")));
-                    lastIndexOfCalc = 0
-                    return
-                }
-                let findOperatorInString = false
-                values_array.forEach(element => {
-
-                    if (operators.includes(element)) {
-                        findOperatorInString = true
-                        return
-                    }
-                });
-                if (!findOperatorInString) {
-                    values_array[0] = parseFloat(values_array[0]) * -1;
-                    setCalc(values_array.toString().replace(/,/g, ""))
-                    setRes(eval(values_array.toString().replace(/,/g, "")));
-                }
-                else {
-                    if (lastIndexOfCalc > 0) {
-                        values_array.splice(lastIndexOfCalc + 1, 0, "-")
-                        setCalc(values_array.toString().replace(/,/g, ""))
-                        setRes(eval(values_array.toString().replace(/,/g, "")));
-                    }
                 }
             }
         }
-        if (value === "=") {
-            setCalc(res);
-            setRes("")
-        }
-
-    };
-
-    const clearAll = () => {
-        setCalc("");
-        setRes("")
-        lastIndexOfCalc = 0;
-        values_array = [];
     }
-    const deleteLast = () => {
-        values_array = [];
-        lastIndexOfCalc = 0;
-        if (calc == "")
-            return;
-        const value = calc.slice(0, -1)
-        setCalc(value)
-        try {
-            setRes(eval(value).toString())
-        } catch {
-            setRes(eval(value + 0).toString())
-        }
-    };
+    if (value === "=") {
+        setCalc(res);
+        setRes("")
+    }
 
-    return (
-        // adClosed ?
-        <SafeAreaView style={{ backgroundColor: theme_mode.backgroundColor }}>
-            <Header theme_mode={theme_back} tabsShow={false} headingFirst="Area Calculator" />
+};
 
-            <View style={{ ...styles.calcContainer, color: theme_mode.backgroundColor, }}>
-                <View style={styles.subContainer}>
-                    <View style={styles.innerContainer}>
+const clearAll = () => {
+    setCalc("");
+    setRes("")
+    lastIndexOfCalc = 0;
+    values_array = [];
+}
+const deleteLast = () => {
+    values_array = [];
+    lastIndexOfCalc = 0;
+    if (calc == "")
+        return;
+    const value = calc.slice(0, -1)
+    setCalc(value)
+    try {
+        setRes(eval(value).toString())
+    } catch {
+        setRes(eval(value + 0).toString())
+    }
+};
 
-                        <View style={styles.inputContainer}>
-                            <View style={styles.inputCard}>
-                                <View style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                                    <Text style={styles.lbltext}>From</Text>
-                                    <Text style={styles.lbltext}>{calc || 0}</Text>
-                                </View>
-                                <View>
-                                    <Dropdown
-                                        style={styles.dropdown}
-                                        inputSearchStyle={styles.inputSearchStyle}
-                                        search
-                                        placeholderStyle={styles.dropdownPlaceholerStyle}
-                                        containerStyle={styles.dropdownContainerStyle}
-                                        selectedTextStyle={styles.selectedTextStyle}
-                                        iconStyle={styles.iconStyle}
-                                        data={dropdownList}
-                                        maxHeight={windowHeight / 2}
-                                        labelField="label"
-                                        valueField="value"
-                                        placeholder="Select item"
-                                        searchPlaceholder="Search..."
-                                        value={selectedAngleFrom}
-                                        onChange={item => {
-                                            setSelectedAngleFrom(item.value);
-                                        }}
-                                    />
-                                </View>
-                                <Divider width={1} color="#0c0c0c" />
+return (
+    // adClosed ?
+    <SafeAreaView style={{ backgroundColor: theme_mode.backgroundColor }}>
+        <Header theme_mode={theme_back} tabsShow={false} headingFirst="Area" headingLast="Calculator" />
+
+        <View style={{ ...styles.calcContainer, color: theme_mode.backgroundColor, }}>
+            <View style={styles.subContainer}>
+                <View style={styles.innerContainer}>
+
+                    <View style={styles.inputContainer}>
+                        <View style={styles.inputCard}>
+                            <View style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+                                <Text style={styles.lbltext}>From</Text>
+                                <Text style={styles.lbltext}>{calc || 0}</Text>
                             </View>
-                            <View style={styles.inputCard}>
-                                <View style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                                    <Text style={styles.lbltext}>To</Text>
-                                    <Text style={styles.lbltext}>{res !== 0 ? res : 0}</Text>
-                                </View>
-                                <View>
-                                    <Dropdown
-                                        style={styles.dropdown}
-                                        placeholderStyle={styles.dropdownPlaceholerStyle}
-                                        containerStyle={styles.dropdownContainerStyle}
-                                        selectedTextStyle={styles.selectedTextStyle}
-                                        iconStyle={styles.iconStyle}
-                                        inputSearchStyle={styles.inputSearchStyle}
-                                        search
-                                        data={dropdownList}
-                                        maxHeight={windowHeight / 2}
-                                        labelField="label"
-                                        valueField="value"
-                                        placeholder="Select item"
-                                        searchPlaceholder="Search..."
-                                        value={selectedAngleTo}
-                                        onChange={item => {
-                                            setSelectedAngleTo(item.value);
-                                        }}
-                                    />
-                                </View>
-                                <Divider width={1} color="#0c0c0c" />
+                            <View>
+                                <Dropdown
+                                    style={styles.dropdown}
+                                    inputSearchStyle={styles.inputSearchStyle}
+                                    search
+                                    placeholderStyle={styles.dropdownPlaceholerStyle}
+                                    containerStyle={styles.dropdownContainerStyle}
+                                    selectedTextStyle={styles.selectedTextStyle}
+                                    iconStyle={styles.iconStyle}
+                                    data={dropdownList}
+                                    maxHeight={windowHeight / 2}
+                                    labelField="label"
+                                    valueField="value"
+                                    placeholder="Select item"
+                                    searchPlaceholder="Search..."
+                                    value={selectedAngleFrom}
+                                    onChange={item => {
+                                        setSelectedAngleFrom(item.value);
+                                    }}
+                                />
                             </View>
+                            <Divider width={1} color="#0c0c0c" />
                         </View>
-                        <View style={styles.buttonContainer}>
-                            <Row>
-                                <Button theme_mode={theme_mode.buttons} text="7" theme="accent" onPress={() => handleTap("number", 7)} />
-                                <Button theme_mode={theme_mode.buttons} text="8" theme="accent" onPress={() => handleTap("number", 8)} />
-                                <Button theme_mode={theme_mode.buttons} text="9" theme="accent" onPress={() => handleTap("number", 9)} />
-                            </Row>
-
-                            <Row>
-                                <Button theme_mode={theme_mode.buttons} text="4" theme="accent" onPress={() => handleTap("number", 4)} />
-                                <Button theme_mode={theme_mode.buttons} text="5" theme="accent" onPress={() => handleTap("number", 5)} />
-                                <Button theme_mode={theme_mode.buttons} text="6" theme="accent" onPress={() => handleTap("number", 6)} />
-                                <Button theme_mode={theme_mode.buttons} text="AC" theme="secondary" onPress={clearAll} />
-                            </Row>
-
-                            <Row>
-                                <Button theme_mode={theme_mode.buttons} text="1" theme="accent" onPress={() => handleTap("number", 1)} />
-                                <Button theme_mode={theme_mode.buttons} text="2" theme="accent" onPress={() => handleTap("number", 2)} />
-                                <Button theme_mode={theme_mode.buttons} text="3" theme="accent" onPress={() => handleTap("number", 3)} />
-                                <Button theme_mode={theme_mode.buttons} text="backspace" theme="secondary" onPress={deleteLast} />
-                            </Row>
-
-                            <Row>
-                                <Button theme_mode={theme_mode.buttons} text="." theme="accent" onPress={() => handleTap("number", ".")} />
-                                <Button theme_mode={theme_mode.buttons} text="+/-" theme="accent" onPress={() => handleTap("posneg", "+/-")} />
-                                <Button theme_mode={theme_mode.buttons} text="0" theme="accent" onPress={() => handleTap("number", 0)} />
-                                <Button theme_mode={theme_mode.buttons} text="=" theme="accent" onPress={() => handleTap("operator", "=")} />
-                            </Row>
+                        <View style={styles.inputCard}>
+                            <View style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+                                <Text style={styles.lbltext}>To</Text>
+                                <Text style={styles.lbltext}>{res !== 0 ? res : 0}</Text>
+                            </View>
+                            <View>
+                                <Dropdown
+                                    style={styles.dropdown}
+                                    placeholderStyle={styles.dropdownPlaceholerStyle}
+                                    containerStyle={styles.dropdownContainerStyle}
+                                    selectedTextStyle={styles.selectedTextStyle}
+                                    iconStyle={styles.iconStyle}
+                                    inputSearchStyle={styles.inputSearchStyle}
+                                    search
+                                    data={dropdownList}
+                                    maxHeight={windowHeight / 2}
+                                    labelField="label"
+                                    valueField="value"
+                                    placeholder="Select item"
+                                    searchPlaceholder="Search..."
+                                    value={selectedAngleTo}
+                                    onChange={item => {
+                                        setSelectedAngleTo(item.value);
+                                    }}
+                                />
+                            </View>
+                            <Divider width={1} color="#0c0c0c" />
                         </View>
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        <Row>
+                            <Button theme_mode={theme_mode.buttons} text="7" theme="accent" onPress={() => handleTap("number", 7)} />
+                            <Button theme_mode={theme_mode.buttons} text="8" theme="accent" onPress={() => handleTap("number", 8)} />
+                            <Button theme_mode={theme_mode.buttons} text="9" theme="accent" onPress={() => handleTap("number", 9)} />
+                        </Row>
 
-                    </View >
+                        <Row>
+                            <Button theme_mode={theme_mode.buttons} text="4" theme="accent" onPress={() => handleTap("number", 4)} />
+                            <Button theme_mode={theme_mode.buttons} text="5" theme="accent" onPress={() => handleTap("number", 5)} />
+                            <Button theme_mode={theme_mode.buttons} text="6" theme="accent" onPress={() => handleTap("number", 6)} />
+                            <Button theme_mode={theme_mode.buttons} text="AC" theme="secondary" onPress={clearAll} />
+                        </Row>
+
+                        <Row>
+                            <Button theme_mode={theme_mode.buttons} text="1" theme="accent" onPress={() => handleTap("number", 1)} />
+                            <Button theme_mode={theme_mode.buttons} text="2" theme="accent" onPress={() => handleTap("number", 2)} />
+                            <Button theme_mode={theme_mode.buttons} text="3" theme="accent" onPress={() => handleTap("number", 3)} />
+                            <Button theme_mode={theme_mode.buttons} text="backspace" theme="secondary" onPress={deleteLast} />
+                        </Row>
+
+                        <Row>
+                            <Button theme_mode={theme_mode.buttons} text="." theme="accent" onPress={() => handleTap("number", ".")} />
+                            <Button theme_mode={theme_mode.buttons} text="+/-" theme="accent" onPress={() => handleTap("posneg", "+/-")} />
+                            <Button theme_mode={theme_mode.buttons} text="0" theme="accent" onPress={() => handleTap("number", 0)} />
+                            <Button theme_mode={theme_mode.buttons} text="=" theme="accent" onPress={() => handleTap("operator", "=")} />
+                        </Row>
+                    </View>
+
                 </View >
             </View >
+        </View >
 
-        </SafeAreaView>
-        // :
-        // <InterstitialAdsShow />
-    );
+    </SafeAreaView>
+    // :
+    // <InterstitialAdsShow />
+);
 }
 
 const styles = StyleSheet.create({

@@ -31,7 +31,6 @@ const Header: React.FunctionComponent<HeaderComponentProps> = ({ theme_mode, tab
         navigation.openDrawer()
         dispatch({ type: "open_drawerToggle_state", payload: !toggle })
     }
-
     return (
         <HeaderRNE
             leftComponent={
@@ -91,6 +90,7 @@ const styles = StyleSheet.create({
     },
     headingView:{
         display: "flex",
+        flexWrap: "nowrap",
         flexDirection: "row",
         alignItems: "center",
     }

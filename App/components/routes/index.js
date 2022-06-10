@@ -21,38 +21,8 @@ import VatCalculator from '../../screen/otherCalculators/vatCalculator';
 import SipCalculator from '../../screen/otherCalculators/sipCalculator';
 import UnicCalculator from '../../screen/otherCalculators/unitCalculator';
 import unitCalulatorLists from '../unitCalculator/unitCalulatorLists';
-import AngleCalculator from '../../screen/otherCalculators/unitCalculator/angle';
 
 const windowWidth = Dimensions.get('window').width;
-
-
-const unitCalulatorComponents = [
-  AngleCalculator,
-  AngleCalculator,
-  AngleCalculator,
-  AngleCalculator,
-  AngleCalculator,
-  AngleCalculator,
-  AngleCalculator,
-  AngleCalculator,
-  AngleCalculator,
-  AngleCalculator,
-  AngleCalculator,
-  AngleCalculator,
-  AngleCalculator,
-  AngleCalculator,
-  AngleCalculator,
-  AngleCalculator,
-  AngleCalculator,
-  AngleCalculator,
-  AngleCalculator,
-  AngleCalculator,
-  AngleCalculator,
-  AngleCalculator,
-  AngleCalculator,
-]
-
-
 
 const Routes = () => {
   const Drawer = createDrawerNavigator();
