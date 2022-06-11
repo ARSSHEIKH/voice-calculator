@@ -3,8 +3,15 @@ import AreaCalculator from "../../screen/otherCalculators/unitCalculator/area"
 import CapacitanceCalculator from "../../screen/otherCalculators/unitCalculator/capacitance"
 import ChargeCalculator from "../../screen/otherCalculators/unitCalculator/charge"
 import ConcentrationCalculator from "../../screen/otherCalculators/unitCalculator/concentration"
+import ConductanceCalculator from "../../screen/otherCalculators/unitCalculator/conductance"
 import ConductivityCalculator from "../../screen/otherCalculators/unitCalculator/conductivity"
 import CookingCalculator from "../../screen/otherCalculators/unitCalculator/cooking"
+import CurrentCalculator from "../../screen/otherCalculators/unitCalculator/current"
+import DensityCalculator from "../../screen/otherCalculators/unitCalculator/density"
+import EnergyCalculator from "../../screen/otherCalculators/unitCalculator/energy"
+import FlowCalculator from "../../screen/otherCalculators/unitCalculator/flow"
+import ForceCalculator from "../../screen/otherCalculators/unitCalculator/force"
+
 import UnderConstruction from "../../screen/otherCalculators/unitCalculator/underConstruction"
 
 const unitCalulatorLists = [
@@ -48,7 +55,7 @@ const unitCalulatorLists = [
         name: "Conductance",
         path: "Conductance",
         icon:"",
-        components: UnderConstruction
+        components: ConductanceCalculator
     },
     {
         name: "Cooking",
@@ -66,31 +73,31 @@ const unitCalulatorLists = [
         name: "Current",
         path: "Current",
         icon:"",
-        components: UnderConstruction
+        components: CurrentCalculator
     },
     {
         name: "Density",
         path: "Density",
         icon:"",
-        components: UnderConstruction
+        components: DensityCalculator
     },
     {
         name: "Energy",
         path: "Energy",
         icon:"",
-        components: UnderConstruction
+        components: EnergyCalculator
     },
     {
         name: "Flow",
         path: "Flow",
         icon:"",
-        components: UnderConstruction
+        components: FlowCalculator
     },
     {
         name: "Force",
         path: "Force",
         icon:"",
-        components: UnderConstruction
+        components: ForceCalculator
     },
     {
         name: "Frequency",

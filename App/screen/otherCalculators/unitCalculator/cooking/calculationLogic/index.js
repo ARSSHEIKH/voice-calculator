@@ -128,5 +128,69 @@ export const cookingCalculation = (method, num) => {
     else if (method === "tea_spoon_euro to pound") return Number.parseFloat(eval(num * 0.011));
     else if (method === "tea_spoon_us to pound") return Number.parseFloat(eval(num * 0.0109));
     //#endregion
+
+    //#region  for table_spoon_euro
+    else if (method === "cup_euro to table_spoon_euro") return Number.parseFloat(eval(num * 16));
+    else if (method === "cup_us to table_spoon_euro") return Number.parseFloat(eval(num * 15.7725));
+    else if (method === "fluid_ounce to table_spoon_euro") return Number.parseFloat(eval(num * 1.9716));
+    else if (method === "gram_euro to table_spoon_euro") return Number.parseFloat(eval(num / 15));
+    else if (method === "kg_euro to table_spoon_euro") return Number.parseFloat(eval(num * 66.6667));
+    else if (method === "l_euro to table_spoon_euro") return Number.parseFloat(eval(num * 66.6667));
+    else if (method === "ml_euro to table_spoon_euro") return Number.parseFloat(eval(num / 15));
+    else if (method === "ounce to table_spoon_euro") return Number.parseFloat(eval(num * 1.89));
+    else if (method === "pint to table_spoon_euro") return Number.parseFloat(eval(num * 31.5451));
+    else if (method === "table_spoon_us to table_spoon_euro") return Number.parseFloat(eval(num * 0.9858));
+    else if (method === "pound to table_spoon_euro") return Number.parseFloat(eval(num *30.2395));
+    else if (method === "tea_spoon_euro to table_spoon_euro") return Number.parseFloat(eval(num / 3));
+    else if (method === "tea_spoon_us to table_spoon_euro") return Number.parseFloat(eval(num * 0.3286));
+    //#endregion
+
+    //#region  for table_spoon_us
+    else if (method === "cup_euro to table_spoon_us") return Number.parseFloat(eval(num * 16.2307));
+    else if (method === "cup_us to table_spoon_us") return Number.parseFloat(eval(num * 16));
+    else if (method === "fluid_ounce to table_spoon_us") return Number.parseFloat(eval(num * 2));
+    else if (method === "gram_euro to table_spoon_us") return Number.parseFloat(eval(num * 0.0676));
+    else if (method === "kg_euro to table_spoon_us") return Number.parseFloat(eval(num * 67.628));
+    else if (method === "l_euro to table_spoon_us") return Number.parseFloat(eval(num * 67.628));
+    else if (method === "ml_euro to table_spoon_us") return Number.parseFloat(eval(num * 0.0676));
+    else if (method === "ounce to table_spoon_us") return Number.parseFloat(eval(num * 1.9172));
+    else if (method === "pint to table_spoon_us") return Number.parseFloat(eval(num * 16));
+    else if (method === "table_spoon_euro to table_spoon_us") return Number.parseFloat(eval(num * 1.0144));
+    else if (method === "pound to table_spoon_us") return Number.parseFloat(eval(num *30.6756));
+    else if (method === "tea_spoon_euro to table_spoon_us") return Number.parseFloat(eval(num * 0.3381));
+    else if (method === "tea_spoon_us to table_spoon_us") return Number.parseFloat(eval(num / 3));
+    //#endregion
+
+    //#region  for tea_spoon_us
+    else if (method === "cup_euro to tea_spoon_us") return Number.parseFloat(eval(num * 48.6922));
+    else if (method === "cup_us to tea_spoon_us") return Number.parseFloat(eval(num * 48));
+    else if (method === "fluid_ounce to tea_spoon_us") return Number.parseFloat(eval(num * 6));
+    else if (method === "gram_euro to tea_spoon_us") return Number.parseFloat(eval(num * 0.2029));
+    else if (method === "kg_euro to tea_spoon_us") return Number.parseFloat(eval(num * 202.8841));
+    else if (method === "l_euro to tea_spoon_us") return Number.parseFloat(eval(num * 202.8841));
+    else if (method === "ml_euro to tea_spoon_us") return Number.parseFloat(eval(num * 0.2029));
+    else if (method === "ounce to tea_spoon_us") return Number.parseFloat(eval(num * 5.7517));
+    else if (method === "pint to tea_spoon_us") return Number.parseFloat(eval(num * 96));
+    else if (method === "pound to tea_spoon_us") return Number.parseFloat(eval(num * 92.0267));
+    else if (method === "table_spoon_euro to tea_spoon_us") return Number.parseFloat(eval(num * 3.0433));
+    else if (method === "table_spoon_us to tea_spoon_us") return Number.parseFloat(eval(num / 3));
+    else if (method === "tea_spoon_euro to tea_spoon_us") return Number.parseFloat(eval(num * 1.0144));
+    //#endregion
+    
+    //#region  for tea_spoon_euro
+    else if (method === "cup_euro to tea_spoon_euro") return Number.parseFloat(eval(num * 48));
+    else if (method === "cup_us to tea_spoon_euro") return Number.parseFloat(eval(num * 47.3176));
+    else if (method === "fluid_ounce to tea_spoon_euro") return Number.parseFloat(eval(num * 5.9147));
+    else if (method === "gram_euro to tea_spoon_euro") return Number.parseFloat(eval(num * 0.2));
+    else if (method === "kg_euro to tea_spoon_euro") return Number.parseFloat(eval(num * 200));
+    else if (method === "l_euro to tea_spoon_euro") return Number.parseFloat(eval(num * 200));
+    else if (method === "ml_euro to tea_spoon_euro") return Number.parseFloat(eval(num * 0.2));
+    else if (method === "ounce to tea_spoon_euro") return Number.parseFloat(eval(num * 5.6699));
+    else if (method === "pint to tea_spoon_euro") return Number.parseFloat(eval(num * 94.6353));
+    else if (method === "pound to tea_spoon_euro") return Number.parseFloat(eval(num * 90.7185));
+    else if (method === "table_spoon_euro to tea_spoon_euro") return Number.parseFloat(eval(num * 3));
+    else if (method === "table_spoon_us to tea_spoon_euro") return Number.parseFloat(eval(num * 2.9574));
+    else if (method === "tea_spoon_us to tea_spoon_euro") return Number.parseFloat(eval(num / 1.0144));
+    //#endregion
     
 }

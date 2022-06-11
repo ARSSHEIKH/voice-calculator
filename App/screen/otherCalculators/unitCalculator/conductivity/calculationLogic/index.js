@@ -1,8 +1,4 @@
 
-// import { voltage } from 'units-converter';
-// import convert from "convert-units"
-
-
 const fixedValue = 2;
 let thousand = 1000;
 

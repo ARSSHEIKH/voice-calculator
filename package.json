@@ -17,7 +17,9 @@
     "@react-navigation/drawer": "^6.4.1",
     "@react-navigation/native": "^6.0.10",
     "convert-units": "^2.3.4",
+    "i": "^0.3.7",
     "mathjs": "^10.5.3",
+    "npm": "^8.12.1",
     "react": "17.0.2",
     "react-dom": "^18.0.0",
     "react-native": "0.67.4",
@@ -34,6 +36,7 @@
     "react-redux": "^7.2.6",
     "react-scripts": "^5.0.0",
     "redux": "^4.1.2",
+    "unit-converter-pro": "^1.0.1",
     "units-converter": "^1.0.3"
   },
   "devDependencies": {

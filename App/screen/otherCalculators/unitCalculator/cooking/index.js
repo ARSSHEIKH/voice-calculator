@@ -40,13 +40,13 @@ export default function CookingCalculator() {
     // )
 
     //#region calculation methods
-    
+
     const forcup_euro = () => {
         if (selectedChargeFrom === "cup_us" && selectedChargeTo === "cup_euro") {
             const value = cookingCalculation("cup_us to cup_euro", calc);
             setRes(value)
         }
-       else if (selectedChargeFrom === "fluid_ounce" && selectedChargeTo === "cup_euro") {
+        else if (selectedChargeFrom === "fluid_ounce" && selectedChargeTo === "cup_euro") {
             const value = cookingCalculation("fluid_ounce to cup_euro", calc);
             setRes(value)
         }
@@ -100,7 +100,7 @@ export default function CookingCalculator() {
             const value = cookingCalculation("cup_euro to cup_us", calc);
             setRes(value)
         }
-       else if (selectedChargeFrom === "fluid_ounce" && selectedChargeTo === "cup_us") {
+        else if (selectedChargeFrom === "fluid_ounce" && selectedChargeTo === "cup_us") {
             const value = cookingCalculation("fluid_ounce to cup_us", calc);
             setRes(value)
         }
@@ -154,7 +154,7 @@ export default function CookingCalculator() {
             const value = cookingCalculation("cup_euro to fluid_ounce", calc);
             setRes(value)
         }
-       else if (selectedChargeFrom === "cup_us" && selectedChargeTo === "fluid_ounce") {
+        else if (selectedChargeFrom === "cup_us" && selectedChargeTo === "fluid_ounce") {
             const value = cookingCalculation("cup_us to fluid_ounce", calc);
             setRes(value)
         }
@@ -208,7 +208,7 @@ export default function CookingCalculator() {
             const value = cookingCalculation("cup_euro to gram_euro", calc);
             setRes(value)
         }
-       else if (selectedChargeFrom === "cup_us") {
+        else if (selectedChargeFrom === "cup_us") {
             const value = cookingCalculation("cup_us to gram_euro", calc);
             setRes(value)
         }
@@ -262,7 +262,7 @@ export default function CookingCalculator() {
             const value = cookingCalculation("cup_euro to kg_euro", calc);
             setRes(value)
         }
-       else if (selectedChargeFrom === "cup_us") {
+        else if (selectedChargeFrom === "cup_us") {
             const value = cookingCalculation("cup_us to kg_euro", calc);
             setRes(value)
         }
@@ -317,7 +317,7 @@ export default function CookingCalculator() {
             const value = cookingCalculation("cup_euro to ounce", calc);
             setRes(value)
         }
-       else if (selectedChargeFrom === "cup_us") {
+        else if (selectedChargeFrom === "cup_us") {
             const value = cookingCalculation("cup_us to ounce", calc);
             setRes(value)
         }
@@ -371,7 +371,7 @@ export default function CookingCalculator() {
             const value = cookingCalculation("cup_euro to pint", calc);
             setRes(value)
         }
-       else if (selectedChargeFrom === "cup_us") {
+        else if (selectedChargeFrom === "cup_us") {
             const value = cookingCalculation("cup_us to pint", calc);
             setRes(value)
         }
@@ -393,6 +393,10 @@ export default function CookingCalculator() {
         }
         else if (selectedChargeFrom === "ml_euro") {
             const value = cookingCalculation("ml_euro to pint", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "ounce") {
+            const value = cookingCalculation("ounce to pint", calc);
             setRes(value)
         }
         else if (selectedChargeFrom === "pound") {
@@ -421,7 +425,7 @@ export default function CookingCalculator() {
             const value = cookingCalculation("cup_euro to pound", calc);
             setRes(value)
         }
-       else if (selectedChargeFrom === "cup_us") {
+        else if (selectedChargeFrom === "cup_us") {
             const value = cookingCalculation("cup_us to pound", calc);
             setRes(value)
         }
@@ -434,7 +438,7 @@ export default function CookingCalculator() {
             setRes(value)
         }
         else if (selectedChargeFrom === "kg_euro") {
-            const value = cookingCalculation("kg_euro to ounce", calc);
+            const value = cookingCalculation("kg_euro to pound", calc);
             setRes(value)
         }
         else if (selectedChargeFrom === "l_euro") {
@@ -443,6 +447,10 @@ export default function CookingCalculator() {
         }
         else if (selectedChargeFrom === "ml_euro") {
             const value = cookingCalculation("ml_euro to pound", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "ounce") {
+            const value = cookingCalculation("ounce to pound", calc);
             setRes(value)
         }
         else if (selectedChargeFrom === "pint") {
@@ -466,6 +474,168 @@ export default function CookingCalculator() {
             setRes(value)
         }
     }
+    const fortable_spoon_euro = () => {
+        if (selectedChargeFrom === "cup_euro") {
+            const value = cookingCalculation("cup_euro to table_spoon_euro", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "cup_us") {
+            const value = cookingCalculation("cup_us to table_spoon_euro", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "fluid_ounce") {
+            const value = cookingCalculation("fluid_ounce to table_spoon_euro", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "gram_euro") {
+            const value = cookingCalculation("gram_euro to table_spoon_euro", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "kg_euro") {
+            const value = cookingCalculation("kg_euro to table_spoon_euro", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "l_euro") {
+            const value = cookingCalculation("l_euro to table_spoon_euro", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "ml_euro") {
+            const value = cookingCalculation("ml_euro to table_spoon_euro", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "ounce") {
+            const value = cookingCalculation("ounce to table_spoon_euro", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "pint") {
+            const value = cookingCalculation("pint to table_spoon_euro", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "pound") {
+            const value = cookingCalculation("pound to table_spoon_euro", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "table_spoon_euro") {
+            const value = cookingCalculation("table_spoon_euro to table_spoon_euro", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "tea_spoon_us") {
+            const value = cookingCalculation("tea_spoon_us to table_spoon_euro", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "tea_spoon_euro") {
+            const value = cookingCalculation("tea_spoon_euro to table_spoon_euro", calc);
+            setRes(value)
+        }
+    }
+    const fortea_spoon_us = () => {
+        if (selectedChargeFrom === "cup_euro") {
+            const value = cookingCalculation("cup_euro to tea_spoon_us", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "cup_us") {
+            const value = cookingCalculation("cup_us to tea_spoon_us", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "fluid_ounce") {
+            const value = cookingCalculation("fluid_ounce to tea_spoon_us", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "gram_euro") {
+            const value = cookingCalculation("gram_euro to tea_spoon_us", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "kg_euro") {
+            const value = cookingCalculation("kg_euro to tea_spoon_us", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "l_euro") {
+            const value = cookingCalculation("l_euro to tea_spoon_us", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "ml_euro") {
+            const value = cookingCalculation("ml_euro to tea_spoon_us", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "ounce") {
+            const value = cookingCalculation("ounce to tea_spoon_us", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "pint") {
+            const value = cookingCalculation("pint to tea_spoon_us", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "pound") {
+            const value = cookingCalculation("pound to tea_spoon_us", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "table_spoon_euro") {
+            const value = cookingCalculation("table_spoon_euro to tea_spoon_us", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "table_spoon_us") {
+            const value = cookingCalculation("table_spoon_us to tea_spoon_us", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "tea_spoon_euro") {
+            const value = cookingCalculation("tea_spoon_euro to tea_spoon_us", calc);
+            setRes(value)
+        }
+    }
+    const fortea_spoon_euro = () => {
+        if (selectedChargeFrom === "cup_euro") {
+            const value = cookingCalculation("cup_euro to tea_spoon_euro", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "cup_us") {
+            const value = cookingCalculation("cup_us to tea_spoon_euro", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "fluid_ounce") {
+            const value = cookingCalculation("fluid_ounce to tea_spoon_euro", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "gram_euro") {
+            const value = cookingCalculation("gram_euro to tea_spoon_euro", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "kg_euro") {
+            const value = cookingCalculation("kg_euro to tea_spoon_euro", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "l_euro") {
+            const value = cookingCalculation("l_euro to tea_spoon_euro", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "ml_euro") {
+            const value = cookingCalculation("ml_euro to tea_spoon_euro", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "ounce") {
+            const value = cookingCalculation("ounce to tea_spoon_euro", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "pint") {
+            const value = cookingCalculation("pint to tea_spoon_euro", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "pound") {
+            const value = cookingCalculation("pound to tea_spoon_euro", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "table_spoon_euro") {
+            const value = cookingCalculation("table_spoon_euro to tea_spoon_euro", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "table_spoon_us") {
+            const value = cookingCalculation("table_spoon_us to tea_spoon_euro", calc);
+            setRes(value)
+        }
+        else if (selectedChargeFrom === "tea_spoon_euro") {
+            const value = cookingCalculation("tea_spoon_euro to tea_spoon_euro", calc);
+            setRes(value)
+        }
+    }
 
     //#endregion
 
@@ -479,8 +649,12 @@ export default function CookingCalculator() {
         else if (selectedChargeTo === "ounce") forounce();
         else if (selectedChargeTo === "pint") forpint();
         else if (selectedChargeTo === "pound") forpound();
-        
-   }, [selectedChargeFrom, selectedChargeTo, calc])
+        else if (selectedChargeTo === "table_spoon_euro") fortable_spoon_euro();
+        else if (selectedChargeTo === "table_spoon_us") fortable_spoon_us();
+        else if (selectedChargeTo === "tea_spoon_us") fortea_spoon_us();
+        else if (selectedChargeTo === "tea_spoon_euro") fortea_spoon_euro();
+
+    }, [selectedChargeFrom, selectedChargeTo, calc])
 
     const handleTap = (type, value) => {
         if (value === 0 && calc === "" || operators.includes(value) && calc === "" || operators.includes(value) && operators.includes(calc.slice(-1)))
