@@ -10,13 +10,13 @@ import { useFocusEffect } from "@react-navigation/native";
 import { Dropdown } from "react-native-element-dropdown";
 import { Divider } from "react-native-elements";
 import dropdownList from "./dropdownList";
-import { forceCalculation } from "./calculationLogic";
+import { fuelEffieciencyCalculation } from "./calculationLogic";
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 let values_array = [];
 let lastIndexOfCalc = 0;
-export default function ForceCalculator() {
+export default function FuelEfficiencyCalculator() {
     const dispatch = useDispatch()
     const [calc, setCalc] = useState('')
     const [res, setRes] = useState('')
@@ -39,10 +39,253 @@ export default function ForceCalculator() {
     //     }, [])
     // )
 
+    //#region calculation methods
+
+    // J_per_kg
+    const forJ_per_kg = () => {
+        if (selectedChargeFrom === "J/kg" && selectedChargeTo === "kJ/kg") {
+            const value = fuelEffieciencyCalculation("J/kg to kJ/kg", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "J/kg" && selectedChargeTo === "cal/g") {
+            const value = fuelEffieciencyCalculation("J/kg to cal/g", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "J/kg" && selectedChargeTo === "cal (th)/g") {
+            const value = fuelEffieciencyCalculation("J/kg to cal (th)/g", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "J/kg" && selectedChargeTo === "kg/J") {
+            const value = fuelEffieciencyCalculation("J/kg to kg/J", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "J/kg" && selectedChargeTo === "kg/kJ") {
+            const value = fuelEffieciencyCalculation("J/kg to kg/kJ", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "J/kg" && selectedChargeTo === "g/cal") {
+            const value = fuelEffieciencyCalculation("J/kg to g/cal", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "J/kg" && selectedChargeTo === "g/cal (th)") {
+            const value = fuelEffieciencyCalculation("J/kg to g/cal (th)", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "J/kg" && selectedChargeTo === "Btu/lb") {
+            const value = fuelEffieciencyCalculation("J/kg to Btu/lb", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "J/kg" && selectedChargeTo === "Btu (th)/lb") {
+            const value = fuelEffieciencyCalculation("J/kg to Btu (th)/lb", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "J/kg" && selectedChargeTo === "lb/Btu") {
+            const value = fuelEffieciencyCalculation("J/kg to lb/Btu", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "J/kg" && selectedChargeTo === "lb/Btu (th)") {
+            const value = fuelEffieciencyCalculation("J/kg to lb/Btu (th)", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "J/kg" && selectedChargeTo === 'lb/(hp*h)') {
+            const value = fuelEffieciencyCalculation("J/kg to lb/(hp*h)", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "J/kg" && selectedChargeTo === "g(hp*h)") {
+            const value = fuelEffieciencyCalculation("J/kg to g(hp*h)", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "J/kg" && selectedChargeTo === 'g(kW*h)') {
+            const value = fuelEffieciencyCalculation("J/kg to g(kW*h)", calc);
+            setRes(value);
+        }
+    };
+
+    const forkJ_per_kg = () => {
+        if (selectedChargeFrom === "kJ/kg" && selectedChargeTo === "J/kg") {
+            const value = fuelEffieciencyCalculation("kJ/kg to J/kg", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "kJ/kg" && selectedChargeTo === "cal/g") {
+            const value = fuelEffieciencyCalculation("kJ/kg to cal/g", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "kJ/kg" && selectedChargeTo === "cal (th)/g") {
+            const value = fuelEffieciencyCalculation("kJ/kg to cal (th)/g", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "kJ/kg" && selectedChargeTo === "kg/J") {
+            const value = fuelEffieciencyCalculation("kJ/kg to kg/J", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "kJ/kg" && selectedChargeTo === "kg/kJ") {
+            const value = fuelEffieciencyCalculation("kJ/kg to kg/kJ", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "kJ/kg" && selectedChargeTo === "g/cal") {
+            const value = fuelEffieciencyCalculation("kJ/kg to g/cal", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "kJ/kg" && selectedChargeTo === "g/cal (th)") {
+            const value = fuelEffieciencyCalculation("kJ/kg to g/cal (th)", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "kJ/kg" && selectedChargeTo === "Btu/lb") {
+            const value = fuelEffieciencyCalculation("kJ/kg to Btu/lb", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "kJ/kg" && selectedChargeTo === "Btu (th)/lb") {
+            const value = fuelEffieciencyCalculation("kJ/kg to Btu (th)/lb", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "kJ/kg" && selectedChargeTo === "lb/Btu") {
+            const value = fuelEffieciencyCalculation("kJ/kg to lb/Btu", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "kJ/kg" && selectedChargeTo === "lb/Btu (th)") {
+            const value = fuelEffieciencyCalculation("kJ/kg to lb/Btu (th)", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "kJ/kg" && selectedChargeTo === 'lb/(hp*h)') {
+            const value = fuelEffieciencyCalculation("kJ/kg to lb/(hp*h)", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "kJ/kg" && selectedChargeTo === "g(hp*h)") {
+            const value = fuelEffieciencyCalculation("kJ/kg to g(hp*h)", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "kJ/kg" && selectedChargeTo === 'g(kW*h)') {
+            const value = fuelEffieciencyCalculation("kJ/kg to g(kW*h)", calc);
+            setRes(value);
+        }
+    };
+
+    const forcal_per_g = () => {
+        if (selectedChargeFrom === "cal/g" && selectedChargeTo === "J/kg") {
+            const value = fuelEffieciencyCalculation("cal/g to J/kg", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "cal/g" && selectedChargeTo === "kJ/kg") {
+            const value = fuelEffieciencyCalculation("cal/g to kJ/kg", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "cal/g" && selectedChargeTo === "cal (th)/g") {
+            const value = fuelEffieciencyCalculation("cal/g to cal (th)/g", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "cal/g" && selectedChargeTo === "kg/J") {
+            const value = fuelEffieciencyCalculation("cal/g to kg/J", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "cal/g" && selectedChargeTo === "kg/kJ") {
+            const value = fuelEffieciencyCalculation("cal/g to kg/kJ", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "cal/g" && selectedChargeTo === "g/cal") {
+            const value = fuelEffieciencyCalculation("cal/g to g/cal", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "cal/g" && selectedChargeTo === "g/cal (th)") {
+            const value = fuelEffieciencyCalculation("cal/g to g/cal (th)", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "cal/g" && selectedChargeTo === "Btu/lb") {
+            const value = fuelEffieciencyCalculation("cal/g to Btu/lb", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "cal/g" && selectedChargeTo === "Btu (th)/lb") {
+            const value = fuelEffieciencyCalculation("cal/g to Btu (th)/lb", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "cal/g" && selectedChargeTo === "lb/Btu") {
+            const value = fuelEffieciencyCalculation("cal/g to lb/Btu", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "cal/g" && selectedChargeTo === "lb/Btu (th)") {
+            const value = fuelEffieciencyCalculation("cal/g to lb/Btu (th)", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "cal/g" && selectedChargeTo === 'lb/(hp*h)') {
+            const value = fuelEffieciencyCalculation("cal/g to lb/(hp*h)", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "cal/g" && selectedChargeTo === "g(hp*h)") {
+            const value = fuelEffieciencyCalculation("cal/g to g(hp*h)", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "cal/g" && selectedChargeTo === 'g(kW*h)') {
+            const value = fuelEffieciencyCalculation("cal/g to g(kW*h)", calc);
+            setRes(value);
+        }
+    };
+
+    const forcal_th_per_g = () => {
+        if (selectedChargeFrom === "cal (th)/g" && selectedChargeTo === "J/kg") {
+            const value = fuelEffieciencyCalculation("cal (th)/g to J/kg", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "cal (th)/g" && selectedChargeTo === "kJ/kg") {
+            const value = fuelEffieciencyCalculation("cal (th)/g to kJ/kg", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "cal (th)/g" && selectedChargeTo === "cal (th)/g") {
+            const value = fuelEffieciencyCalculation("cal (th)/g to cal/g", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "cal (th)/g" && selectedChargeTo === "kg/J") {
+            const value = fuelEffieciencyCalculation("cal (th)/g to kg/J", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "cal (th)/g" && selectedChargeTo === "kg/kJ") {
+            const value = fuelEffieciencyCalculation("cal (th)/g to kg/kJ", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "cal (th)/g" && selectedChargeTo === "g/cal") {
+            const value = fuelEffieciencyCalculation("cal (th)/g to g/cal", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "cal (th)/g" && selectedChargeTo === "g/cal (th)") {
+            const value = fuelEffieciencyCalculation("cal (th)/g to g/cal (th)", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "cal (th)/g" && selectedChargeTo === "Btu/lb") {
+            const value = fuelEffieciencyCalculation("cal (th)/g to Btu/lb", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "cal (th)/g" && selectedChargeTo === "Btu (th)/lb") {
+            const value = fuelEffieciencyCalculation("cal (th)/g to Btu (th)/lb", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "cal (th)/g" && selectedChargeTo === "lb/Btu") {
+            const value = fuelEffieciencyCalculation("cal (th)/g to lb/Btu", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "cal (th)/g" && selectedChargeTo === "lb/Btu (th)") {
+            const value = fuelEffieciencyCalculation("cal (th)/g to lb/Btu (th)", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "cal (th)/g" && selectedChargeTo === 'lb/(hp*h)') {
+            const value = fuelEffieciencyCalculation("cal (th)/g to lb/(hp*h)", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "cal (th)/g" && selectedChargeTo === "g(hp*h)") {
+            const value = fuelEffieciencyCalculation("cal (th)/g to g(hp*h)", calc);
+            setRes(value);
+        }
+        else if (selectedChargeFrom === "cal (th)/g" && selectedChargeTo === 'g(kW*h)') {
+            const value = fuelEffieciencyCalculation("cal (th)/g to g(kW*h)", calc);
+            setRes(value);
+        }
+    };
+    //#endregion
+
     useEffect(() => {
         if (selectedChargeFrom === selectedChargeTo) setRes(calc);
-        else setRes(forceCalculation(selectedChargeFrom, selectedChargeTo, calc));
-    }, [selectedChargeFrom, selectedChargeTo, calc])
+        else if (selectedChargeFrom === "J/kg") forJ_per_kg();
+        else if (selectedChargeFrom === "kJ/kg") forkJ_per_kg();
+        else if (selectedChargeFrom === "cal/g") forcal_per_g();
+        else if (selectedChargeFrom === "cal (th)/g") forcal_th_per_g();
+    }, [selectedChargeFrom, selectedChargeTo, calc]);
 
     const handleTap = (type, value) => {
         if (value === 0 && calc === "" || operators.includes(value) && calc === "" || operators.includes(value) && operators.includes(calc.slice(-1)))
@@ -115,9 +358,9 @@ export default function ForceCalculator() {
     return (
         // adClosed ?
         <SafeAreaView style={{ backgroundColor: theme_mode.backgroundColor }}>
-            <Header theme_mode={theme_back} tabsShow={false} headingFirst="Force" headingLast="Calculator" />
+            <Header theme_mode={theme_back} tabsShow={false} headingFirst="Fuel Efficiency" headingLast="Calculator" />
 
-            <View style={{ ...styles.calcContainer, color: theme_mode.backgroundColor }}>
+            <View style={{ ...styles.calcContainer, color: theme_mode.backgroundColor, }}>
                 <View style={styles.subContainer}>
                     <View style={styles.innerContainer}>
 

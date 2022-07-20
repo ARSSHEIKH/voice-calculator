@@ -10,13 +10,13 @@ import { useFocusEffect } from "@react-navigation/native";
 import { Dropdown } from "react-native-element-dropdown";
 import { Divider } from "react-native-elements";
 import dropdownList from "./dropdownList";
-import { forceCalculation } from "./calculationLogic";
+import { frequencyCalculation } from "./calculationLogic";
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 let values_array = [];
 let lastIndexOfCalc = 0;
-export default function ForceCalculator() {
+export default function FrequencyCalculator() {
     const dispatch = useDispatch()
     const [calc, setCalc] = useState('')
     const [res, setRes] = useState('')
@@ -41,7 +41,8 @@ export default function ForceCalculator() {
 
     useEffect(() => {
         if (selectedChargeFrom === selectedChargeTo) setRes(calc);
-        else setRes(forceCalculation(selectedChargeFrom, selectedChargeTo, calc));
+        else setRes(frequencyCalculation(selectedChargeFrom, selectedChargeTo, calc));
+
     }, [selectedChargeFrom, selectedChargeTo, calc])
 
     const handleTap = (type, value) => {
@@ -115,9 +116,9 @@ export default function ForceCalculator() {
     return (
         // adClosed ?
         <SafeAreaView style={{ backgroundColor: theme_mode.backgroundColor }}>
-            <Header theme_mode={theme_back} tabsShow={false} headingFirst="Force" headingLast="Calculator" />
+            <Header theme_mode={theme_back} tabsShow={false} headingFirst="Frequency" headingLast="Calculator" />
 
-            <View style={{ ...styles.calcContainer, color: theme_mode.backgroundColor }}>
+            <View style={{ ...styles.calcContainer, color: theme_mode.backgroundColor, }}>
                 <View style={styles.subContainer}>
                     <View style={styles.innerContainer}>
 

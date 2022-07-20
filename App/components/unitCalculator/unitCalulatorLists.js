@@ -13,6 +13,8 @@ import FlowCalculator from "../../screen/otherCalculators/unitCalculator/flow"
 import ForceCalculator from "../../screen/otherCalculators/unitCalculator/force"
 
 import UnderConstruction from "../../screen/otherCalculators/unitCalculator/underConstruction"
+import FrequencyCalculator from "../../screen/otherCalculators/unitCalculator/frequency";
+import FuelEfficiencyCalculator from "../../screen/otherCalculators/unitCalculator/fuel-efficiency"
 
 const unitCalulatorLists = [
     {
@@ -103,13 +105,13 @@ const unitCalulatorLists = [
         name: "Frequency",
         path: "Frequency",
         icon:"",
-        components: UnderConstruction
+        components: FrequencyCalculator
     },
     {
         name: "Fuel Efficiency",
         path: "Fuel Efficiency",
         icon:"",
-        components: UnderConstruction
+        components: FuelEfficiencyCalculator
     },
     {
         name: "Fuel",
